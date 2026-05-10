@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Mock Test - Final Setup</title>
+<title>DCECE Mock Test - Advanced Biology</title>
 
 <style>
 :root{
@@ -375,7 +375,7 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>Welcome to Physics Mock Test</h2>
+  <h2>Welcome to DCECE Biology Mock Test</h2>
   <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
@@ -384,19 +384,20 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>Physics &mdash; <span>100 MCQ</span> Practice Set</h1>
+      <h1>Biology &mdash; <span>100 MCQ</span> Hard Level Practice</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
         <button class="filter-btn active" data-topic="All" onclick="filterTopic('All')">All</button>
-        <button class="filter-btn" data-topic="Motion" onclick="filterTopic('Motion')">Motion</button>
-        <button class="filter-btn" data-topic="Laws of Motion" onclick="filterTopic('Laws of Motion')">Laws of Motion</button>
-        <button class="filter-btn" data-topic="Work Power Energy" onclick="filterTopic('Work Power Energy')">Work Power Energy</button>
-        <button class="filter-btn" data-topic="Gravitation" onclick="filterTopic('Gravitation')">Gravitation</button>
-        <button class="filter-btn" data-topic="Properties of Matter" onclick="filterTopic('Properties of Matter')">Properties of Matter</button>
-        <button class="filter-btn" data-topic="Friction" onclick="filterTopic('Friction')">Friction</button>
+        <button class="filter-btn" data-topic="Cell" onclick="filterTopic('Cell')">Cell</button>
+        <button class="filter-btn" data-topic="Plant Kingdom" onclick="filterTopic('Plant Kingdom')">Plant Kingdom</button>
+        <button class="filter-btn" data-topic="Photosynthesis" onclick="filterTopic('Photosynthesis')">Photosynthesis</button>
+        <button class="filter-btn" data-topic="Respiration" onclick="filterTopic('Respiration')">Respiration</button>
+        <button class="filter-btn" data-topic="Genetics" onclick="filterTopic('Genetics')">Genetics</button>
+        <button class="filter-btn" data-topic="Digestion" onclick="filterTopic('Digestion')">Digestion</button>
+        <button class="filter-btn" data-topic="Sexual Reproduction" onclick="filterTopic('Sexual Reproduction')">Sexual Reproduction</button>
       </div>
 
       <div class="timer-submit-group">
@@ -438,137 +439,144 @@ button{
 
 <script>
 const COLORS = {
-  "Motion":"#185FA5","Laws of Motion":"#0F6E56","Work Power Energy":"#854F0B",
-  "Gravitation":"#533AB7","Properties of Matter":"#993C1D","Friction":"#3B6D11"
+  "Cell":"#185FA5",
+  "Plant Kingdom":"#0F6E56",
+  "Photosynthesis":"#854F0B",
+  "Respiration":"#533AB7",
+  "Genetics":"#993C1D",
+  "Digestion":"#3B6D11",
+  "Sexual Reproduction":"#B31B1B"
 };
 
 const ansKey = {
-  1:'B', 2:'C', 3:'A', 4:'C', 5:'B', 6:'B', 7:'A', 8:'A', 9:'B', 10:'B',
-  11:'B', 12:'B', 13:'A', 14:'A', 15:'C', 16:'B', 17:'A', 18:'A', 19:'A', 20:'A',
-  21:'C', 22:'A', 23:'B', 24:'A', 25:'A', 26:'A', 27:'B', 28:'A', 29:'A', 30:'A',
-  31:'C', 32:'B', 33:'D', 34:'A', 35:'B', 36:'C', 37:'A', 38:'A', 39:'B', 40:'C',
-  41:'B', 42:'A', 43:'A', 44:'B', 45:'A', 46:'C', 47:'D', 48:'C', 49:'B', 50:'D',
-  51:'B', 52:'A', 53:'B', 54:'A', 55:'B', 56:'C', 57:'A', 58:'B', 59:'B', 60:'D',
-  61:'B', 62:'B', 63:'A', 64:'B', 65:'A', 66:'A', 67:'B', 68:'B', 69:'B', 70:'A',
-  71:'D', 72:'C', 73:'B', 74:'A', 75:'C', 76:'B', 77:'A', 78:'B', 79:'B', 80:'B',
-  81:'A', 82:'C', 83:'B', 84:'D', 85:'B', 86:'C', 87:'A', 88:'C', 89:'C', 90:'A',
-  91:'A', 92:'A', 93:'A', 94:'A', 95:'A', 96:'A', 97:'A', 98:'C', 99:'A', 100:'C'
+  1:'B', 2:'C', 3:'C', 4:'A', 5:'B', 6:'A', 7:'C', 8:'B', 9:'D', 10:'C',
+  11:'B', 12:'A', 13:'A', 14:'D', 15:'B', 16:'B', 17:'C', 18:'A', 19:'D', 20:'B',
+  21:'A', 22:'C', 23:'A', 24:'D', 25:'C', 26:'B', 27:'D', 28:'B', 29:'A', 30:'C',
+  31:'A', 32:'C', 33:'B', 34:'C', 35:'D', 36:'C', 37:'A', 38:'C', 39:'A', 40:'D',
+  41:'B', 42:'C', 43:'B', 44:'A', 45:'D', 46:'A', 47:'C', 48:'B', 49:'C', 50:'B',
+  51:'C', 52:'A', 53:'C', 54:'B', 55:'C', 56:'A', 57:'D', 58:'B', 59:'C', 60:'B',
+  61:'A', 62:'C', 63:'B', 64:'A', 65:'C', 66:'B', 67:'A', 68:'D', 69:'C', 70:'A',
+  71:'B', 72:'C', 73:'A', 74:'D', 75:'C', 76:'B', 77:'A', 78:'B', 79:'C', 80:'A',
+  81:'D', 82:'B', 83:'B', 84:'C', 85:'A', 86:'C', 87:'B', 88:'A', 89:'C', 90:'B',
+  91:'C', 92:'D', 93:'A', 94:'B', 95:'A', 96:'B', 97:'C', 98:'B', 99:'A', 100:'C'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-  // MOTION
-  {n:1, topic:"Motion", q:"A car accelerates from rest to 72 km/h in 10 s. What is its acceleration?", opts:["1.5 m/s²","2 m/s²","3 m/s²","4 m/s²"]},
-  {n:2, topic:"Motion", q:"A particle moves along a circle of radius r with constant speed. Which quantity remains constant?", opts:["Velocity","Acceleration","Speed","Displacement"]},
-  {n:3, topic:"Motion", q:"A body is thrown vertically upward with speed u. Time to reach maximum height is:", opts:["u/g","2u/g","u/2g","g/u"]},
-  {n:4, topic:"Motion", q:"The area under velocity-time graph gives:", opts:["Speed","Acceleration","Displacement","Force"]},
-  {n:5, topic:"Motion", q:"A train 200 m long passes a bridge 300 m long at 72 km/h. Time taken is:", opts:["20 s","25 s","30 s","35 s"]},
-  {n:6, topic:"Motion", q:"A ball is dropped from height h. Time to reach ground is:", opts:["√(h/g)","√(2h/g)","2√(h/g)","h/g"]},
-  {n:7, topic:"Motion", q:"A particle has displacement s = 3t² + 2t + 1. Acceleration at t = 2 s is:", opts:["6 m/s²","12 m/s²","8 m/s²","18 m/s²"]},
-  {n:8, topic:"Motion", q:"Two objects A and B are projected with same speed at angles 30° and 60°. Ratio of their ranges is:", opts:["1:1","1:√3","√3:1","1:2"]},
-  {n:9, topic:"Motion", q:"A body moving with uniform speed in a circle has:", opts:["Constant velocity","Variable acceleration","Constant acceleration","Zero acceleration"]},
-  {n:10, topic:"Motion", q:"A bullet fired horizontally from height 80 m travels 160 m horizontally. Initial speed of bullet is (g=10 m/s²):", opts:["20 m/s","40 m/s","60 m/s","80 m/s"]},
-  {n:11, topic:"Motion", q:"Velocity-time graph of a body shows a straight line parallel to time axis. This means:", opts:["Uniform acceleration","Uniform velocity","Non-uniform motion","Zero velocity"]},
-  {n:12, topic:"Motion", q:"A stone is dropped from a tower 125 m tall. Speed when it hits the ground (g=10 m/s²):", opts:["25 m/s","50 m/s","75 m/s","100 m/s"]},
-  {n:13, topic:"Motion", q:"A car covers first half of distance at 40 km/h and second half at 60 km/h. Average speed is:", opts:["48 km/h","50 km/h","52 km/h","45 km/h"]},
-  {n:14, topic:"Motion", q:"If displacement ∝ t³, then acceleration is proportional to:", opts:["t","t²","1/t","constant"]},
-  {n:15, topic:"Motion", q:"Slope of displacement-time graph gives:", opts:["Acceleration","Speed","Velocity","Force"]},
-  {n:16, topic:"Motion", q:"A ball is thrown at 45° with speed 20 m/s. Maximum horizontal range (g=10 m/s²):", opts:["20 m","40 m","10 m","80 m"]},
-  {n:17, topic:"Motion", q:"Two buses start from same point in same direction at speeds 20 m/s and 15 m/s. After 10 s, distance between them is:", opts:["50 m","40 m","60 m","70 m"]},
-  {n:18, topic:"Motion", q:"If initial velocity is 0 and acceleration is a, distance in nth second is:", opts:["a(2n-1)/2","a(n-1)","an²/2","a(2n+1)/2"]},
+  // CELL (1-15)
+  {n:1, topic:"Cell", q:"The fluid mosaic model of the plasma membrane was proposed by Singer and Nicolson in which year?", opts:["1970","1972","1974","1976"]},
+  {n:2, topic:"Cell", q:"Which of the following structures is absent in higher plant cells but present in animal cells?", opts:["Plastids","Vacuoles","Centrioles","Mitochondria"]},
+  {n:3, topic:"Cell", q:"During which phase of the cell cycle does DNA replication occur?", opts:["G1 phase","G2 phase","S phase","M phase"]},
+  {n:4, topic:"Cell", q:"The synaptonemal complex is formed during which stage of prophase-I in meiosis?", opts:["Zygotene","Pachytene","Diplotene","Diakinesis"]},
+  {n:5, topic:"Cell", q:"Which organelle is uniquely associated with photorespiration in plant cells?", opts:["Lysosome","Peroxisome","Golgi body","Endoplasmic Reticulum"]},
+  {n:6, topic:"Cell", q:"Crossing over between non-sister chromatids of homologous chromosomes is an enzyme-mediated process. The enzyme involved is:", opts:["Recombinase","Ligase","Helicase","Polymerase"]},
+  {n:7, topic:"Cell", q:"The arrangement of axonemal microtubules in eukaryotic cilia and flagella is referred to as:", opts:["9+0 array","9+1 array","9+2 array","8+2 array"]},
+  {n:8, topic:"Cell", q:"Lysosomes are rich in which type of enzymes?", opts:["Ligases","Hydrolases","Transferases","Isomerases"]},
+  {n:9, topic:"Cell", q:"In mammalian cells, which checkpoint is considered the restriction point where the cell commits to entering the cell cycle?", opts:["G2/M checkpoint","Spindle assembly checkpoint","Metaphase checkpoint","G1/S checkpoint"]},
+  {n:10, topic:"Cell", q:"Which of the following is an intermediate filament protein found in epithelial cells?", opts:["Actin","Tubulin","Keratin","Myosin"]},
+  {n:11, topic:"Cell", q:"The primary site for the synthesis of ribosomal RNA (rRNA) is:", opts:["Cytoplasm","Nucleolus","Nucleoplasm","Rough Endoplasmic Reticulum"]},
+  {n:12, topic:"Cell", q:"F1 particles or oxysomes are found on the:", opts:["Inner mitochondrial membrane","Outer mitochondrial membrane","Thylakoid membrane","Lysosomal membrane"]},
+  {n:13, topic:"Cell", q:"Which type of chromosome has a terminal centromere?", opts:["Telocentric","Acrocentric","Metacentric","Sub-metacentric"]},
+  {n:14, topic:"Cell", q:"The desmosomes are intercellular junctions primarily associated with:", opts:["Electrical communication","Chemical communication","Barrier function","Mechanical anchoring"]},
+  {n:15, topic:"Cell", q:"Plasmodesmata are connections that facilitate transport and communication between:", opts:["Animal cells","Plant cells","Bacterial cells","Fungal cells"]},
 
-  // LAWS OF MOTION
-  {n:19, topic:"Laws of Motion", q:"A body of mass 5 kg is acted upon by force F = 3t² N. Acceleration at t = 3 s is:", opts:["5.4 m/s²","3 m/s²","15 m/s²","9 m/s²"]},
-  {n:20, topic:"Laws of Motion", q:"A bullet of mass 50 g moving at 200 m/s embeds in a 950 g block at rest. Final velocity of system:", opts:["10 m/s","20 m/s","15 m/s","25 m/s"]},
-  {n:21, topic:"Laws of Motion", q:"Rocket propulsion works on Newton's:", opts:["First law","Second law","Third law","Law of gravitation"]},
-  {n:22, topic:"Laws of Motion", q:"A body of mass 10 kg moves with velocity 5 m/s. Force needed to stop it in 2 s is:", opts:["25 N","50 N","20 N","10 N"]},
-  {n:23, topic:"Laws of Motion", q:"A man stands on a spring scale in an elevator moving down with acceleration a. Reading of scale is:", opts:["m(g+a)","m(g-a)","mg","ma"]},
-  {n:24, topic:"Laws of Motion", q:"An impulse of 10 N·s changes velocity of 2 kg body from 3 m/s to:", opts:["8 m/s","5 m/s","7 m/s","10 m/s"]},
-  {n:25, topic:"Laws of Motion", q:"A ball of mass 0.5 kg strikes a wall at 10 m/s and rebounds at 10 m/s. Impulse on ball is:", opts:["10 N·s","5 N·s","0 N·s","20 N·s"]},
-  {n:26, topic:"Laws of Motion", q:"A 3 kg and 5 kg block are connected by string over pulley (Atwood machine). Acceleration is (g=10):", opts:["2.5 m/s²","5 m/s²","1.25 m/s²","3.5 m/s²"]},
-  {n:27, topic:"Laws of Motion", q:"Newton's first law defines the concept of:", opts:["Force","Inertia","Momentum","Acceleration"]},
-  {n:28, topic:"Laws of Motion", q:"A gun of mass 4 kg fires a bullet of mass 50 g at 200 m/s. Recoil velocity of gun:", opts:["2.5 m/s","5 m/s","4 m/s","1 m/s"]},
-  {n:29, topic:"Laws of Motion", q:"Two blocks 2 kg and 3 kg on frictionless surface are pushed by force 10 N. Acceleration of system:", opts:["2 m/s²","3 m/s²","5 m/s²","1 m/s²"]},
-  {n:30, topic:"Laws of Motion", q:"A force acts on body for 3 s and produces change in momentum of 60 kg·m/s. Force is:", opts:["20 N","15 N","10 N","30 N"]},
-  {n:31, topic:"Laws of Motion", q:"Washing machine removes water from clothes using:", opts:["Inertia","Newton's 3rd law","Centrifugal effect","Friction"]},
-  {n:32, topic:"Laws of Motion", q:"If net force on system is zero, which quantity is conserved?", opts:["Kinetic energy","Linear momentum","Speed","Potential energy"]},
-  {n:33, topic:"Laws of Motion", q:"A body of mass m moving with velocity v collides head-on elastically with equal mass at rest. After collision:", opts:["Both continue at v/2","First stops, second moves at v","Both stop","First moves at v, second stops"]},
-  {n:34, topic:"Laws of Motion", q:"A horse pulls a cart. The cart moves due to:", opts:["Horse's pull on cart","Cart's pull on horse","Ground's reaction on horse","Friction on cart"]},
-  {n:35, topic:"Laws of Motion", q:"Rate of change of momentum is equal to:", opts:["Velocity","Force","Impulse","Work"]},
-  {n:36, topic:"Laws of Motion", q:"Mass of body is measure of its:", opts:["Weight","Volume","Inertia","Density"]},
+  // PLANT KINGDOM (16-30)
+  {n:16, topic:"Plant Kingdom", q:"In Cycas, specialized roots associated with N2-fixing cyanobacteria are called:", opts:["Mycorrhizal roots","Coralloid roots","Pneumatophores","Prop roots"]},
+  {n:17, topic:"Plant Kingdom", q:"Which of the following algae produces carrageenan?", opts:["Green algae","Brown algae","Red algae","Golden algae"]},
+  {n:18, topic:"Plant Kingdom", q:"The dominant, photosynthetic phase in the life cycle of bryophytes is the:", opts:["Gametophyte","Sporophyte","Prothallus","Capsule"]},
+  {n:19, topic:"Plant Kingdom", q:"Which of the following is heterosporous?", opts:["Lycopodium","Equisetum","Dryopteris","Selaginella"]},
+  {n:20, topic:"Plant Kingdom", q:"In gymnosperms, the endosperm is formed:", opts:["After fertilization and is diploid","Before fertilization and is haploid","After fertilization and is triploid","Before fertilization and is diploid"]},
+  {n:21, topic:"Plant Kingdom", q:"The tallest gymnosperm species is:", opts:["Sequoia","Pinus","Cycas","Ginkgo"]},
+  {n:22, topic:"Plant Kingdom", q:"Floridean starch has a structure similar to:", opts:["Starch and cellulose","Amylose and amylopectin","Amylopectin and glycogen","Glycogen and cellulose"]},
+  {n:23, topic:"Plant Kingdom", q:"In mosses, the spore germinates to form a creeping, green, branched stage called:", opts:["Protonema","Prothallus","Capsule","Rhizoid"]},
+  {n:24, topic:"Plant Kingdom", q:"Ectocarpus and Dictyota belong to which class of algae?", opts:["Chlorophyceae","Rhodophyceae","Cyanophyceae","Phaeophyceae"]},
+  {n:25, topic:"Plant Kingdom", q:"Which of the following plant groups exhibits a diplontic life cycle?", opts:["Spirogyra","Volvox","Fucus","Chlamydomonas"]},
+  {n:26, topic:"Plant Kingdom", q:"The female sex organ in bryophytes and pteridophytes is called:", opts:["Antheridium","Archegonium","Oogonium","Carpel"]},
+  {n:27, topic:"Plant Kingdom", q:"In Pinus, the male cones are borne:", opts:["On the upper branches","On the roots","On the leaves","On the lower branches"]},
+  {n:28, topic:"Plant Kingdom", q:"Which of the following is considered a 'living fossil'?", opts:["Pinus","Ginkgo biloba","Cycas revoluta","Cedrus"]},
+  {n:29, topic:"Plant Kingdom", q:"An evolutionary precursor to the seed habit is seen in:", opts:["Heterosporous pteridophytes","Homosporous pteridophytes","Bryophytes","Algae"]},
+  {n:30, topic:"Plant Kingdom", q:"Agar-agar is obtained commercially from:", opts:["Chara and Volvox","Spirogyra and Ulothrix","Gelidium and Gracilaria","Fucus and Sargassum"]},
 
-  // WORK POWER ENERGY
-  {n:37, topic:"Work Power Energy", q:"A force of 10 N acts on a body displaced 5 m at 60°. Work done is:", opts:["25 J","50 J","43.3 J","20 J"]},
-  {n:38, topic:"Work Power Energy", q:"A spring of force constant 100 N/m is compressed by 0.1 m. Energy stored is:", opts:["0.5 J","1 J","5 J","0.1 J"]},
-  {n:39, topic:"Work Power Energy", q:"A body of mass 5 kg falls freely from 20 m. Kinetic energy just before hitting ground (g=10):", opts:["500 J","1000 J","250 J","750 J"]},
-  {n:40, topic:"Work Power Energy", q:"Work done by friction is always:", opts:["Positive","Zero","Negative","Equal to normal force"]},
-  {n:41, topic:"Work Power Energy", q:"Power of a pump lifting 200 kg water per minute to height 10 m (g=10) is:", opts:["200/3 W","333.3 W","500 W","666 W"]},
-  {n:42, topic:"Work Power Energy", q:"A body of mass 2 kg moving at 4 m/s collides with stationary 2 kg body perfectly inelastically. KE lost is:", opts:["8 J","4 J","16 J","12 J"]},
-  {n:43, topic:"Work Power Energy", q:"A car of mass 1000 kg accelerates from 0 to 20 m/s. Work done by engine is:", opts:["200 kJ","400 kJ","100 kJ","800 kJ"]},
-  {n:44, topic:"Work Power Energy", q:"In which case is work done zero?", opts:["Moving along incline","Pushing a wall","Pulling at 90°","All cases"]},
-  {n:45, topic:"Work Power Energy", q:"A man of mass 60 kg climbs stairs of 20 steps each 20 cm high in 20 s. Power developed (g=10):", opts:["120 W","240 W","60 W","180 W"]},
-  {n:46, topic:"Work Power Energy", q:"If velocity of body is doubled, kinetic energy becomes:", opts:["Double","Half","4 times","8 times"]},
-  {n:47, topic:"Work Power Energy", q:"Work done in moving a body along a closed path by conservative force is:", opts:["Maximum","Minimum","Infinite","Zero"]},
-  {n:48, topic:"Work Power Energy", q:"A 10 kg ball dropped from 5 m. PE lost equals KE gained. This is statement of:", opts:["Work-energy theorem","Newton's 2nd law","Conservation of energy","Law of gravitation"]},
-  {n:49, topic:"Work Power Energy", q:"Watt-hour is unit of:", opts:["Power","Energy","Force","Momentum"]},
-  {n:50, topic:"Work Power Energy", q:"A body of mass m at rest explodes into two pieces of m/3 and 2m/3. If smaller piece has velocity v, KE of larger piece is:", opts:["mv²/9","mv²/6","mv²/4","mv²/12"]},
-  {n:51, topic:"Work Power Energy", q:"A force F = (3x² + 2) N acts along x-axis. Work done from x=0 to x=2 m is:", opts:["10 J","12 J","8 J","14 J"]},
-  {n:52, topic:"Work Power Energy", q:"1 kWh = _____ joules:", opts:["3.6 × 10⁶ J","3.6 × 10³ J","3.6 × 10⁴ J","3.6 × 10⁵ J"]},
-  {n:53, topic:"Work Power Energy", q:"In perfectly inelastic collision, what is conserved?", opts:["Kinetic energy only","Momentum only","Both KE and momentum","Neither"]},
-  {n:54, topic:"Work Power Energy", q:"Ratio of kinetic energy of two bodies having same momentum but masses m and 4m is:", opts:["4:1","1:4","2:1","1:2"]},
+  // PHOTOSYNTHESIS (31-44)
+  {n:31, topic:"Photosynthesis", q:"In the chloroplast, the primary acceptor of CO2 in C3 plants is a:", opts:["5-carbon ketose sugar","3-carbon organic acid","4-carbon organic acid","6-carbon aldo sugar"]},
+  {n:32, topic:"Photosynthesis", q:"Which fraction of the visible spectrum is most effective in photosynthesis?", opts:["Green and yellow","Orange and green","Blue and red","Violet and green"]},
+  {n:33, topic:"Photosynthesis", q:"In C4 plants, the initial fixation of carbon dioxide takes place in the:", opts:["Bundle sheath cells","Mesophyll cells","Epidermal cells","Guard cells"]},
+  {n:34, topic:"Photosynthesis", q:"The primary electron acceptor for Photosystem II in the non-cyclic photophosphorylation is:", opts:["Plastoquinone","Cytochrome b6f","Pheophytin","Plastocyanin"]},
+  {n:35, topic:"Photosynthesis", q:"Kranz anatomy is a characteristic feature of the leaves of:", opts:["C3 plants","CAM plants","Succulents","C4 plants"]},
+  {n:36, topic:"Photosynthesis", q:"During the Calvin cycle, how many ATP and NADPH molecules are required to synthesize one molecule of glucose?", opts:["12 ATP and 12 NADPH","18 ATP and 18 NADPH","18 ATP and 12 NADPH","12 ATP and 18 NADPH"]},
+  {n:37, topic:"Photosynthesis", q:"In CAM plants, stomata open during:", opts:["Night","Day","Both day and night","Never"]},
+  {n:38, topic:"Photosynthesis", q:"Which enzyme is responsible for the carboxylation in bundle sheath cells of C4 plants?", opts:["PEP carboxylase","Pyruvate kinase","RuBisCO","Hexokinase"]},
+  {n:39, topic:"Photosynthesis", q:"The splitting of water (photolysis) during photosynthesis is associated with:", opts:["PS II","PS I","Cytochrome complex","ATP synthase"]},
+  {n:40, topic:"Photosynthesis", q:"Which metal ion is a constituent of the oxygen-evolving complex?", opts:["Zinc","Magnesium","Iron","Manganese"]},
+  {n:41, topic:"Photosynthesis", q:"The law of limiting factors was proposed by:", opts:["Calvin","Blackman","Engelmann","Priestley"]},
+  {n:42, topic:"Photosynthesis", q:"Photorespiration is favored by:", opts:["High CO2 and low O2","Low light and low O2","High O2 and low CO2","Low temperature and high CO2"]},
+  {n:43, topic:"Photosynthesis", q:"Cyclic photophosphorylation involves:", opts:["Both PS I and PS II","Only PS I","Only PS II","Neither PS I nor PS II"]},
+  {n:44, topic:"Photosynthesis", q:"The first stable product of the Calvin cycle is:", opts:["3-Phosphoglyceric acid (PGA)","Oxaloacetic acid (OAA)","Ribulose-1,5-bisphosphate","Phosphoenolpyruvate"]},
 
-  // GRAVITATION
-  {n:55, topic:"Gravitation", q:"Escape velocity from Earth's surface is approximately:", opts:["9.8 km/s","11.2 km/s","7.9 km/s","15 km/s"]},
-  {n:56, topic:"Gravitation", q:"If radius of Earth becomes half, keeping mass same, value of g becomes:", opts:["g/2","2g","4g","g/4"]},
-  {n:57, topic:"Gravitation", q:"Orbital velocity of satellite near Earth's surface (R=6400 km, g=9.8) is approximately:", opts:["7.9 km/s","11.2 km/s","9.8 km/s","5 km/s"]},
-  {n:58, topic:"Gravitation", q:"A satellite in orbit has mechanical energy:", opts:["Positive","Negative","Zero","Infinite"]},
-  {n:59, topic:"Gravitation", q:"Time period of satellite at height h above Earth is proportional to:", opts:["(R+h)^(1/2)","(R+h)^(3/2)","(R+h)^2","1/(R+h)"]},
-  {n:60, topic:"Gravitation", q:"Weight of a body at center of Earth is:", opts:["Maximum","Minimum","Same as surface","Zero"]},
-  {n:61, topic:"Gravitation", q:"Gravitational PE of a body of mass m at height h from Earth surface (R=radius) is:", opts:["-mgh/(R+h)","-GMm/(R+h)","mgh","GMm/R²"]},
-  {n:62, topic:"Gravitation", q:"Geostationary satellite has time period of:", opts:["12 hours","24 hours","6 hours","48 hours"]},
-  {n:63, topic:"Gravitation", q:"Value of g on Moon is about 1/6 of Earth. Man weighing 600 N on Earth weighs on Moon:", opts:["100 N","60 N","600 N","200 N"]},
-  {n:64, topic:"Gravitation", q:"Kepler's third law relates:", opts:["T and R³","T² and R³","T and R","T² and R²"]},
-  {n:65, topic:"Gravitation", q:"Gravitational constant G has dimensions:", opts:["M⁻¹L³T⁻²","M⁻¹L²T⁻²","ML³T⁻²","M⁻¹L³T⁻¹"]},
-  {n:66, topic:"Gravitation", q:"At what height above Earth surface is g exactly half of surface g? (R=6400 km)", opts:["2650 km","6400 km","4000 km","12800 km"]},
-  {n:67, topic:"Gravitation", q:"Binding energy of satellite in orbit at radius r is:", opts:["GMm/r","GMm/2r","-GMm/r","2GMm/r"]},
-  {n:68, topic:"Gravitation", q:"Planet orbiting sun sweeps equal areas in equal times. This is Kepler's:", opts:["First law","Second law","Third law","Fourth law"]},
-  {n:69, topic:"Gravitation", q:"If mass of Earth doubles (radius unchanged), g becomes:", opts:["g/2","2g","4g","Same"]},
+  // RESPIRATION (45-58)
+  {n:45, topic:"Respiration", q:"The connecting link between glycolysis and the Krebs cycle is:", opts:["Citric acid","Pyruvic acid","Oxaloacetic acid","Acetyl CoA"]},
+  {n:46, topic:"Respiration", q:"In which cellular compartment does the Krebs cycle take place?", opts:["Mitochondrial matrix","Cytoplasm","Inner mitochondrial membrane","Intermembrane space"]},
+  {n:47, topic:"Respiration", q:"The net gain of ATP molecules during glycolysis for one molecule of glucose is:", opts:["4","8","2","36"]},
+  {n:48, topic:"Respiration", q:"Complex IV of the electron transport chain contains which cytochromes?", opts:["b and c1","a and a3","c and a","b and a3"]},
+  {n:49, topic:"Respiration", q:"The ultimate electron acceptor in aerobic respiration is:", opts:["Cytochrome c","NAD+","Oxygen","FAD"]},
+  {n:50, topic:"Respiration", q:"What is the Respiratory Quotient (RQ) for carbohydrates?", opts:["Less than 1","1","More than 1","Zero"]},
+  {n:51, topic:"Respiration", q:"Which enzyme catalyzes the conversion of pyruvate to acetyl CoA?", opts:["Pyruvate kinase","Pyruvate carboxylase","Pyruvate dehydrogenase complex","Lactate dehydrogenase"]},
+  {n:52, topic:"Respiration", q:"FADH2 yields how many ATP molecules upon oxidation in the ETC?", opts:["2","3","4","1"]},
+  {n:53, topic:"Respiration", q:"Which of the following acts as a mobile electron carrier between Complex III and Complex IV?", opts:["Ubiquinone","Plastoquinone","Cytochrome c","Plastocyanin"]},
+  {n:54, topic:"Respiration", q:"The formation of GTP in the Krebs cycle is an example of:", opts:["Oxidative phosphorylation","Substrate-level phosphorylation","Photophosphorylation","Dephosphorylation"]},
+  {n:55, topic:"Respiration", q:"During lactic acid fermentation, the enzyme lactate dehydrogenase requires which coenzyme?", opts:["FAD","FMN","NADH + H+","NADPH"]},
+  {n:56, topic:"Respiration", q:"Cyanide poisons the electron transport chain by binding to:", opts:["Cytochrome c oxidase","NADH dehydrogenase","ATP synthase","Cytochrome bc1 complex"]},
+  {n:57, topic:"Respiration", q:"Which intermediate of the Krebs cycle is a 5-carbon compound?", opts:["Succinic acid","Malic acid","Citric acid","alpha-Ketoglutaric acid"]},
+  {n:58, topic:"Respiration", q:"The total number of NADH molecules produced from one molecule of glucose during the Krebs cycle is:", opts:["2","6","4","8"]},
 
-  // PROPERTIES OF MATTER
-  {n:70, topic:"Properties of Matter", q:"A wire of length L and cross-section area A is stretched. Young's modulus Y is defined as:", opts:["Stress/Strain","Strain/Stress","Force × Length","FL/AΔL"]},
-  {n:71, topic:"Properties of Matter", q:"A steel wire of area 0.01 cm² is stretched by 1000 N force. Stress on wire is:", opts:["10⁷ Pa","10⁸ Pa","10⁶ Pa","10⁹ Pa"]},
-  {n:72, topic:"Properties of Matter", q:"Bulk modulus is associated with change in:", opts:["Length","Shape","Volume","Area"]},
-  {n:73, topic:"Properties of Matter", q:"Viscosity of liquid decreases with increase in:", opts:["Pressure","Temperature","Surface tension","Density"]},
-  {n:74, topic:"Properties of Matter", q:"A liquid rises to height h in capillary tube. If radius is doubled, new height is:", opts:["h/2","2h","4h","h"]},
-  {n:75, topic:"Properties of Matter", q:"Bernoulli's principle is based on conservation of:", opts:["Mass","Momentum","Energy","Charge"]},
-  {n:76, topic:"Properties of Matter", q:"Terminal velocity of spherical body in viscous fluid is proportional to:", opts:["r","r²","r³","1/r"]},
-  {n:77, topic:"Properties of Matter", q:"Surface tension has dimensions:", opts:["MT⁻²","ML⁻¹T⁻²","MLT⁻²","ML²T⁻²"]},
-  {n:78, topic:"Properties of Matter", q:"Poisson's ratio of most materials lies between:", opts:["0 and 1","0 and 0.5","-1 and 0","0 and 2"]},
-  {n:79, topic:"Properties of Matter", q:"Stokes' law gives drag force as F = 6πηrv. This applies to:", opts:["Turbulent flow","Laminar flow","Supersonic flow","All flows"]},
-  {n:80, topic:"Properties of Matter", q:"Unit of coefficient of viscosity in SI is:", opts:["Pa","Pa·s","N/m","N·m"]},
-  {n:81, topic:"Properties of Matter", q:"A steel wire (Y = 2×10¹¹ Pa) of length 1 m is stretched by 0.1 mm. If area = 10⁻⁶ m², elastic PE stored is:", opts:["0.1 J","1 J","0.01 J","10 J"]},
-  {n:82, topic:"Properties of Matter", q:"Angle of contact for mercury-glass is:", opts:["0°","90°","135°","45°"]},
-  {n:83, topic:"Properties of Matter", q:"Hydraulic press works on the principle of:", opts:["Archimedes' principle","Pascal's law","Bernoulli's principle","Newton's law"]},
-  {n:84, topic:"Properties of Matter", q:"Hooke's law is valid up to:", opts:["Breaking point","Elastic limit","Yield point","Proportionality limit"]},
-  {n:85, topic:"Properties of Matter", q:"Strain energy per unit volume is:", opts:["Stress × Strain","(1/2) × Stress × Strain","Stress/Young's modulus","Young's modulus × Strain"]},
+  // GENETICS (59-72)
+  {n:59, topic:"Genetics", q:"When a single gene influences multiple phenotypic traits, the phenomenon is called:", opts:["Epistasis","Polygenic inheritance","Pleiotropy","Codominance"]},
+  {n:60, topic:"Genetics", q:"In a cross between AABB and aabb, the proportion of individuals with genotype AaBb in the F2 generation will be:", opts:["1/16","4/16","9/16","2/16"]},
+  {n:61, topic:"Genetics", q:"The distance between genes is measured in map units or centimorgans (cM). 1 cM is equal to:", opts:["1% recombination frequency","10% recombination frequency","0.1% recombination frequency","100% recombination frequency"]},
+  {n:62, topic:"Genetics", q:"A test cross is performed by crossing an F1 individual with:", opts:["A homozygous dominant parent","A heterozygous parent","A homozygous recessive parent","Another F1 individual"]},
+  {n:63, topic:"Genetics", q:"In human blood groups, the alleles IA and IB exhibit:", opts:["Incomplete dominance","Codominance","Epistasis","Multiple allelism only"]},
+  {n:64, topic:"Genetics", q:"Sickle-cell anemia is an example of:", opts:["Point mutation","Frameshift mutation","Chromosomal aberration","Nondisjunction"]},
+  {n:65, topic:"Genetics", q:"Down's syndrome in humans is caused by:", opts:["Monosomy of 21st chromosome","Nullisomy of 21st chromosome","Trisomy of 21st chromosome","Triploidy"]},
+  {n:66, topic:"Genetics", q:"Which enzyme is responsible for removing RNA primers during DNA replication in E. coli?", opts:["DNA polymerase III","DNA polymerase I","DNA ligase","Primase"]},
+  {n:67, topic:"Genetics", q:"The lac operon is an example of an:", opts:["Inducible operon","Repressible operon","Constitutive operon","Overlapping gene"]},
+  {n:68, topic:"Genetics", q:"If the sequence of the coding strand in a transcription unit is 5'-ATGCAT-3', the sequence of mRNA will be:", opts:["3'-UACGUA-5'","5'-UACGUA-3'","3'-AUGCAU-5'","5'-AUGCAU-3'"]},
+  {n:69, topic:"Genetics", q:"Which of the following RNA molecules acts as an adapter?", opts:["mRNA","rRNA","tRNA","snRNA"]},
+  {n:70, topic:"Genetics", q:"In Hardy-Weinberg equilibrium, the frequency of heterozygous individuals is represented by:", opts:["2pq","p²","q²","p+q"]},
+  {n:71, topic:"Genetics", q:"The technique of DNA fingerprinting was initially developed by:", opts:["Kary Mullis","Alec Jeffreys","Frederick Sanger","James Watson"]},
+  {n:72, topic:"Genetics", q:"Which site of the ribosome does the incoming aminoacyl-tRNA bind to during translation?", opts:["P site","E site","A site","Shine-Dalgarno sequence"]},
 
-  // FRICTION
-  {n:86, topic:"Friction", q:"Coefficient of static friction is always _____ kinetic friction:", opts:["Less than","Equal to","Greater than","Independent of"]},
-  {n:87, topic:"Friction", q:"A block of mass 10 kg rests on rough surface (μ=0.3). Minimum force to move it (g=10):", opts:["30 N","3 N","300 N","10 N"]},
-  {n:88, topic:"Friction", q:"Rolling friction is _____ sliding friction:", opts:["Greater than","Equal to","Less than","Unrelated to"]},
-  {n:89, topic:"Friction", q:"Friction force on a body moving on horizontal surface depends on:", opts:["Area of contact","Speed","Normal reaction","Shape of body"]},
-  {n:90, topic:"Friction", q:"Angle of friction θ and coefficient of friction μ are related by:", opts:["μ = tan θ","μ = sin θ","μ = cos θ","μ = cot θ"]},
-  {n:91, topic:"Friction", q:"A car moves on a banked road of angle θ. Ideal velocity for no friction is:", opts:["√(rg tan θ)","√(rg sin θ)","rg tan θ","√(rg/tan θ)"]},
-  {n:92, topic:"Friction", q:"A 5 kg block slides down 30° incline (μ=0.2, g=10). Net acceleration is:", opts:["3.27 m/s²","5 m/s²","6.5 m/s²","1.5 m/s²"]},
-  {n:93, topic:"Friction", q:"A block is on a surface. When surface is tilted, block slides when angle exceeds:", opts:["Angle of repose","Critical angle","45°","Angle of friction"]},
-  {n:94, topic:"Friction", q:"Frictional force is self-adjusting up to:", opts:["Limiting friction","Kinetic friction","Rolling friction","Normal force"]},
-  {n:95, topic:"Friction", q:"A body of mass 2 kg is on rough floor (μ=0.5). Force to maintain uniform motion (g=10):", opts:["10 N","5 N","20 N","15 N"]},
-  {n:96, topic:"Friction", q:"Angle of repose equals angle of friction. This is because:", opts:["Both equal tan⁻¹(μ)","Friction is constant","Both involve normal force","Gravity is same"]},
-  {n:97, topic:"Friction", q:"If normal reaction doubles, friction force:", opts:["Doubles","Remains same","Halves","Becomes zero"]},
-  {n:98, topic:"Friction", q:"Lubricants reduce friction by:", opts:["Increasing normal force","Reducing contact area","Converting dry friction to fluid friction","Increasing speed"]},
-  {n:99, topic:"Friction", q:"A block on rough surface needs 20 N to start moving, 15 N to keep moving. μk/μs is:", opts:["0.75","1.33","0.5","1.5"]},
-  {n:100, topic:"Friction", q:"Friction between road and tyres while car brakes is:", opts:["Rolling friction","Static friction","Kinetic friction","Viscous friction"]}
+  // DIGESTION (73-86)
+  {n:73, topic:"Digestion", q:"The enzyme enterokinase helps in the conversion of:", opts:["Trypsinogen into trypsin","Pepsinogen into pepsin","Protein into polypeptides","Caseinogen into casein"]},
+  {n:74, topic:"Digestion", q:"Which gastrointestinal hormone stimulates the secretion of pancreatic juice rich in bicarbonate?", opts:["Gastrin","Cholecystokinin (CCK)","Gastric inhibitory peptide","Secretin"]},
+  {n:75, topic:"Digestion", q:"Parietal (oxyntic) cells of the gastric glands secrete:", opts:["Pepsinogen","Mucus","HCl and intrinsic factor","Gastrin"]},
+  {n:76, topic:"Digestion", q:"The absorption of vitamin B12 in the terminal ileum requires:", opts:["Bile salts","Intrinsic factor","Hydrochloric acid","Pancreatic amylase"]},
+  {n:77, topic:"Digestion", q:"Brunner's glands are located in the:", opts:["Submucosa of duodenum","Mucosa of stomach","Submucosa of ileum","Mucosa of colon"]},
+  {n:78, topic:"Digestion", q:"The dental formula for an adult human is:", opts:["2122/2122","2123/2123","2102/2102","2132/2132"]},
+  {n:79, topic:"Digestion", q:"Micelles are formed during the digestion and absorption of:", opts:["Carbohydrates","Proteins","Fats","Vitamins"]},
+  {n:80, topic:"Digestion", q:"Which of the following enzymes acts in an acidic medium?", opts:["Pepsin","Trypsin","Amylase","Lipase"]},
+  {n:81, topic:"Digestion", q:"The sphincter of Oddi guards the opening of the:", opts:["Esophagus into the stomach","Pyloric stomach into the duodenum","Common bile duct into the pancreatic duct","Hepatopancreatic duct into the duodenum"]},
+  {n:82, topic:"Digestion", q:"Which of the following is not a proteolytic enzyme?", opts:["Chymotrypsin","Steapsin","Carboxypeptidase","Trypsin"]},
+  {n:83, topic:"Digestion", q:"Kupffer cells are phagocytic cells found in the:", opts:["Spleen","Liver","Pancreas","Lungs"]},
+  {n:84, topic:"Digestion", q:"The maximum digestion and absorption of food takes place in the:", opts:["Stomach","Colon","Small intestine","Caecum"]},
+  {n:85, topic:"Digestion", q:"Chylomicrons are protein-coated fat droplets formed in the:", opts:["Intestinal mucosa","Lacteals","Liver","Adipose tissue"]},
+  {n:86, topic:"Digestion", q:"Rennin is an enzyme found in the gastric juice of infants that helps in the digestion of:", opts:["Fat","Carbohydrates","Milk proteins","Nucleic acids"]},
+
+  // SEXUAL REPRODUCTION (87-100)
+  {n:87, topic:"Sexual Reproduction", q:"The process of formation of microspores from a pollen mother cell is called:", opts:["Megasporogenesis","Microsporogenesis","Pollination","Fertilization"]},
+  {n:88, topic:"Sexual Reproduction", q:"In a typical angiosperm embryo sac, the ploidy of the secondary nucleus before fertilization is:", opts:["2n (Diploid)","n (Haploid)","3n (Triploid)","4n (Tetraploid)"]},
+  {n:89, topic:"Sexual Reproduction", q:"Which layer of the microsporangium wall provides nourishment to the developing pollen grains?", opts:["Epidermis","Endothecium","Tapetum","Middle layers"]},
+  {n:90, topic:"Sexual Reproduction", q:"Filiform apparatus is characteristic of which cells of the embryo sac?", opts:["Antipodal cells","Synergids","Egg cell","Central cell"]},
+  {n:91, topic:"Sexual Reproduction", q:"The exine of a pollen grain is primarily made of a highly resistant organic material called:", opts:["Cellulose","Pectin","Sporopollenin","Chitin"]},
+  {n:92, topic:"Sexual Reproduction", q:"Double fertilization is the fusion of:", opts:["Two male gametes with one egg","One male gamete with the egg and another with the synergid","Two male gametes with the secondary nucleus","One male gamete with the egg and another with the secondary nucleus"]},
+  {n:93, topic:"Sexual Reproduction", q:"Apomixis is a type of reproduction in plants where:", opts:["Seeds are formed without fertilization","Fertilization occurs without pollination","Fruits develop without seeds","Pollen grains germinate in the anther"]},
+  {n:94, topic:"Sexual Reproduction", q:"Which of the following is an example of a false fruit?", opts:["Mango","Apple","Grape","Tomato"]},
+  {n:95, topic:"Sexual Reproduction", q:"In angiosperms, the functional megaspore generally develops into the:", opts:["Embryo sac","Endosperm","Ovule","Pollen sac"]},
+  {n:96, topic:"Sexual Reproduction", q:"The phenomenon of pollen grains from one flower being transferred to the stigma of another flower on the same plant is termed:", opts:["Autogamy","Geitonogamy","Xenogamy","Cleistogamy"]},
+  {n:97, topic:"Sexual Reproduction", q:"Polyembryony is most commonly observed in which of the following families?", opts:["Solanaceae","Fabaceae","Rutaceae (Citrus)","Brassicaceae"]},
+  {n:98, topic:"Sexual Reproduction", q:"In water hyacinth and water lily, pollination takes place by:", opts:["Water currents","Insects or wind","Birds","Bats"]},
+  {n:99, topic:"Sexual Reproduction", q:"The residual, persistent nucellus in some seeds like black pepper and beet is called:", opts:["Perisperm","Endosperm","Aril","Testa"]},
+  {n:100, topic:"Sexual Reproduction", q:"In a typical dicot embryo, the portion of the embryonal axis above the level of cotyledons is the:", opts:["Hypocotyl","Radicle","Epicotyl","Coleorhiza"]}
 ];
 
 let studentName = "";
@@ -580,20 +588,20 @@ let endTime;
 const TEST_DURATION_MS = 90 * 60 * 1000; // 1 Hour 30 Minutes
 
 window.onload = function() {
-  studentName = localStorage.getItem("physics_studentName");
-  let savedEndTime = localStorage.getItem("physics_endTime");
+  studentName = localStorage.getItem("dcece_studentName");
+  let savedEndTime = localStorage.getItem("dcece_endTime");
   
   if(studentName && savedEndTime && Date.now() < parseInt(savedEndTime)) {
     endTime = parseInt(savedEndTime);
-    answers = JSON.parse(localStorage.getItem("physics_100_answers")) || {};
+    answers = JSON.parse(localStorage.getItem("dcece_100_answers")) || {};
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("main-test-area").style.display = "block";
     startTimer();
     filterTopic("All");
   } else {
-    localStorage.removeItem("physics_100_answers");
-    localStorage.removeItem("physics_studentName");
-    localStorage.removeItem("physics_endTime");
+    localStorage.removeItem("dcece_100_answers");
+    localStorage.removeItem("dcece_studentName");
+    localStorage.removeItem("dcece_endTime");
   }
 };
 
@@ -605,10 +613,10 @@ function startTest() {
   }
   
   studentName = nameInput;
-  localStorage.setItem("physics_studentName", studentName);
+  localStorage.setItem("dcece_studentName", studentName);
   
   endTime = Date.now() + TEST_DURATION_MS;
-  localStorage.setItem("physics_endTime", endTime.toString());
+  localStorage.setItem("dcece_endTime", endTime.toString());
   
   document.getElementById("start-screen").style.display = "none";
   document.getElementById("main-test-area").style.display = "block";
@@ -693,7 +701,7 @@ function renderQuestion() {
 
 function selectOption(actualIndex, index) {
   answers[actualIndex] = index;
-  localStorage.setItem("physics_100_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_100_answers", JSON.stringify(answers));
   renderQuestion();
 }
 
@@ -707,7 +715,7 @@ function nextQuestion() {
 function skipQuestion() {
   const actualIndex = filteredIndices[current];
   delete answers[actualIndex];
-  localStorage.setItem("physics_100_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_100_answers", JSON.stringify(answers));
   if (current < filteredIndices.length - 1) {
     current++;
     renderQuestion();
@@ -790,7 +798,7 @@ ${detailedReport}`;
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
-      subject: `Physics Mock Test Result - ${studentName} (Score: ${correct})`,
+      subject: `DCECE Bio Test Result - ${studentName} (Score: ${correct})`,
       message: finalMessage
     }),
   })
@@ -806,8 +814,8 @@ ${detailedReport}`;
 }
 
 function showResultUI(attempted, unattempted, correct, incorrect) {
-  localStorage.removeItem("physics_studentName");
-  localStorage.removeItem("physics_endTime");
+  localStorage.removeItem("dcece_studentName");
+  localStorage.removeItem("dcece_endTime");
   
   document.getElementById("main-test-area").style.display = "none";
   
@@ -830,7 +838,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
     </div>
     <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
     <p style="font-size: 14px; margin-top: 15px; color: #aaa;">Your detailed report has been successfully sent to the admin.</p>
-    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('physics_100_answers');">Retake Test</button>
+    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_100_answers');">Retake Test</button>
   `;
 
   // --- Build Detailed Review UI ---
@@ -879,8 +887,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
   reviewHTML += '</div>';
   reviewArea.innerHTML = reviewHTML;
   
-  // Clear answers from storage after rendering
-  localStorage.removeItem('physics_100_answers');
+  localStorage.removeItem('dcece_100_answers');
 }
 </script>
 
