@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - Advanced Biology</title>
+<title>DCECE Mock Test - Hard Chemistry</title>
 
 <style>
 :root{
@@ -179,7 +179,6 @@ header{
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  align-items: center;
 }
 
 .q-number{
@@ -190,10 +189,10 @@ header{
 
 .q-topic {
   font-size:12px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  color: white;
-  font-weight: bold;
+  background: var(--border);
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--primary);
 }
 
 .q-text{
@@ -375,8 +374,8 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>Welcome to DCECE Biology Mock Test</h2>
-  <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 100</p>
+  <h2>DCECE Mock Test - Hard Chemistry</h2>
+  <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 2 Hours<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
 </div>
@@ -384,24 +383,24 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>Biology &mdash; <span>100 MCQ</span> Hard Level Practice</h1>
+      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Hard Chemistry Set</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
         <button class="filter-btn active" data-topic="All" onclick="filterTopic('All')">All</button>
-        <button class="filter-btn" data-topic="Cell" onclick="filterTopic('Cell')">Cell</button>
-        <button class="filter-btn" data-topic="Plant Kingdom" onclick="filterTopic('Plant Kingdom')">Plant Kingdom</button>
-        <button class="filter-btn" data-topic="Photosynthesis" onclick="filterTopic('Photosynthesis')">Photosynthesis</button>
-        <button class="filter-btn" data-topic="Respiration" onclick="filterTopic('Respiration')">Respiration</button>
-        <button class="filter-btn" data-topic="Genetics" onclick="filterTopic('Genetics')">Genetics</button>
-        <button class="filter-btn" data-topic="Digestion" onclick="filterTopic('Digestion')">Digestion</button>
-        <button class="filter-btn" data-topic="Sexual Reproduction" onclick="filterTopic('Sexual Reproduction')">Sexual Reproduction</button>
+        <button class="filter-btn" data-topic="Atomic Structure" onclick="filterTopic('Atomic Structure')">⚛️ Atomic Structure</button>
+        <button class="filter-btn" data-topic="Mole Concept" onclick="filterTopic('Mole Concept')">⚖️ Mole Concept</button>
+        <button class="filter-btn" data-topic="Thermodynamics" onclick="filterTopic('Thermodynamics')">🔥 Thermodynamics</button>
+        <button class="filter-btn" data-topic="Equilibrium" onclick="filterTopic('Equilibrium')">⚖️ Equilibrium</button>
+        <button class="filter-btn" data-topic="Chemical Bonding" onclick="filterTopic('Chemical Bonding')">🔗 Chemical Bonding</button>
+        <button class="filter-btn" data-topic="Periodic Table" onclick="filterTopic('Periodic Table')">📊 Periodic Table</button>
+        <button class="filter-btn" data-topic="S-Block" onclick="filterTopic('S-Block')">🪨 S-Block</button>
       </div>
 
       <div class="timer-submit-group">
-        <div id="timer">01:30:00</div>
+        <div id="timer">02:00:00</div>
         <button class="submit-btn" style="padding: 8px 16px; font-size: 14px;" onclick="submitTest(false)">Submit Test</button>
       </div>
     </div>
@@ -438,145 +437,135 @@ button{
 <div id="loading-overlay">Submitting your test... Please wait.</div>
 
 <script>
-const COLORS = {
-  "Cell":"#185FA5",
-  "Plant Kingdom":"#0F6E56",
-  "Photosynthesis":"#854F0B",
-  "Respiration":"#533AB7",
-  "Genetics":"#993C1D",
-  "Digestion":"#3B6D11",
-  "Sexual Reproduction":"#B31B1B"
-};
-
 const ansKey = {
-  1:'B', 2:'C', 3:'C', 4:'A', 5:'B', 6:'A', 7:'C', 8:'B', 9:'D', 10:'C',
-  11:'B', 12:'A', 13:'A', 14:'D', 15:'B', 16:'B', 17:'C', 18:'A', 19:'D', 20:'B',
-  21:'A', 22:'C', 23:'A', 24:'D', 25:'C', 26:'B', 27:'D', 28:'B', 29:'A', 30:'C',
-  31:'A', 32:'C', 33:'B', 34:'C', 35:'D', 36:'C', 37:'A', 38:'C', 39:'A', 40:'D',
-  41:'B', 42:'C', 43:'B', 44:'A', 45:'D', 46:'A', 47:'C', 48:'B', 49:'C', 50:'B',
-  51:'C', 52:'A', 53:'C', 54:'B', 55:'C', 56:'A', 57:'D', 58:'B', 59:'C', 60:'B',
-  61:'A', 62:'C', 63:'B', 64:'A', 65:'C', 66:'B', 67:'A', 68:'D', 69:'C', 70:'A',
-  71:'B', 72:'C', 73:'A', 74:'D', 75:'C', 76:'B', 77:'A', 78:'B', 79:'C', 80:'A',
-  81:'D', 82:'B', 83:'B', 84:'C', 85:'A', 86:'C', 87:'B', 88:'A', 89:'C', 90:'B',
-  91:'C', 92:'D', 93:'A', 94:'B', 95:'A', 96:'B', 97:'C', 98:'B', 99:'A', 100:'C'
+  1:'B', 2:'C', 3:'B', 4:'C', 5:'B', 6:'B', 7:'C', 8:'A', 9:'B', 10:'C',
+  11:'C', 12:'B', 13:'B', 14:'D', 15:'B', 16:'C', 17:'C', 18:'B', 19:'B', 20:'B',
+  21:'B', 22:'C', 23:'B', 24:'D', 25:'C', 26:'B', 27:'B', 28:'B', 29:'C', 30:'B',
+  31:'C', 32:'B', 33:'C', 34:'B', 35:'C', 36:'C', 37:'A', 38:'B', 39:'D', 40:'B',
+  41:'C', 42:'C', 43:'B', 44:'C', 45:'B', 46:'B', 47:'C', 48:'C', 49:'B', 50:'B',
+  51:'A', 52:'B', 53:'C', 54:'C', 55:'B', 56:'D', 57:'B', 58:'C', 59:'C', 60:'B',
+  61:'C', 62:'B', 63:'C', 64:'B', 65:'C', 66:'A', 67:'B', 68:'B', 69:'D', 70:'C',
+  71:'C', 72:'B', 73:'C', 74:'A', 75:'C', 76:'B', 77:'C', 78:'B', 79:'C', 80:'C',
+  81:'B', 82:'D', 83:'B', 84:'C', 85:'B', 86:'C', 87:'B', 88:'B', 89:'C', 90:'B',
+  91:'C', 92:'A', 93:'B', 94:'B', 95:'C', 96:'B', 97:'D', 98:'C', 99:'B', 100:'C'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-  // CELL (1-15)
-  {n:1, topic:"Cell", q:"The fluid mosaic model of the plasma membrane was proposed by Singer and Nicolson in which year?", opts:["1970","1972","1974","1976"]},
-  {n:2, topic:"Cell", q:"Which of the following structures is absent in higher plant cells but present in animal cells?", opts:["Plastids","Vacuoles","Centrioles","Mitochondria"]},
-  {n:3, topic:"Cell", q:"During which phase of the cell cycle does DNA replication occur?", opts:["G1 phase","G2 phase","S phase","M phase"]},
-  {n:4, topic:"Cell", q:"The synaptonemal complex is formed during which stage of prophase-I in meiosis?", opts:["Zygotene","Pachytene","Diplotene","Diakinesis"]},
-  {n:5, topic:"Cell", q:"Which organelle is uniquely associated with photorespiration in plant cells?", opts:["Lysosome","Peroxisome","Golgi body","Endoplasmic Reticulum"]},
-  {n:6, topic:"Cell", q:"Crossing over between non-sister chromatids of homologous chromosomes is an enzyme-mediated process. The enzyme involved is:", opts:["Recombinase","Ligase","Helicase","Polymerase"]},
-  {n:7, topic:"Cell", q:"The arrangement of axonemal microtubules in eukaryotic cilia and flagella is referred to as:", opts:["9+0 array","9+1 array","9+2 array","8+2 array"]},
-  {n:8, topic:"Cell", q:"Lysosomes are rich in which type of enzymes?", opts:["Ligases","Hydrolases","Transferases","Isomerases"]},
-  {n:9, topic:"Cell", q:"In mammalian cells, which checkpoint is considered the restriction point where the cell commits to entering the cell cycle?", opts:["G2/M checkpoint","Spindle assembly checkpoint","Metaphase checkpoint","G1/S checkpoint"]},
-  {n:10, topic:"Cell", q:"Which of the following is an intermediate filament protein found in epithelial cells?", opts:["Actin","Tubulin","Keratin","Myosin"]},
-  {n:11, topic:"Cell", q:"The primary site for the synthesis of ribosomal RNA (rRNA) is:", opts:["Cytoplasm","Nucleolus","Nucleoplasm","Rough Endoplasmic Reticulum"]},
-  {n:12, topic:"Cell", q:"F1 particles or oxysomes are found on the:", opts:["Inner mitochondrial membrane","Outer mitochondrial membrane","Thylakoid membrane","Lysosomal membrane"]},
-  {n:13, topic:"Cell", q:"Which type of chromosome has a terminal centromere?", opts:["Telocentric","Acrocentric","Metacentric","Sub-metacentric"]},
-  {n:14, topic:"Cell", q:"The desmosomes are intercellular junctions primarily associated with:", opts:["Electrical communication","Chemical communication","Barrier function","Mechanical anchoring"]},
-  {n:15, topic:"Cell", q:"Plasmodesmata are connections that facilitate transport and communication between:", opts:["Animal cells","Plant cells","Bacterial cells","Fungal cells"]},
+// ATOMIC STRUCTURE (15)
+{n:1, topic:"Atomic Structure", q:"The number of radial nodes for a 3p orbital is:", opts:["0", "1", "2", "3"]},
+{n:2, topic:"Atomic Structure", q:"Which of the following sets of quantum numbers represents the highest energy of an electron in an atom?", opts:["n=3, l=1, m=1, s=+1/2", "n=3, l=2, m=1, s=+1/2", "n=4, l=0, m=0, s=+1/2", "n=3, l=0, m=0, s=+1/2"]},
+{n:3, topic:"Atomic Structure", q:"The ratio of the difference in energy between the first and second Bohr orbit to that between the second and third Bohr orbit is:", opts:["1/2", "27/5", "9/4", "4/9"]},
+{n:4, topic:"Atomic Structure", q:"If the uncertainty in position and momentum are equal, then uncertainty in velocity is:", opts:["√(h/π)", "1/2m √(h/π)", "1/2m √(h/π)", "√(h/2π)"]},
+{n:5, topic:"Atomic Structure", q:"The de Broglie wavelength of an electron in the nth Bohr orbit is related to the radius (r) of the orbit as:", opts:["nλ = πr", "nλ = 2πr", "nλ = 4πr", "nλ = r/2"]},
+{n:6, topic:"Atomic Structure", q:"Which transition in the hydrogen atomic spectrum will have the same wavelength as the transition n=4 to n=2 of He+ spectrum?", opts:["n=4 to n=3", "n=2 to n=1", "n=3 to n=2", "n=4 to n=2"]},
+{n:7, topic:"Atomic Structure", q:"The orbital angular momentum of an electron in a d-orbital is:", opts:["√2 h/2π", "√6 h/2π", "√6 h/2π", "0"]},
+{n:8, topic:"Atomic Structure", q:"What is the maximum number of electrons that can be accommodated in a subshell for which l=3?", opts:["14", "10", "6", "2"]},
+{n:9, topic:"Atomic Structure", q:"According to Bohr's theory, the angular momentum of an electron in the 5th orbit is:", opts:["2.5 h/π", "2.5 h/π", "1.0 h/π", "10 h/π"]},
+{n:10, topic:"Atomic Structure", q:"For which of the following species is the Bohr theory not applicable?", opts:["He+", "Li2+", "Be2+", "H"]},
+{n:11, topic:"Atomic Structure", q:"The number of unpair electrons in Mn2+ (Z=25) is:", opts:["2", "3", "5", "4"]},
+{n:12, topic:"Atomic Structure", q:"The kinetic energy of an electron in the second Bohr orbit of a hydrogen atom is [a0 is Bohr radius]:", opts:["h²/(4π²ma0²)", "h²/(32π²ma0²)", "h²/(16π²ma0²)", "h²/(64π²ma0²)"]},
+{n:13, topic:"Atomic Structure", q:"Rutherford's alpha-particle scattering experiment eventually led to the conclusion that:", opts:["Mass and energy are related", "Electrons occupy space around the nucleus", "Neutrons are buried deep in the nucleus", "The point of impact determines element creation"]},
+{n:14, topic:"Atomic Structure", q:"The total number of orbitals associated with the principal quantum number n=4 is:", opts:["4", "8", "12", "16"]},
+{n:15, topic:"Atomic Structure", q:"Isoelectronic species among the following are:", opts:["CO, CN-, NO+", "CO, CN-, NO, C2-", "CO+, CN+, NO-", "CO, CN, NO"]},
 
-  // PLANT KINGDOM (16-30)
-  {n:16, topic:"Plant Kingdom", q:"In Cycas, specialized roots associated with N2-fixing cyanobacteria are called:", opts:["Mycorrhizal roots","Coralloid roots","Pneumatophores","Prop roots"]},
-  {n:17, topic:"Plant Kingdom", q:"Which of the following algae produces carrageenan?", opts:["Green algae","Brown algae","Red algae","Golden algae"]},
-  {n:18, topic:"Plant Kingdom", q:"The dominant, photosynthetic phase in the life cycle of bryophytes is the:", opts:["Gametophyte","Sporophyte","Prothallus","Capsule"]},
-  {n:19, topic:"Plant Kingdom", q:"Which of the following is heterosporous?", opts:["Lycopodium","Equisetum","Dryopteris","Selaginella"]},
-  {n:20, topic:"Plant Kingdom", q:"In gymnosperms, the endosperm is formed:", opts:["After fertilization and is diploid","Before fertilization and is haploid","After fertilization and is triploid","Before fertilization and is diploid"]},
-  {n:21, topic:"Plant Kingdom", q:"The tallest gymnosperm species is:", opts:["Sequoia","Pinus","Cycas","Ginkgo"]},
-  {n:22, topic:"Plant Kingdom", q:"Floridean starch has a structure similar to:", opts:["Starch and cellulose","Amylose and amylopectin","Amylopectin and glycogen","Glycogen and cellulose"]},
-  {n:23, topic:"Plant Kingdom", q:"In mosses, the spore germinates to form a creeping, green, branched stage called:", opts:["Protonema","Prothallus","Capsule","Rhizoid"]},
-  {n:24, topic:"Plant Kingdom", q:"Ectocarpus and Dictyota belong to which class of algae?", opts:["Chlorophyceae","Rhodophyceae","Cyanophyceae","Phaeophyceae"]},
-  {n:25, topic:"Plant Kingdom", q:"Which of the following plant groups exhibits a diplontic life cycle?", opts:["Spirogyra","Volvox","Fucus","Chlamydomonas"]},
-  {n:26, topic:"Plant Kingdom", q:"The female sex organ in bryophytes and pteridophytes is called:", opts:["Antheridium","Archegonium","Oogonium","Carpel"]},
-  {n:27, topic:"Plant Kingdom", q:"In Pinus, the male cones are borne:", opts:["On the upper branches","On the roots","On the leaves","On the lower branches"]},
-  {n:28, topic:"Plant Kingdom", q:"Which of the following is considered a 'living fossil'?", opts:["Pinus","Ginkgo biloba","Cycas revoluta","Cedrus"]},
-  {n:29, topic:"Plant Kingdom", q:"An evolutionary precursor to the seed habit is seen in:", opts:["Heterosporous pteridophytes","Homosporous pteridophytes","Bryophytes","Algae"]},
-  {n:30, topic:"Plant Kingdom", q:"Agar-agar is obtained commercially from:", opts:["Chara and Volvox","Spirogyra and Ulothrix","Gelidium and Gracilaria","Fucus and Sargassum"]},
+// MOLE CONCEPT (15)
+{n:16, topic:"Mole Concept", q:"A gas mixture contains 50% helium and 50% methane by volume. What is the percent by weight of methane in the mixture?", opts:["20%", "40%", "80%", "50%"]},
+{n:17, topic:"Mole Concept", q:"Volume occupied by one molecule of water (density = 1 g/cm3) is:", opts:["3.0 x 10^-23 cm3", "5.5 x 10^-23 cm3", "3.0 x 10^-23 cm3", "1.5 x 10^-23 cm3"]},
+{n:18, topic:"Mole Concept", q:"How many moles of magnesium phosphate, Mg3(PO4)2 will contain 0.25 mole of oxygen atoms?", opts:["0.02", "3.125 x 10^-2", "1.25 x 10^-2", "2.5 x 10^-2"]},
+{n:19, topic:"Mole Concept", q:"If Avogadro number NA is changed from 6.022 x 10^23 to 6.022 x 10^20, this would change:", opts:["The mass of one mole of carbon", "The ratio of chemical species to each other in a balanced equation", "The ratio of elements to each other in a compound", "The definition of mass in units of grams"]},
+{n:20, topic:"Mole Concept", q:"In the reaction 4NH3(g) + 5O2(g) -> 4NO(g) + 6H2O(l), when 1 mole of ammonia and 1 mole of O2 are made to react to completion:", opts:["1.0 mole of H2O is produced", "All the oxygen will be consumed", "All the ammonia will be consumed", "1.5 mole of NO will be produced"]},
+{n:21, topic:"Mole Concept", q:"The empirical formula of a compound is CH2O. If its vapor density is 30, its molecular formula is:", opts:["C3H6O3", "C2H4O2", "C4H8O4", "CH2O"]},
+{n:22, topic:"Mole Concept", q:"Calculate the molality of 1 litre solution of 93% H2SO4 (weight/volume). The density of solution is 1.84 g/mL.", opts:["5.42", "8.65", "10.42", "12.35"]},
+{n:23, topic:"Mole Concept", q:"A metal oxide has the formula Z2O3. It can be reduced by hydrogen to give free metal and water. 0.1596 g of the metal oxide requires 6 mg of hydrogen for complete reduction. The atomic weight of the metal is:", opts:["27.9", "55.8", "79.8", "159.6"]},
+{n:24, topic:"Mole Concept", q:"What volume of oxygen gas (O2) measured at 0°C and 1 atm, is needed to burn completely 1 L of propane gas (C3H8) measured under the same conditions?", opts:["10 L", "7 L", "6 L", "5 L"]},
+{n:25, topic:"Mole Concept", q:"Mole fraction of the solute in a 1.00 molal aqueous solution is:", opts:["0.00177", "0.0344", "0.0177", "0.1770"]},
+{n:26, topic:"Mole Concept", q:"Which has the maximum number of molecules among the following?", opts:["44 g CO2", "48 g O3", "8 g H2", "64 g SO2"]},
+{n:27, topic:"Mole Concept", q:"The number of atoms in 0.1 mol of a triatomic gas is:", opts:["6.022 x 10^22", "1.806 x 10^23", "3.600 x 10^23", "1.806 x 10^22"]},
+{n:28, topic:"Mole Concept", q:"Molarity of liquid water if its density is 1.00 g/mL is:", opts:["5.55 M", "55.5 M", "1 M", "18 M"]},
+{n:29, topic:"Mole Concept", q:"Concentrated aqueous sulphuric acid is 98% H2SO4 by mass and has a density of 1.80 g.mL-1. Volume of acid required to make one litre of 0.1 M H2SO4 solution is:", opts:["11.10 mL", "16.65 mL", "5.55 mL", "22.20 mL"]},
+{n:30, topic:"Mole Concept", q:"The maximum number of molecules is present in:", opts:["15 L of H2 gas at STP", "5 L of N2 gas at STP", "0.5 g of H2 gas", "10 g of O2 gas"]},
 
-  // PHOTOSYNTHESIS (31-44)
-  {n:31, topic:"Photosynthesis", q:"In the chloroplast, the primary acceptor of CO2 in C3 plants is a:", opts:["5-carbon ketose sugar","3-carbon organic acid","4-carbon organic acid","6-carbon aldo sugar"]},
-  {n:32, topic:"Photosynthesis", q:"Which fraction of the visible spectrum is most effective in photosynthesis?", opts:["Green and yellow","Orange and green","Blue and red","Violet and green"]},
-  {n:33, topic:"Photosynthesis", q:"In C4 plants, the initial fixation of carbon dioxide takes place in the:", opts:["Bundle sheath cells","Mesophyll cells","Epidermal cells","Guard cells"]},
-  {n:34, topic:"Photosynthesis", q:"The primary electron acceptor for Photosystem II in the non-cyclic photophosphorylation is:", opts:["Plastoquinone","Cytochrome b6f","Pheophytin","Plastocyanin"]},
-  {n:35, topic:"Photosynthesis", q:"Kranz anatomy is a characteristic feature of the leaves of:", opts:["C3 plants","CAM plants","Succulents","C4 plants"]},
-  {n:36, topic:"Photosynthesis", q:"During the Calvin cycle, how many ATP and NADPH molecules are required to synthesize one molecule of glucose?", opts:["12 ATP and 12 NADPH","18 ATP and 18 NADPH","18 ATP and 12 NADPH","12 ATP and 18 NADPH"]},
-  {n:37, topic:"Photosynthesis", q:"In CAM plants, stomata open during:", opts:["Night","Day","Both day and night","Never"]},
-  {n:38, topic:"Photosynthesis", q:"Which enzyme is responsible for the carboxylation in bundle sheath cells of C4 plants?", opts:["PEP carboxylase","Pyruvate kinase","RuBisCO","Hexokinase"]},
-  {n:39, topic:"Photosynthesis", q:"The splitting of water (photolysis) during photosynthesis is associated with:", opts:["PS II","PS I","Cytochrome complex","ATP synthase"]},
-  {n:40, topic:"Photosynthesis", q:"Which metal ion is a constituent of the oxygen-evolving complex?", opts:["Zinc","Magnesium","Iron","Manganese"]},
-  {n:41, topic:"Photosynthesis", q:"The law of limiting factors was proposed by:", opts:["Calvin","Blackman","Engelmann","Priestley"]},
-  {n:42, topic:"Photosynthesis", q:"Photorespiration is favored by:", opts:["High CO2 and low O2","Low light and low O2","High O2 and low CO2","Low temperature and high CO2"]},
-  {n:43, topic:"Photosynthesis", q:"Cyclic photophosphorylation involves:", opts:["Both PS I and PS II","Only PS I","Only PS II","Neither PS I nor PS II"]},
-  {n:44, topic:"Photosynthesis", q:"The first stable product of the Calvin cycle is:", opts:["3-Phosphoglyceric acid (PGA)","Oxaloacetic acid (OAA)","Ribulose-1,5-bisphosphate","Phosphoenolpyruvate"]},
+// THERMODYNAMICS (14)
+{n:31, topic:"Thermodynamics", q:"For a spontaneous process in an isolated system, the change in entropy is:", opts:["Zero", "Negative", "Positive", "Cannot be determined"]},
+{n:32, topic:"Thermodynamics", q:"The enthalpy of fusion of water is 1.435 kcal/mol. The molar entropy change for the melting of ice at 0°C is:", opts:["10.52 cal/(mol K)", "5.26 cal/(mol K)", "21.04 cal/(mol K)", "0.526 cal/(mol K)"]},
+{n:33, topic:"Thermodynamics", q:"For the reaction: X2O4(l) -> 2XO2(g), ΔU = 2.1 kcal, ΔS = 20 cal K^-1 at 300 K. Hence, ΔG is:", opts:["2.7 kcal", " -2.7 kcal", " -0.3 kcal", "9.3 kcal"]},
+{n:34, topic:"Thermodynamics", q:"If an ideal gas expands isothermally and reversibly from 10 L to 20 L at 298 K, what is the work done? (Given 1 mol)", opts:["-1717 J", "-1717.4 J", "1717.4 J", "-2000 J"]},
+{n:35, topic:"Thermodynamics", q:"The heat of combustion of solid benzoic acid at constant volume is -321.3 kJ at 27°C. The heat of combustion at constant pressure is:", opts:["-321.3 - 300R", "-321.3 + 300R", "-321.3 - 150R", "-321.3 + 150R"]},
+{n:36, topic:"Thermodynamics", q:"Which of the following conditions implies a reaction is non-spontaneous at all temperatures?", opts:["ΔH < 0, ΔS > 0", "ΔH > 0, ΔS > 0", "ΔH > 0, ΔS < 0", "ΔH < 0, ΔS < 0"]},
+{n:37, topic:"Thermodynamics", q:"Identify the intensive property from the following:", opts:["Temperature", "Enthalpy", "Entropy", "Volume"]},
+{n:38, topic:"Thermodynamics", q:"For an ideal gas, Cp - Cv is equal to:", opts:["R/2", "R", "2R", "Zero"]},
+{n:39, topic:"Thermodynamics", q:"In an adiabatic process, which of the following is true?", opts:["q = w", "ΔU = 0", "ΔH = 0", "q = 0"]},
+{n:40, topic:"Thermodynamics", q:"Hess's law is an application of:", opts:["First law of thermodynamics", "Second law of thermodynamics", "Third law of thermodynamics", "Zeroth law of thermodynamics"]},
+{n:41, topic:"Thermodynamics", q:"The entropy of a perfectly crystalline solid at absolute zero is zero. This is the statement of:", opts:["First law", "Second law", "Third law", "Zeroth law"]},
+{n:42, topic:"Thermodynamics", q:"Under what conditions is the heat of reaction equal to the enthalpy change?", opts:["Constant volume", "Constant temperature", "Constant pressure", "Constant entropy"]},
+{n:43, topic:"Thermodynamics", q:"A gas expands from 3 dm3 to 5 dm3 against a constant pressure of 3 atm. The work done during expansion is used to heat 10 moles of water of temperature 290 K. Final temperature of water is:", opts:["290.8 K", "290.2 K", "291 K", "292 K"]},
+{n:44, topic:"Thermodynamics", q:"The standard enthalpy of formation of which of the following is zero at 298 K?", opts:["Br2(g)", "H2O(l)", "Br2(l)", "CH4(g)"]},
 
-  // RESPIRATION (45-58)
-  {n:45, topic:"Respiration", q:"The connecting link between glycolysis and the Krebs cycle is:", opts:["Citric acid","Pyruvic acid","Oxaloacetic acid","Acetyl CoA"]},
-  {n:46, topic:"Respiration", q:"In which cellular compartment does the Krebs cycle take place?", opts:["Mitochondrial matrix","Cytoplasm","Inner mitochondrial membrane","Intermembrane space"]},
-  {n:47, topic:"Respiration", q:"The net gain of ATP molecules during glycolysis for one molecule of glucose is:", opts:["4","8","2","36"]},
-  {n:48, topic:"Respiration", q:"Complex IV of the electron transport chain contains which cytochromes?", opts:["b and c1","a and a3","c and a","b and a3"]},
-  {n:49, topic:"Respiration", q:"The ultimate electron acceptor in aerobic respiration is:", opts:["Cytochrome c","NAD+","Oxygen","FAD"]},
-  {n:50, topic:"Respiration", q:"What is the Respiratory Quotient (RQ) for carbohydrates?", opts:["Less than 1","1","More than 1","Zero"]},
-  {n:51, topic:"Respiration", q:"Which enzyme catalyzes the conversion of pyruvate to acetyl CoA?", opts:["Pyruvate kinase","Pyruvate carboxylase","Pyruvate dehydrogenase complex","Lactate dehydrogenase"]},
-  {n:52, topic:"Respiration", q:"FADH2 yields how many ATP molecules upon oxidation in the ETC?", opts:["2","3","4","1"]},
-  {n:53, topic:"Respiration", q:"Which of the following acts as a mobile electron carrier between Complex III and Complex IV?", opts:["Ubiquinone","Plastoquinone","Cytochrome c","Plastocyanin"]},
-  {n:54, topic:"Respiration", q:"The formation of GTP in the Krebs cycle is an example of:", opts:["Oxidative phosphorylation","Substrate-level phosphorylation","Photophosphorylation","Dephosphorylation"]},
-  {n:55, topic:"Respiration", q:"During lactic acid fermentation, the enzyme lactate dehydrogenase requires which coenzyme?", opts:["FAD","FMN","NADH + H+","NADPH"]},
-  {n:56, topic:"Respiration", q:"Cyanide poisons the electron transport chain by binding to:", opts:["Cytochrome c oxidase","NADH dehydrogenase","ATP synthase","Cytochrome bc1 complex"]},
-  {n:57, topic:"Respiration", q:"Which intermediate of the Krebs cycle is a 5-carbon compound?", opts:["Succinic acid","Malic acid","Citric acid","alpha-Ketoglutaric acid"]},
-  {n:58, topic:"Respiration", q:"The total number of NADH molecules produced from one molecule of glucose during the Krebs cycle is:", opts:["2","6","4","8"]},
+// EQUILIBRIUM (14)
+{n:45, topic:"Equilibrium", q:"For the reaction N2(g) + 3H2(g) <=> 2NH3(g), the units of Kc are:", opts:["mol L^-1", "mol^-2 L^2", "mol^-1 L", "mol^2 L^-2"]},
+{n:46, topic:"Equilibrium", q:"For the reaction A + 2B <=> C, the equilibrium constant is K. If the concentration of B is doubled, the equilibrium constant will be:", opts:["2K", "K", "K/2", "4K"]},
+{n:47, topic:"Equilibrium", q:"At a given temperature, the equilibrium constant for the reaction PCl5(g) <=> PCl3(g) + Cl2(g) is 2.4 x 10^-3. At the same temperature, the equilibrium constant for the reverse reaction is:", opts:["2.4 x 10^3", "2.4 x 10^-3", "4.16 x 10^2", "4.16 x 10^-2"]},
+{n:48, topic:"Equilibrium", q:"Which of the following factors will not change the equilibrium constant of a reaction?", opts:["Temperature", "Pressure", "Catalyst", "Both Pressure and Catalyst"]},
+{n:49, topic:"Equilibrium", q:"Le Chatelier's principle is applicable only to:", opts:["Irreversible reactions", "System in equilibrium", "Homogeneous reactions only", "Heterogeneous reactions only"]},
+{n:50, topic:"Equilibrium", q:"The pH of a 10^-8 M HCl solution is approximately:", opts:["8.0", "6.98", "7.0", "7.02"]},
+{n:51, topic:"Equilibrium", q:"Which of the following is a buffer solution?", opts:["CH3COOH + CH3COONa", "HCl + NaCl", "HNO3 + NH4NO3", "NaOH + NaCl"]},
+{n:52, topic:"Equilibrium", q:"The solubility product of AgCl is 1.8 x 10^-10. The solubility of AgCl in 0.1 M NaCl solution will be:", opts:["1.34 x 10^-5 M", "1.8 x 10^-9 M", "1.8 x 10^-11 M", "1.34 x 10^-4 M"]},
+{n:53, topic:"Equilibrium", q:"The conjugate base of H2PO4- is:", opts:["H3PO4", "PO4^3-", "HPO4^2-", "H2PO3-"]},
+{n:54, topic:"Equilibrium", q:"In the reaction: Ag+ + 2NH3 <=> [Ag(NH3)2]+, NH3 acts as:", opts:["Bronsted acid", "Arrhenius base", "Lewis base", "Lewis acid"]},
+{n:55, topic:"Equilibrium", q:"Addition of inert gas at constant pressure to the equilibrium N2(g) + 3H2(g) <=> 2NH3(g) will:", opts:["Shift equilibrium forward", "Shift equilibrium backward", "Have no effect", "Increase Kp"]},
+{n:56, topic:"Equilibrium", q:"The relation between Kp and Kc for the reaction 2SO2(g) + O2(g) <=> 2SO3(g) is:", opts:["Kp = Kc (RT)", "Kp = Kc", "Kc = Kp (RT)^2", "Kp = Kc (RT)^-1"]},
+{n:57, topic:"Equilibrium", q:"The active mass of 64 g of HI in a 2-litre flask is:", opts:["2", "0.25", "0.5", "1"]},
+{n:58, topic:"Equilibrium", q:"For the precipitation of a sparingly soluble salt, the ionic product must be:", opts:["Equal to Ksp", "Less than Ksp", "Greater than Ksp", "Zero"]},
 
-  // GENETICS (59-72)
-  {n:59, topic:"Genetics", q:"When a single gene influences multiple phenotypic traits, the phenomenon is called:", opts:["Epistasis","Polygenic inheritance","Pleiotropy","Codominance"]},
-  {n:60, topic:"Genetics", q:"In a cross between AABB and aabb, the proportion of individuals with genotype AaBb in the F2 generation will be:", opts:["1/16","4/16","9/16","2/16"]},
-  {n:61, topic:"Genetics", q:"The distance between genes is measured in map units or centimorgans (cM). 1 cM is equal to:", opts:["1% recombination frequency","10% recombination frequency","0.1% recombination frequency","100% recombination frequency"]},
-  {n:62, topic:"Genetics", q:"A test cross is performed by crossing an F1 individual with:", opts:["A homozygous dominant parent","A heterozygous parent","A homozygous recessive parent","Another F1 individual"]},
-  {n:63, topic:"Genetics", q:"In human blood groups, the alleles IA and IB exhibit:", opts:["Incomplete dominance","Codominance","Epistasis","Multiple allelism only"]},
-  {n:64, topic:"Genetics", q:"Sickle-cell anemia is an example of:", opts:["Point mutation","Frameshift mutation","Chromosomal aberration","Nondisjunction"]},
-  {n:65, topic:"Genetics", q:"Down's syndrome in humans is caused by:", opts:["Monosomy of 21st chromosome","Nullisomy of 21st chromosome","Trisomy of 21st chromosome","Triploidy"]},
-  {n:66, topic:"Genetics", q:"Which enzyme is responsible for removing RNA primers during DNA replication in E. coli?", opts:["DNA polymerase III","DNA polymerase I","DNA ligase","Primase"]},
-  {n:67, topic:"Genetics", q:"The lac operon is an example of an:", opts:["Inducible operon","Repressible operon","Constitutive operon","Overlapping gene"]},
-  {n:68, topic:"Genetics", q:"If the sequence of the coding strand in a transcription unit is 5'-ATGCAT-3', the sequence of mRNA will be:", opts:["3'-UACGUA-5'","5'-UACGUA-3'","3'-AUGCAU-5'","5'-AUGCAU-3'"]},
-  {n:69, topic:"Genetics", q:"Which of the following RNA molecules acts as an adapter?", opts:["mRNA","rRNA","tRNA","snRNA"]},
-  {n:70, topic:"Genetics", q:"In Hardy-Weinberg equilibrium, the frequency of heterozygous individuals is represented by:", opts:["2pq","p²","q²","p+q"]},
-  {n:71, topic:"Genetics", q:"The technique of DNA fingerprinting was initially developed by:", opts:["Kary Mullis","Alec Jeffreys","Frederick Sanger","James Watson"]},
-  {n:72, topic:"Genetics", q:"Which site of the ribosome does the incoming aminoacyl-tRNA bind to during translation?", opts:["P site","E site","A site","Shine-Dalgarno sequence"]},
+// CHEMICAL BONDING (14)
+{n:59, topic:"Chemical Bonding", q:"The geometry of XeF4 molecule is:", opts:["Tetrahedral", "Octahedral", "Square planar", "Seesaw"]},
+{n:60, topic:"Chemical Bonding", q:"Which of the following molecules has a zero dipole moment?", opts:["NH3", "BF3", "H2O", "CHCl3"]},
+{n:61, topic:"Chemical Bonding", q:"The hybridization of the central atom in SF6 is:", opts:["sp3d", "sp3", "sp3d2", "d2sp3"]},
+{n:62, topic:"Chemical Bonding", q:"According to MO theory, the bond order of O2+ ion is:", opts:["2", "2.5", "1.5", "3"]},
+{n:63, topic:"Chemical Bonding", q:"Which of the following is paramagnetic?", opts:["N2", "CO", "O2", "F2"]},
+{n:64, topic:"Chemical Bonding", q:"In which of the following molecules/ions is the bond angle minimum?", opts:["NH3", "H2O", "CH4", "NH4+"]},
+{n:65, topic:"Chemical Bonding", q:"The formal charge on the central oxygen atom in an ozone molecule is:", opts:["0", "-1", "+1", "+2"]},
+{n:66, topic:"Chemical Bonding", q:"The species having pyramidal shape is:", opts:["SO3^2-", "BrF3", "SiO3^2-", "OSF2"]},
+{n:67, topic:"Chemical Bonding", q:"Hydrogen bonding is maximum in:", opts:["Ethanol", "Water", "Diethyl ether", "Hydrogen chloride"]},
+{n:68, topic:"Chemical Bonding", q:"In PO4^3- ion, the formal charge on the oxygen atom of P-O bond is:", opts:["+1", "-0.75", "-1", "-1.5"]},
+{n:69, topic:"Chemical Bonding", q:"Which of the following overlapping results in the formation of a pi bond?", opts:["s-s", "p-p (axial)", "s-p", "p-p (lateral)"]},
+{n:70, topic:"Chemical Bonding", q:"The structure of IF7 is:", opts:["Square pyramid", "Octahedral", "Pentagonal bipyramid", "Trigonal bipyramid"]},
+{n:71, topic:"Chemical Bonding", q:"Number of lone pairs of electrons on the central atom of ClF3 is:", opts:["0", "1", "2", "3"]},
+{n:72, topic:"Chemical Bonding", q:"The total number of sigma and pi bonds in benzene is:", opts:["12 sigma, 3 pi", "6 sigma, 3 pi", "12 sigma, 0 pi", "6 sigma, 6 pi"]},
 
-  // DIGESTION (73-86)
-  {n:73, topic:"Digestion", q:"The enzyme enterokinase helps in the conversion of:", opts:["Trypsinogen into trypsin","Pepsinogen into pepsin","Protein into polypeptides","Caseinogen into casein"]},
-  {n:74, topic:"Digestion", q:"Which gastrointestinal hormone stimulates the secretion of pancreatic juice rich in bicarbonate?", opts:["Gastrin","Cholecystokinin (CCK)","Gastric inhibitory peptide","Secretin"]},
-  {n:75, topic:"Digestion", q:"Parietal (oxyntic) cells of the gastric glands secrete:", opts:["Pepsinogen","Mucus","HCl and intrinsic factor","Gastrin"]},
-  {n:76, topic:"Digestion", q:"The absorption of vitamin B12 in the terminal ileum requires:", opts:["Bile salts","Intrinsic factor","Hydrochloric acid","Pancreatic amylase"]},
-  {n:77, topic:"Digestion", q:"Brunner's glands are located in the:", opts:["Submucosa of duodenum","Mucosa of stomach","Submucosa of ileum","Mucosa of colon"]},
-  {n:78, topic:"Digestion", q:"The dental formula for an adult human is:", opts:["2122/2122","2123/2123","2102/2102","2132/2132"]},
-  {n:79, topic:"Digestion", q:"Micelles are formed during the digestion and absorption of:", opts:["Carbohydrates","Proteins","Fats","Vitamins"]},
-  {n:80, topic:"Digestion", q:"Which of the following enzymes acts in an acidic medium?", opts:["Pepsin","Trypsin","Amylase","Lipase"]},
-  {n:81, topic:"Digestion", q:"The sphincter of Oddi guards the opening of the:", opts:["Esophagus into the stomach","Pyloric stomach into the duodenum","Common bile duct into the pancreatic duct","Hepatopancreatic duct into the duodenum"]},
-  {n:82, topic:"Digestion", q:"Which of the following is not a proteolytic enzyme?", opts:["Chymotrypsin","Steapsin","Carboxypeptidase","Trypsin"]},
-  {n:83, topic:"Digestion", q:"Kupffer cells are phagocytic cells found in the:", opts:["Spleen","Liver","Pancreas","Lungs"]},
-  {n:84, topic:"Digestion", q:"The maximum digestion and absorption of food takes place in the:", opts:["Stomach","Colon","Small intestine","Caecum"]},
-  {n:85, topic:"Digestion", q:"Chylomicrons are protein-coated fat droplets formed in the:", opts:["Intestinal mucosa","Lacteals","Liver","Adipose tissue"]},
-  {n:86, topic:"Digestion", q:"Rennin is an enzyme found in the gastric juice of infants that helps in the digestion of:", opts:["Fat","Carbohydrates","Milk proteins","Nucleic acids"]},
+// PERIODIC TABLE (14)
+{n:73, topic:"Periodic Table", q:"Which of the following has the highest first ionization energy?", opts:["Na", "Al", "N", "O"]},
+{n:74, topic:"Periodic Table", q:"The element with highest electron affinity is:", opts:["F", "Cl", "Br", "I"]},
+{n:75, topic:"Periodic Table", q:"Which of the following is an amphoteric oxide?", opts:["CO2", "MgO", "Al2O3", "SO2"]},
+{n:76, topic:"Periodic Table", q:"The atomic radii of transition elements belonging to a given period:", opts:["Decrease steadily", "Decrease initially, remain almost constant, then increase", "Increase steadily", "Remain completely constant"]},
+{n:77, topic:"Periodic Table", q:"The correct order of ionic radii of Y3+, La3+, Eu3+, Lu3+ is:", opts:["Lu3+ < Eu3+ < La3+ < Y3+", "Lu3+ < Eu3+ < Y3+ < La3+", "Y3+ < Lu3+ < Eu3+ < La3+", "Y3+ < La3+ < Eu3+ < Lu3+"]},
+{n:78, topic:"Periodic Table", q:"The diagonal relationship is not shown by:", opts:["Li and Mg", "Be and Al", "B and Si", "C and P"]},
+{n:79, topic:"Periodic Table", q:"Which of the following groups contains metals, non-metals, and metalloids?", opts:["Group 1", "Group 2", "Group 14", "Group 17"]},
+{n:80, topic:"Periodic Table", q:"The IUPAC name of an element with atomic number 119 is:", opts:["Unnilennium", "Unununnium", "Ununennium", "Unnilunium"]},
+{n:81, topic:"Periodic Table", q:"The shielding effect of inner electrons follows the order:", opts:["s > p > d > f", "f > d > p > s", "s = p = d = f", "p > s > d > f"]},
+{n:82, topic:"Periodic Table", q:"Which of the following pairs of elements has almost same atomic radii?", opts:["Zr and Hf", "Zn and Cd", "Na and K", "Li and Mg"]},
+{n:83, topic:"Periodic Table", q:"The most electronegative element among the following is:", opts:["S", "O", "N", "F"]},
+{n:84, topic:"Periodic Table", q:"Which transition metal shows the highest oxidation state?", opts:["Mn", "Cr", "Os", "Fe"]},
+{n:85, topic:"Periodic Table", q:"The effective nuclear charge (Zeff) for the outermost electron of a Na atom is approximately:", opts:["1", "2.2", "11", "8"]},
+{n:86, topic:"Periodic Table", q:"Lanthanide contraction is due to:", opts:["Perfect shielding of 4f electrons", "Imperfect shielding of 4f electrons", "Perfect shielding of 5d electrons", "Imperfect shielding of 5d electrons"]},
 
-  // SEXUAL REPRODUCTION (87-100)
-  {n:87, topic:"Sexual Reproduction", q:"The process of formation of microspores from a pollen mother cell is called:", opts:["Megasporogenesis","Microsporogenesis","Pollination","Fertilization"]},
-  {n:88, topic:"Sexual Reproduction", q:"In a typical angiosperm embryo sac, the ploidy of the secondary nucleus before fertilization is:", opts:["2n (Diploid)","n (Haploid)","3n (Triploid)","4n (Tetraploid)"]},
-  {n:89, topic:"Sexual Reproduction", q:"Which layer of the microsporangium wall provides nourishment to the developing pollen grains?", opts:["Epidermis","Endothecium","Tapetum","Middle layers"]},
-  {n:90, topic:"Sexual Reproduction", q:"Filiform apparatus is characteristic of which cells of the embryo sac?", opts:["Antipodal cells","Synergids","Egg cell","Central cell"]},
-  {n:91, topic:"Sexual Reproduction", q:"The exine of a pollen grain is primarily made of a highly resistant organic material called:", opts:["Cellulose","Pectin","Sporopollenin","Chitin"]},
-  {n:92, topic:"Sexual Reproduction", q:"Double fertilization is the fusion of:", opts:["Two male gametes with one egg","One male gamete with the egg and another with the synergid","Two male gametes with the secondary nucleus","One male gamete with the egg and another with the secondary nucleus"]},
-  {n:93, topic:"Sexual Reproduction", q:"Apomixis is a type of reproduction in plants where:", opts:["Seeds are formed without fertilization","Fertilization occurs without pollination","Fruits develop without seeds","Pollen grains germinate in the anther"]},
-  {n:94, topic:"Sexual Reproduction", q:"Which of the following is an example of a false fruit?", opts:["Mango","Apple","Grape","Tomato"]},
-  {n:95, topic:"Sexual Reproduction", q:"In angiosperms, the functional megaspore generally develops into the:", opts:["Embryo sac","Endosperm","Ovule","Pollen sac"]},
-  {n:96, topic:"Sexual Reproduction", q:"The phenomenon of pollen grains from one flower being transferred to the stigma of another flower on the same plant is termed:", opts:["Autogamy","Geitonogamy","Xenogamy","Cleistogamy"]},
-  {n:97, topic:"Sexual Reproduction", q:"Polyembryony is most commonly observed in which of the following families?", opts:["Solanaceae","Fabaceae","Rutaceae (Citrus)","Brassicaceae"]},
-  {n:98, topic:"Sexual Reproduction", q:"In water hyacinth and water lily, pollination takes place by:", opts:["Water currents","Insects or wind","Birds","Bats"]},
-  {n:99, topic:"Sexual Reproduction", q:"The residual, persistent nucellus in some seeds like black pepper and beet is called:", opts:["Perisperm","Endosperm","Aril","Testa"]},
-  {n:100, topic:"Sexual Reproduction", q:"In a typical dicot embryo, the portion of the embryonal axis above the level of cotyledons is the:", opts:["Hypocotyl","Radicle","Epicotyl","Coleorhiza"]}
+// S-BLOCK (14)
+{n:87, topic:"S-Block", q:"Which alkali metal is the most powerful reducing agent in aqueous solution?", opts:["Na", "Li", "K", "Cs"]},
+{n:88, topic:"S-Block", q:"Which of the following carbonates is least thermally stable?", opts:["Na2CO3", "BeCO3", "MgCO3", "CaCO3"]},
+{n:89, topic:"S-Block", q:"The blue colour of alkali metals in liquid ammonia is due to the presence of:", opts:["Metal cations", "Solvated metal ions", "Ammoniated electrons", "NH2- ions"]},
+{n:90, topic:"S-Block", q:"Which of the following alkaline earth metals does not impart any colour to the bunsen flame?", opts:["Ca", "Be", "Sr", "Ba"]},
+{n:91, topic:"S-Block", q:"Plaster of Paris is chemically:", opts:["CaSO4.2H2O", "CaSO4", "CaSO4.1/2H2O", "CaSO4.H2O"]},
+{n:92, topic:"S-Block", q:"Which of the following compounds is known as baking soda?", opts:["NaHCO3", "Na2CO3.10H2O", "NaCl", "NaOH"]},
+{n:93, topic:"S-Block", q:"The solubility of alkaline earth metal sulphates in water decreases in the sequence:", opts:["Mg > Ca > Sr > Ba", "Ba > Sr > Ca > Mg", "Ca > Mg > Ba > Sr", "Sr > Ba > Mg > Ca"]},
+{n:94, topic:"S-Block", q:"Which of the following reacts with nitrogen directly to form nitride?", opts:["Na", "Li", "K", "Rb"]},
+{n:95, topic:"S-Block", q:"Washing soda is:", opts:["Na2CO3", "NaHCO3", "Na2CO3.10H2O", "NaOH"]},
+{n:96, topic:"S-Block", q:"Which among the following is the most dense?", opts:["Li", "Os", "K", "Na"]},
+{n:97, topic:"S-Block", q:"Suspension of slaked lime in water is known as:", opts:["Lime water", "Quick lime", "Aqueous lime", "Milk of lime"]},
+{n:98, topic:"S-Block", q:"The formula of dead burnt plaster is:", opts:["CaSO4.2H2O", "CaSO4.1/2H2O", "CaSO4", "CaO"]},
+{n:99, topic:"S-Block", q:"Which one of the following is used in photoelectric cells?", opts:["Na", "Cs", "Li", "Ca"]},
+{n:100, topic:"S-Block", q:"Calcium is obtained by the:", opts:["Electrolysis of molten CaCl2", "Reduction of CaO with C", "Reduction of CaO with CO", "Electrolysis of aqueous CaCl2"]}
 ];
 
 let studentName = "";
@@ -585,7 +574,7 @@ let filteredIndices = [];
 let current = 0; 
 let timerInterval;
 let endTime;
-const TEST_DURATION_MS = 90 * 60 * 1000; // 1 Hour 30 Minutes
+const TEST_DURATION_MS = 120 * 60 * 1000; 
 
 window.onload = function() {
   studentName = localStorage.getItem("dcece_studentName");
@@ -671,11 +660,7 @@ function renderQuestion() {
   const q = questions[actualIndex];
   
   document.getElementById("qNo").innerText = `Question ${actualIndex + 1} of ${questions.length}`;
-  
-  const qTopicEl = document.getElementById("qTopic");
-  qTopicEl.innerText = q.topic;
-  qTopicEl.style.backgroundColor = COLORS[q.topic] || "var(--border)";
-
+  document.getElementById("qTopic").innerText = `${q.topic}`;
   document.getElementById("question").innerText = q.q;
   
   let html = "";
@@ -798,7 +783,7 @@ ${detailedReport}`;
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
-      subject: `DCECE Bio Test Result - ${studentName} (Score: ${correct})`,
+      subject: `DCECE Chemistry Test Result - ${studentName} (Score: ${correct})`,
       message: finalMessage
     }),
   })
@@ -837,11 +822,9 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
       <p style="color:var(--danger)">Wrong Answers: <strong>${incorrect}</strong></p>
     </div>
     <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
-    <p style="font-size: 14px; margin-top: 15px; color: #aaa;">Your detailed report has been successfully sent to the admin.</p>
     <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_100_answers');">Retake Test</button>
   `;
 
-  // --- Build Detailed Review UI ---
   let reviewHTML = '<div class="review-container">';
   reviewHTML += '<h3 style="text-align:center; color:var(--primary); margin-bottom:30px; font-size:22px;">Detailed Answer Review</h3>';
   
