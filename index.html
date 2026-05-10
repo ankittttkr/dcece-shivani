@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCECE Mock Test - Final Setup</title>
+
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#f8fafc;
+  --border:#334155;
+  --primary:#38bdf8;
+  --green:#22c55e;
+  --muted:#94a3b8;
+  --danger:#ef4444;
+  --yellow:#fbbf24;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--bg);
+  font-family:Arial,sans-serif;
+  color:var(--text);
+}
+
+header{
+  position:sticky;
+  top:0;
+  background:#111827;
+  padding:15px 20px;
+  border-bottom:1px solid var(--border);
+  z-index:100;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-top h1 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.header-top h1 span {
+  color: var(--yellow);
+}
+
+.showing-badge {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.showing-badge span {
+  color: white;
+  font-weight: bold;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filter-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px; 
+  scrollbar-width: none; 
+}
+
+.filter-container::-webkit-scrollbar { 
+  height: 0px; 
+  display: none; 
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.filter-btn:hover { 
+  border-color: #64748b; 
+  color: white; 
+}
+
+.filter-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  font-weight: bold;
+}
+
+.timer-submit-group {
+  display:flex; 
+  align-items:center; 
+  gap: 15px;
+}
+
+#timer {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--danger);
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+/* Start Screen Styles */
+#start-screen {
+  background: var(--card);
+  padding: 40px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  text-align: center;
+  max-width: 500px;
+  margin: 100px auto;
+}
+
+#start-screen h2 {
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+#studentNameInput {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: white;
+  font-size: 16px;
+}
+
+.q-card{
+  background:var(--card);
+  padding:20px;
+  border-radius:14px;
+  border:1px solid var(--border);
+}
+
+.q-header-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.q-number{
+  font-size:14px;
+  color:var(--muted);
+  font-weight: bold;
+}
+
+.q-subject {
+  font-size:12px;
+  background: var(--border);
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--primary);
+}
+
+.q-text{
+  font-size:20px;
+  margin-bottom:20px;
+  line-height:1.5;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+  background:#0f172a;
+  line-height: 1.4;
+}
+
+.option:hover{
+  border-color:var(--primary);
+}
+
+.option.selected{
+  background:var(--primary);
+  color:black;
+  font-weight:bold;
+}
+
+.nav-buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:25px;
+  gap:10px;
+}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.prev-btn{
+  background:#475569;
+  color:white;
+  flex: 1;
+}
+.prev-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.skip-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  flex: 1;
+}
+.skip-btn:hover {
+  background: var(--border);
+  color: white;
+}
+
+.next-btn{
+  background:var(--primary);
+  color:black;
+  flex: 2;
+}
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit-btn{
+  background:var(--green);
+  color:white;
+}
+
+.palette-container {
+  background: var(--card);
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+.palette-title {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: var(--text);
+  text-align: center;
+}
+
+.palette{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(40px,1fr));
+  gap:8px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.palette::-webkit-scrollbar { width: 6px; }
+.palette::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.p-btn{
+  height:40px;
+  padding: 0;
+  border:none;
+  border-radius:8px;
+  background:#0f172a;
+  border: 1px solid var(--border);
+  color:white;
+  cursor:pointer;
+  font-size: 14px;
+}
+
+.p-btn.answered{
+  background:var(--green);
+  border-color: var(--green);
+  color: black;
+}
+.p-btn.active-q {
+  border: 2px solid var(--primary);
+}
+
+.result{
+  margin-top:20px;
+  padding:20px;
+  background:#052e16;
+  border: 1px solid var(--green);
+  border-radius:10px;
+  display:none;
+  text-align: center;
+}
+.result h2 { color: var(--green); margin-bottom: 15px; }
+.result p { margin-bottom: 8px; font-size: 18px; }
+
+/* Review Section Styles */
+.review-container { margin-top: 30px; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto; padding: 0 10px; }
+.review-q-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+.review-q-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; font-weight: bold; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.review-q-text { font-size: 16px; margin-bottom: 15px; line-height: 1.4; color: white; }
+.review-options { display: grid; gap: 8px; }
+.review-opt { padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: #0f172a; color: var(--text); }
+.review-opt.correct { background: var(--green); color: black; font-weight: bold; border-color: var(--green); }
+.review-opt.wrong { background: var(--danger); color: white; font-weight: bold; border-color: var(--danger); }
+
+#loading-overlay {
+  display: none;
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  padding-top: 200px;
+  font-size: 24px;
+}
+
+@media(max-width:600px){
+  .header-top { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .header-bottom { flex-direction: column; align-items: stretch; }
+  .timer-submit-group { justify-content: space-between; }
+  .q-text{ font-size:18px; }
+  .nav-buttons { flex-wrap: wrap; }
+  .nav-buttons button { padding: 10px; font-size: 14px; }
+  .next-btn { flex-basis: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div id="start-screen">
+  <h2>Welcome to DCECE Mock Test</h2>
+  <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 2 Hours 25 Minutes<br>Total Questions: 200</p>
+  <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
+  <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
+</div>
+
+<div id="main-test-area" style="display: none;">
+  <header>
+    <div class="header-top">
+      <h1>DCECE Bihar &mdash; <span>200 MCQ</span> Practice Set</h1>
+      <div class="showing-badge" id="showingBadge">Showing: <span>200</span> / 200</div>
+    </div>
+    
+    <div class="header-bottom">
+      <div class="filter-container" id="filter-container">
+        <button class="filter-btn active" data-sub="All" onclick="filterSubject('All')">All</button>
+        <button class="filter-btn" data-sub="Physics" onclick="filterSubject('Physics')">⚡ Physics</button>
+        <button class="filter-btn" data-sub="Chemistry" onclick="filterSubject('Chemistry')">🧪 Chemistry</button>
+        <button class="filter-btn" data-sub="Biology" onclick="filterSubject('Biology')">🌿 Biology</button>
+        <button class="filter-btn" data-sub="Hindi" onclick="filterSubject('Hindi')">Ⓗ Hindi</button>
+        <button class="filter-btn" data-sub="English" onclick="filterSubject('English')">Ⓔ English</button>
+        <button class="filter-btn" data-sub="GK" onclick="filterSubject('GK')">🌐 GK</button>
+      </div>
+
+      <div class="timer-submit-group">
+        <div id="timer">02:25:00</div>
+        <button class="submit-btn" style="padding: 8px 16px; font-size: 14px;" onclick="submitTest(false)">Submit Test</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="q-card" id="quiz-area">
+      <div class="q-header-info">
+        <div class="q-number" id="qNo"></div>
+        <div class="q-subject" id="qSub"></div>
+      </div>
+      
+      <div class="q-text" id="question"></div>
+
+      <div class="options" id="options"></div>
+
+      <div class="nav-buttons">
+        <button class="prev-btn" id="prevBtn" onclick="prevQuestion()">Previous</button>
+        <button class="skip-btn" id="skipBtn" onclick="skipQuestion()">Skip</button>
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Save & Next</button>
+      </div>
+    </div>
+
+    <div class="palette-container" id="palette-area">
+      <div class="palette-title">Question Palette</div>
+      <div class="palette" id="palette"></div>
+    </div>
+  </div>
+</div>
+
+<div class="result" id="result"></div>
+<div id="review-area"></div>
+
+<div id="loading-overlay">Submitting your test... Please wait.</div>
+
+<script>
+const ansKey = {
+  1:'B', 2:'B', 3:'B', 4:'C', 5:'B', 6:'B', 7:'C', 8:'B', 9:'B', 10:'C',
+  11:'B', 12:'C', 13:'C', 14:'B', 15:'B', 16:'B', 17:'B', 18:'B', 19:'B', 20:'C',
+  21:'B', 22:'B', 23:'C', 24:'B', 25:'B', 26:'C', 27:'B', 28:'A', 29:'D', 30:'B',
+  31:'B', 32:'C', 33:'C', 34:'A', 35:'B', 36:'B', 37:'C', 38:'C', 39:'B', 40:'C',
+  41:'B', 42:'C', 43:'A', 44:'A', 45:'C', 46:'B', 47:'B', 48:'B', 49:'B', 50:'B',
+  51:'B', 52:'B', 53:'B', 54:'B', 55:'B', 56:'B', 57:'B', 58:'A', 59:'B', 60:'B',
+  61:'B', 62:'B', 63:'B', 64:'B', 65:'C', 66:'B', 67:'C', 68:'B', 69:'B', 70:'B',
+  71:'B', 72:'C', 73:'C', 74:'B', 75:'C', 76:'B', 77:'B', 78:'C', 79:'B', 80:'C',
+  81:'B', 82:'C', 83:'B', 84:'B', 85:'B', 86:'B', 87:'B', 88:'B', 89:'B', 90:'B',
+  91:'B', 92:'B', 93:'C', 94:'C', 95:'B', 96:'B', 97:'C', 98:'A', 99:'B', 100:'B',
+  101:'D', 102:'B', 103:'B', 104:'A', 105:'D', 106:'B', 107:'B', 108:'B', 109:'B', 110:'C',
+  111:'C', 112:'B', 113:'B', 114:'B', 115:'B',
+  116:'B', 117:'B', 118:'B', 119:'A', 120:'C', 121:'B', 122:'A', 123:'C', 124:'B', 125:'A',
+  126:'A', 127:'B', 128:'C', 129:'B', 130:'C', 131:'B', 132:'C', 133:'B', 134:'B', 135:'C',
+  136:'B', 137:'B', 138:'C', 139:'D', 140:'B',
+  141:'C', 142:'C', 143:'C', 144:'B', 145:'C', 146:'B', 147:'C', 148:'B', 149:'A', 150:'C',
+  151:'B', 152:'B', 153:'C', 154:'B', 155:'C', 156:'B', 157:'C', 158:'B', 159:'C', 160:'C',
+  161:'B', 162:'C', 163:'C', 164:'C', 165:'C', 166:'B', 167:'B', 168:'A', 169:'C', 170:'B',
+  171:'B', 172:'B', 173:'C', 174:'C', 175:'C', 176:'B', 177:'B', 178:'B', 179:'C', 180:'C',
+  181:'B', 182:'B', 183:'B', 184:'C', 185:'C', 186:'B', 187:'B', 188:'C', 189:'C', 190:'C',
+  191:'A', 192:'B', 193:'B', 194:'B', 195:'B', 196:'B', 197:'C', 198:'B', 199:'B', 200:'C'
+};
+
+const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
+
+const questions = [
+// PHYSICS
+{n:1,sub:"Physics",topic:"Motion",q:"A body travels at 60 km/h for 2 hours and at 80 km/h for 3 hours. What is the total distance covered?",opts:["340 km","360 km","380 km","400 km"]},
+{n:2,sub:"Physics",topic:"Motion",q:"Displacement is always less than or equal to distance because:",opts:["Displacement is a scalar quantity","Displacement is the shortest path between two points","Distance cannot be negative","They are always equal"]},
+{n:3,sub:"Physics",topic:"Motion",q:"A car covers 100 m in 10 s. Its average speed is:",opts:["5 m/s","10 m/s","15 m/s","20 m/s"]},
+{n:4,sub:"Physics",topic:"Motion",q:"If an object completes one full circular revolution, its displacement is:",opts:["2πr","πr","Zero","r"]},
+{n:5,sub:"Physics",topic:"Motion",q:"Speed is a _______ quantity whereas velocity is a _______ quantity.",opts:["vector, scalar","scalar, vector","scalar, scalar","vector, vector"]},
+{n:6,sub:"Physics",topic:"Velocity & Acceleration",q:"The SI unit of acceleration is:",opts:["m/s","m/s²","km/h","N/kg"]},
+{n:7,sub:"Physics",topic:"Velocity & Acceleration",q:"The acceleration of a body moving with uniform velocity is:",opts:["Maximum","Minimum","Zero","Variable"]},
+{n:8,sub:"Physics",topic:"Velocity & Acceleration",q:"If velocity of a body increases from 20 m/s to 40 m/s in 5 s, its acceleration is:",opts:["2 m/s²","4 m/s²","6 m/s²","8 m/s²"]},
+{n:9,sub:"Physics",topic:"Velocity & Acceleration",q:"Negative acceleration is also known as:",opts:["Velocity","Retardation","Displacement","Force"]},
+{n:10,sub:"Physics",topic:"Velocity & Acceleration",q:"The slope of a velocity-time graph represents:",opts:["Distance","Speed","Acceleration","Displacement"]},
+{n:11,sub:"Physics",topic:"Equations of Motion",q:"In the first equation of motion v = u + at, 'u' represents:",opts:["Final velocity","Initial velocity","Acceleration","Time"]},
+{n:12,sub:"Physics",topic:"Equations of Motion",q:"A body starts from rest with acceleration 5 m/s². Distance covered in 4 s is:",opts:["20 m","30 m","40 m","50 m"]},
+{n:13,sub:"Physics",topic:"Equations of Motion",q:"Using v² = u² + 2as, if u = 0, a = 10 m/s², s = 20 m, then v = ?",opts:["10 m/s","15 m/s","20 m/s","25 m/s"]},
+{n:14,sub:"Physics",topic:"Equations of Motion",q:"The velocity of a ball thrown vertically upward at its highest point is:",opts:["Maximum","Zero","Equal to g","Unchanged"]},
+{n:15,sub:"Physics",topic:"Equations of Motion",q:"The value of acceleration due to gravity 'g' on Earth's surface is approximately:",opts:["8.9 m/s²","9.8 m/s²","10.8 m/s²","11.0 m/s²"]},
+{n:16,sub:"Physics",topic:"Laws of Motion",q:"Newton's First Law of Motion is also called:",opts:["Law of acceleration","Law of Inertia","Law of action-reaction","Law of momentum"]},
+{n:17,sub:"Physics",topic:"Laws of Motion",q:"A force of 20 N acts on a body of mass 5 kg. The acceleration produced is:",opts:["2 m/s²","4 m/s²","100 m/s²","25 m/s²"]},
+{n:18,sub:"Physics",topic:"Laws of Motion",q:"The SI unit of momentum is:",opts:["N","kg·m/s","kg·m/s²","J"]},
+{n:19,sub:"Physics",topic:"Laws of Motion",q:"Action and reaction forces described in Newton's Third Law act:",opts:["On the same body in the same direction","On different bodies","On the same body in opposite directions","Both forces are zero"]},
+{n:20,sub:"Physics",topic:"Laws of Motion",q:"The working of a rocket is based on Newton's:",opts:["First Law","Second Law","Third Law","None of these"]},
+{n:21,sub:"Physics",topic:"Friction",q:"The maximum value of static friction is called:",opts:["Kinetic friction","Limiting friction","Rolling friction","Fluid friction"]},
+{n:22,sub:"Physics",topic:"Friction",q:"The coefficient of friction μ mainly depends on:",opts:["Area of contact surface","Nature of the surfaces in contact","Velocity of the object","Shape of the object"]},
+{n:23,sub:"Physics",topic:"Friction",q:"Which type of friction is the least among the following?",opts:["Static friction","Kinetic friction","Rolling friction","Limiting friction"]},
+{n:24,sub:"Physics",topic:"Friction",q:"The direction of friction force on a moving body is:",opts:["In the direction of motion","Opposite to the direction of motion","Perpendicular to motion","Vertically downward"]},
+{n:25,sub:"Physics",topic:"Work, Energy & Power",q:"The SI unit of work is:",opts:["Watt","Joule","Newton","Pascal"]},
+{n:26,sub:"Physics",topic:"Work, Energy & Power",q:"If the angle between force and displacement is 90°, the work done is:",opts:["Maximum","Minimum","Zero","Negative"]},
+{n:27,sub:"Physics",topic:"Work, Energy & Power",q:"Work done to lift a 60 kg person to a height of 10 m (g = 10 m/s²):",opts:["600 J","6000 J","60 J","600 kJ"]},
+{n:28,sub:"Physics",topic:"Work, Energy & Power",q:"1 Horsepower (HP) is equal to:",opts:["746 W","748 W","750 W","736 W"]},
+{n:29,sub:"Physics",topic:"Gravitation",q:"Gravitational force F ∝ 1/r². If the distance between two objects is doubled, the force becomes:",opts:["Four times","Double","Half","One-fourth"]},
+{n:30,sub:"Physics",topic:"Gravitation",q:"As altitude above Earth's surface increases, the value of 'g':",opts:["Increases","Decreases","Remains same","Becomes zero instantly"]},
+{n:31,sub:"Physics",topic:"Gravitation",q:"The escape velocity from Earth's surface is approximately:",opts:["7.9 km/s","11.2 km/s","9.8 km/s","15 km/s"]},
+{n:32,sub:"Physics",topic:"Gravitation",q:"A geostationary satellite orbits Earth at an altitude of approximately:",opts:["200 km","6400 km","36000 km","400 km"]},
+{n:33,sub:"Physics",topic:"Properties of Matter",q:"Pascal's Law is applicable to:",opts:["Solids only","Gases only","Both liquids and gases","Liquids only"]},
+{n:34,sub:"Physics",topic:"Properties of Matter",q:"The SI unit of surface tension is:",opts:["N/m","N/m²","Pa","J/m³"]},
+{n:35,sub:"Physics",topic:"Properties of Matter",q:"Bernoulli's Principle is based on the law of conservation of:",opts:["Momentum","Energy","Mass","Charge"]},
+{n:36,sub:"Physics",topic:"Properties of Matter",q:"The SI unit of coefficient of viscosity is:",opts:["N/m","Pa·s","kg/m³","J/mol"]},
+{n:37,sub:"Physics",topic:"Heat",q:"The SI unit of temperature is:",opts:["Celsius (°C)","Fahrenheit (°F)","Kelvin (K)","Calorie"]},
+{n:38,sub:"Physics",topic:"Heat",q:"0°C converted to Kelvin is:",opts:["0 K","100 K","273 K","373 K"]},
+{n:39,sub:"Physics",topic:"Heat",q:"The unit of coefficient of linear expansion (α) is:",opts:["°C","per °C (°C⁻¹)","m/°C","m²/°C"]},
+{n:40,sub:"Physics",topic:"Heat",q:"In which process does heat transfer occur without any medium?",opts:["Conduction","Convection","Radiation","Diffusion"]},
+// CHEMISTRY
+{n:41,sub:"Chemistry",topic:"Atomic Structure",q:"Who discovered the electron?",opts:["Rutherford","J. J. Thomson","Niels Bohr","James Chadwick"]},
+{n:42,sub:"Chemistry",topic:"Atomic Structure",q:"Who discovered the neutron?",opts:["Thomson","Rutherford","Chadwick","Bohr"]},
+{n:43,sub:"Chemistry",topic:"Atomic Structure",q:"An element with atomic number Z = 17 has how many electrons?",opts:["17","18","35","16"]},
+{n:44,sub:"Chemistry",topic:"Atomic Structure",q:"According to Bohr's model, the energy of an electron in the first orbit of hydrogen is:",opts:["-13.6 eV","+13.6 eV","-3.4 eV","0 eV"]},
+{n:45,sub:"Chemistry",topic:"Atomic Structure",q:"If mass number = 23 and atomic number = 11, the number of neutrons is:",opts:["23","11","12","34"]},
+{n:46,sub:"Chemistry",topic:"Mole Concept",q:"One mole of a substance contains how many particles?",opts:["6.022 × 10²²","6.022 × 10²³","6.022 × 10²⁴","3.011 × 10²³"]},
+{n:47,sub:"Chemistry",topic:"Mole Concept",q:"The molar mass of O₂ is:",opts:["16 g/mol","32 g/mol","8 g/mol","48 g/mol"]},
+{n:48,sub:"Chemistry",topic:"Mole Concept",q:"The volume occupied by one mole of an ideal gas at STP is:",opts:["11.2 L","22.4 L","44.8 L","2.24 L"]},
+{n:49,sub:"Chemistry",topic:"Mole Concept",q:"The number of moles in 4 g of H₂ (molar mass = 2 g/mol) is:",opts:["1 mol","2 mol","4 mol","0.5 mol"]},
+{n:50,sub:"Chemistry",topic:"Mole Concept",q:"The unit of molar mass is:",opts:["g","g/mol","mol","kg/mol"]},
+{n:51,sub:"Chemistry",topic:"Chemical Bonding",q:"Which is the best example of an ionic bond?",opts:["H₂O","NaCl","CO₂","NH₃"]},
+{n:52,sub:"Chemistry",topic:"Chemical Bonding",q:"In a covalent bond, electrons are:",opts:["Transferred from one atom to another","Shared between two atoms","Destroyed","Created"]},
+{n:53,sub:"Chemistry",topic:"Chemical Bonding",q:"The bond angle in H₂O molecule is approximately:",opts:["90°","104.5°","120°","180°"]},
+{n:54,sub:"Chemistry",topic:"Chemical Bonding",q:"Hydrogen bonding is present in:",opts:["HCl","HF","HBr","HI"]},
+{n:55,sub:"Chemistry",topic:"Chemical Bonding",q:"The shape (geometry) of CO₂ molecule is:",opts:["Trigonal planar","Linear","Angular (bent)","Tetrahedral"]},
+{n:56,sub:"Chemistry",topic:"States of Matter",q:"The process of converting gas into liquid is called:",opts:["Evaporation","Condensation","Sublimation","Freezing"]},
+{n:57,sub:"Chemistry",topic:"States of Matter",q:"According to Boyle's Law, at constant temperature:",opts:["P ∝ V","PV = constant","P/V = constant","P ∝ T"]},
+{n:58,sub:"Chemistry",topic:"States of Matter",q:"The ideal gas equation is:",opts:["PV = nRT","PV = RT","P/T = nR","PnV = RT"]},
+{n:59,sub:"Chemistry",topic:"States of Matter",q:"Above the critical temperature, a gas:",opts:["Can be liquefied by increasing pressure","Cannot be liquefied by any means","Can be solidified","Explodes"]},
+{n:60,sub:"Chemistry",topic:"Thermodynamics",q:"The First Law of Thermodynamics is based on the conservation of:",opts:["Mass","Energy","Momentum","Charge"]},
+{n:61,sub:"Chemistry",topic:"Thermodynamics",q:"In the relation H = U + PV, U represents:",opts:["Entropy","Internal Energy","Gibbs energy","Work done"]},
+{n:62,sub:"Chemistry",topic:"Thermodynamics",q:"In an exothermic reaction:",opts:["ΔH > 0","ΔH < 0","ΔH = 0","ΔS = 0"]},
+{n:63,sub:"Chemistry",topic:"Thermodynamics",q:"In Gibbs free energy equation G = H − TS, 'T' represents:",opts:["Pressure","Absolute temperature","Volume","Energy"]},
+{n:64,sub:"Chemistry",topic:"Equilibrium",q:"According to Le Chatelier's Principle, on increasing pressure at equilibrium, the reaction shifts towards:",opts:["Side with more moles of gas","Side with fewer moles of gas","No change occurs","Reaction stops completely"]},
+{n:65,sub:"Chemistry",topic:"Equilibrium",q:"A solution with pH = 7 is:",opts:["Acidic","Basic","Neutral","A buffer solution"]},
+{n:66,sub:"Chemistry",topic:"Equilibrium",q:"In Haber's process N₂ + 3H₂ ⇌ 2NH₃, on increasing pressure the yield of NH₃:",opts:["Decreases","Increases","Remains same","Reaction stops"]},
+{n:67,sub:"Chemistry",topic:"Equilibrium",q:"The value of pH + pOH at 25°C is:",opts:["7","10","14","1"]},
+{n:68,sub:"Chemistry",topic:"Equilibrium",q:"A buffer solution resists changes in pH when a small amount of acid or base is added. This is because:",opts:["It has zero pH","It contains a weak acid and its conjugate base","It is a strong acid solution","It neutralizes all substances"]},
+{n:69,sub:"Chemistry",topic:"Equilibrium",q:"The ionic product of water (Kw) at 25°C is:",opts:["10⁻⁷","10⁻¹⁴","10⁻¹","10⁻²"]},
+{n:70,sub:"Chemistry",topic:"Equilibrium",q:"If equilibrium constant K >> 1, it means:",opts:["Reactants predominate","Products predominate","No equilibrium exists","ΔG > 0"]},
+// BIOLOGY
+{n:71,sub:"Biology",topic:"Cell Basics",q:"The Cell Theory was proposed by:",opts:["Robert Hooke","Schleiden and Schwann","Louis Pasteur","Charles Darwin"]},
+{n:72,sub:"Biology",topic:"Cell Basics",q:"Which of the following is absent in a prokaryotic cell?",opts:["DNA","Ribosome","Membrane-bound nucleus","Cell membrane"]},
+{n:73,sub:"Biology",topic:"Cell Basics",q:"The largest known cell is:",opts:["Bacteria","Nerve cell","Ostrich egg","Amoeba"]},
+{n:74,sub:"Biology",topic:"Cell Basics",q:"The 'powerhouse' of the cell is:",opts:["Ribosome","Mitochondria","Golgi body","Lysosome"]},
+{n:75,sub:"Biology",topic:"Cell Basics",q:"Which structure is present in a plant cell but absent in an animal cell?",opts:["Mitochondria","Ribosome","Cell wall and chloroplast","Nucleus"]},
+{n:76,sub:"Biology",topic:"Cell Organelles",q:"Protein synthesis occurs in:",opts:["Mitochondria","Ribosome","Lysosome","Vacuole"]},
+{n:77,sub:"Biology",topic:"Cell Organelles",q:"Lysosomes are called the 'suicide bags' of the cell because:",opts:["They produce energy","They contain digestive enzymes that can destroy the cell","They control cell division","They synthesize proteins"]},
+{n:78,sub:"Biology",topic:"Cell Organelles",q:"The main function of the Golgi body is:",opts:["Photosynthesis","Cellular respiration","Packaging and transport of secretory products","DNA replication"]},
+{n:79,sub:"Biology",topic:"Cell Organelles",q:"Ribosomes are present on the surface of:",opts:["Smooth ER","Rough Endoplasmic Reticulum","Mitochondria","Vacuole"]},
+{n:80,sub:"Biology",topic:"Cell Organelles",q:"The nucleus of a cell contains:",opts:["Only RNA","Only DNA","Both DNA and RNA","Only proteins"]},
+{n:81,sub:"Biology",topic:"Plant Kingdom (Lower)",q:"Bryophytes are called the 'amphibians of the plant kingdom' because:",opts:["They live only in water","They need water for fertilization but live on land","They can fly","They produce seeds"]},
+{n:82,sub:"Biology",topic:"Plant Kingdom (Lower)",q:"Vascular tissue is absent in:",opts:["Pteridophyta","Gymnosperms","Thallophyta","Angiosperms"]},
+{n:83,sub:"Biology",topic:"Plant Kingdom (Lower)",q:"The cell wall of fungi is made up of:",opts:["Cellulose","Chitin","Pectin","Suberin"]},
+{n:84,sub:"Biology",topic:"Plant Kingdom (Lower)",q:"Green algae (Chlorophyta) contain the photosynthetic pigments:",opts:["Phycocyanin","Chlorophyll a and b","Fucoxanthin","Bacteriochlorophyll"]},
+{n:85,sub:"Biology",topic:"Plant Kingdom (Lower)",q:"Lichen is a symbiotic relationship between:",opts:["Algae and bacteria","Fungi and algae","Moss and fungi","Fern and algae"]},
+{n:86,sub:"Biology",topic:"Plant Kingdom (Higher)",q:"In Gymnosperms, the seeds are:",opts:["Enclosed in a fruit","Naked / not enclosed in a fruit","Underground","Aquatic"]},
+{n:87,sub:"Biology",topic:"Plant Kingdom (Higher)",q:"The main characteristic feature of Angiosperms is:",opts:["Naked seeds","Enclosed seeds, flowers and fruits","Absence of vascular tissue","Reproduction by spores"]},
+{n:88,sub:"Biology",topic:"Plant Kingdom (Higher)",q:"Monocot plants have:",opts:["Reticulate venation","Parallel venation","Tap root system","Flower parts in multiples of 4 or 5"]},
+{n:89,sub:"Biology",topic:"Plant Kingdom (Higher)",q:"Wheat, Rice and Maize belong to which class?",opts:["Dicotyledon","Monocotyledon","Gymnosperm","Pteridophyta"]},
+{n:90,sub:"Biology",topic:"Plant Kingdom (Higher)",q:"Ferns (Pteridophyta) reproduce by:",opts:["Seeds","Spores","Cuttings","Tubers"]},
+{n:91,sub:"Biology",topic:"Photosynthesis",q:"The light reaction of photosynthesis takes place in:",opts:["Stroma","Thylakoid membrane","Cytoplasm","Mitochondria"]},
+{n:92,sub:"Biology",topic:"Photosynthesis",q:"The primary CO₂ acceptor in the Calvin Cycle (C3 pathway) is:",opts:["PEP","RuBP","OAA","G3P"]},
+{n:93,sub:"Biology",topic:"Photosynthesis",q:"Complete the equation: 6CO₂ + 6H₂O → C₆H₁₂O₆ + ___",opts:["6CO","6H₂","6O₂","3O₂"]},
+{n:94,sub:"Biology",topic:"Photosynthesis",q:"Which of the following is a C4 plant?",opts:["Wheat","Rice","Sugarcane","Apple"]},
+{n:95,sub:"Biology",topic:"Photosynthesis",q:"In photosynthesis, the oxygen released comes from:",opts:["CO₂","H₂O","Glucose","ATP"]},
+{n:96,sub:"Biology",topic:"Respiration in Plants",q:"Glycolysis occurs in:",opts:["Mitochondria","Cytoplasm","Chloroplast","Nucleus"]},
+{n:97,sub:"Biology",topic:"Respiration in Plants",q:"Complete oxidation of one glucose molecule produces a net total of:",opts:["2 ATP","8 ATP","36–38 ATP","12 ATP"]},
+{n:98,sub:"Biology",topic:"Respiration in Plants",q:"The end products of aerobic respiration are:",opts:["CO₂ and H₂O","Ethanol and CO₂","Lactic acid","Pyruvate only"]},
+{n:99,sub:"Biology",topic:"Respiration in Plants",q:"The Krebs Cycle (Citric Acid Cycle) occurs in the:",opts:["Cytoplasm","Matrix of mitochondria","Chloroplast","Nucleus"]},
+{n:100,sub:"Biology",topic:"Respiration in Plants",q:"During anaerobic respiration in yeast, the products are:",opts:["Lactic acid","Ethanol and CO₂","CO₂ and H₂O","Acetic acid"]},
+{n:101,sub:"Biology",topic:"Reproduction in Plants",q:"Which of the following is NOT an agent of pollination?",opts:["Wind","Water","Insects","Light"]},
+{n:102,sub:"Biology",topic:"Reproduction in Plants",q:"The endosperm in angiosperms is formed from:",opts:["Egg cell","Triploid nucleus (triple fusion)","Pollen tube","Sepal"]},
+{n:103,sub:"Biology",topic:"Reproduction in Plants",q:"Double fertilization is found in:",opts:["Gymnosperms","Angiosperms","Pteridophyta","Bryophyta"]},
+{n:104,sub:"Biology",topic:"Reproduction in Plants",q:"Which is an example of vegetative propagation?",opts:["Potato tuber","Seed germination","Pollen transfer","Fruit formation"]},
+{n:105,sub:"Biology",topic:"Reproduction in Plants",q:"Which factor is NOT essential for seed germination in most seeds?",opts:["Water","Oxygen","Suitable temperature","Light"]},
+{n:106,sub:"Biology",topic:"Genetics Basics",q:"In Mendel's experiment, the phenotypic ratio in F2 generation (monohybrid cross) is:",opts:["1:1","3:1","9:3:3:1","1:2:1"]},
+{n:107,sub:"Biology",topic:"Genetics Basics",q:"The double helix model of DNA structure was given by:",opts:["Mendel","Watson and Crick","Morgan","Lamarck"]},
+{n:108,sub:"Biology",topic:"Genetics Basics",q:"Sex determination in humans is controlled by:",opts:["Only X chromosome","Presence or absence of Y chromosome","Autosomes","Mitochondria"]},
+{n:109,sub:"Biology",topic:"Genetics Basics",q:"The gene for colour blindness is located on:",opts:["Y chromosome","X chromosome","Autosomes","Mitochondria"]},
+{n:110,sub:"Biology",topic:"Genetics Basics",q:"In RNA, Thymine is replaced by:",opts:["Adenine","Guanine","Uracil","Cytosine"]},
+{n:111,sub:"Biology",topic:"Digestion",q:"The largest gland in the human body is:",opts:["Thyroid","Pancreas","Liver","Adrenal"]},
+{n:112,sub:"Biology",topic:"Digestion",q:"Digestion begins in:",opts:["Stomach","Mouth (oral cavity)","Small intestine","Large intestine"]},
+{n:113,sub:"Biology",topic:"Digestion",q:"Hydrochloric acid (HCl) is secreted in the:",opts:["Mouth","Stomach","Small intestine","Liver"]},
+{n:114,sub:"Biology",topic:"Digestion",q:"Bile is produced in the:",opts:["Pancreas","Liver","Gallbladder","Stomach"]},
+{n:115,sub:"Biology",topic:"Digestion",q:"Finger-like projections that increase the surface area for absorption in the small intestine are called:",opts:["Microvilli","Villi","Caecum","Ileum"]},
+// HINDI
+{n:116,sub:"Hindi",topic:"व्याकरण",q:"हिंदी व्याकरण में संज्ञा (Noun) के कितने भेद माने जाते हैं?",opts:["3","5","7","4"]},
+{n:117,sub:"Hindi",topic:"व्याकरण",q:"'सुंदर' शब्द किस विकारी शब्द-भेद का उदाहरण है?",opts:["संज्ञा","विशेषण","क्रिया","सर्वनाम"]},
+{n:118,sub:"Hindi",topic:"व्याकरण",q:"'राम ने सेब खाया।' वाक्य में 'सेब' है:",opts:["कर्ता","कर्म","करण","अधिकरण"]},
+{n:119,sub:"Hindi",topic:"व्याकरण",q:"'आप' किस प्रकार का सर्वनाम है?",opts:["पुरुषवाचक","निश्चयवाचक","निजवाचक","प्रश्नवाचक"]},
+{n:120,sub:"Hindi",topic:"व्याकरण",q:"'राम पुस्तक पढ़ता है' — इस वाक्य में 'पढ़ता है' है:",opts:["संज्ञा","विशेषण","सकर्मक क्रिया","अकर्मक क्रिया"]},
+{n:121,sub:"Hindi",topic:"संधि",q:"'देवालय' में कौन-सी संधि है?",opts:["गुण संधि","दीर्घ संधि","यण् संधि","वृद्धि संधि"]},
+{n:122,sub:"Hindi",topic:"संधि",q:"'पवन' का सही संधि-विच्छेद है:",opts:["पो + अन","प + वन","पव + अन","पा + वन"]},
+{n:123,sub:"Hindi",topic:"संधि",q:"'सदैव' में कौन-सी संधि है?",opts:["दीर्घ संधि","गुण संधि","वृद्धि संधि","यण् संधि"]},
+{n:124,sub:"Hindi",topic:"संधि",q:"'नयन' का सही संधि-विच्छेद है:",opts:["न + यन","ने + अन","नय + अन","ना + यन"]},
+{n:125,sub:"Hindi",topic:"संधि",q:"'हिमालय' में कौन-सी संधि है?",opts:["दीर्घ स्वर संधि","व्यंजन संधि","विसर्ग संधि","गुण संधि"]},
+{n:126,sub:"Hindi",topic:"समास",q:"'राजपुत्र' में कौन-सा समास है?",opts:["तत्पुरुष","बहुव्रीहि","द्वंद्व","कर्मधारय"]},
+{n:127,sub:"Hindi",topic:"समास",q:"'दशानन' में कौन-सा समास है?",opts:["द्विगु","बहुव्रीहि","तत्पुरुष","अव्ययीभाव"]},
+{n:128,sub:"Hindi",topic:"समास",q:"'पीताम्बर' में कौन-सा समास है?",opts:["कर्मधारय","तत्पुरुष","बहुव्रीहि","द्वंद्व"]},
+{n:129,sub:"Hindi",topic:"समास",q:"'माता-पिता' में कौन-सा समास है?",opts:["द्विगु","द्वंद्व","तत्पुरुष","कर्मधारय"]},
+{n:130,sub:"Hindi",topic:"समास",q:"'त्रिभुज' में कौन-सा समास है?",opts:["तत्पुरुष","द्वंद्व","द्विगु","बहुव्रीहि"]},
+{n:131,sub:"Hindi",topic:"विलोम",q:"'आदि' का विलोम शब्द है:",opts:["मध्य","अंत","अंतिम","आरंभ"]},
+{n:132,sub:"Hindi",topic:"विलोम",q:"'सृष्टि' का विलोम शब्द है:",opts:["जन्म","मृत्यु","प्रलय","काल"]},
+{n:133,sub:"Hindi",topic:"विलोम",q:"'अनुराग' का विलोम शब्द है:",opts:["प्रेम","विराग","घृणा","क्रोध"]},
+{n:134,sub:"Hindi",topic:"विलोम",q:"'उत्कर्ष' का विलोम शब्द है:",opts:["उत्थान","अपकर्ष","विकास","पतन"]},
+{n:135,sub:"Hindi",topic:"पर्यायवाची",q:"'पानी' का पर्यायवाची नहीं है:",opts:["जल","नीर","अग्नि","वारि"]},
+{n:136,sub:"Hindi",topic:"पर्यायवाची",q:"'सूर्य' का पर्यायवाची है:",opts:["शशि","दिनकर","निशाकर","हिमांशु"]},
+{n:137,sub:"Hindi",topic:"पर्यायवाची",q:"'पर्वत' का पर्यायवाची है:",opts:["नदी","अचल","जलज","सरित"]},
+{n:138,sub:"Hindi",topic:"पर्यायवाची",q:"'आकाश' का पर्यायवाची है:",opts:["धरा","पाताल","नभ","जल"]},
+{n:139,sub:"Hindi",topic:"पर्यायवाची",q:"'कमल' का पर्यायवाची नहीं है:",opts:["जलज","नलिन","अंबुज","धरणी"]},
+{n:140,sub:"Hindi",topic:"पर्यायवाची",q:"'रात' का पर्यायवाची है:",opts:["दिवस","निशा","प्रातः","संध्या"]},
+// ENGLISH
+{n:141,sub:"English",topic:"Grammar Basics",q:"Which sentence is grammatically correct?",opts:["She don't like tea.","She doesn't likes tea.","She doesn't like tea.","She not like tea."]},
+{n:142,sub:"English",topic:"Grammar Basics",q:"A noun that names a group of persons or things is called a:",opts:["Proper noun","Abstract noun","Collective noun","Material noun"]},
+{n:143,sub:"English",topic:"Grammar Basics",q:"The correct plural form of 'criterion' is:",opts:["Criterions","Criterias","Criteria","Criteriones"]},
+{n:144,sub:"English",topic:"Grammar Basics",q:"Identify the Abstract Noun from the options below:",opts:["Gold","Honesty","Crowd","River"]},
+{n:145,sub:"English",topic:"Grammar Basics",q:"Identify the adjective in: 'The tall boy ran fast.'",opts:["boy","ran","tall","fast"]},
+{n:146,sub:"English",topic:"Tense",q:"Which sentence is in the Past Perfect Tense?",opts:["She has left.","She had left.","She was leaving.","She left."]},
+{n:147,sub:"English",topic:"Tense",q:"'I ______ here since 2010.' — Choose the correct verb form:",opts:["am living","was living","have been living","had been living"]},
+{n:148,sub:"English",topic:"Tense",q:"'By the time he arrived, she ______ left.' — Choose the correct option:",opts:["has","had","have","was"]},
+{n:149,sub:"English",topic:"Tense",q:"Which sentence is in the Simple Future Tense?",opts:["I will go.","I am going.","I have gone.","I went."]},
+{n:150,sub:"English",topic:"Tense",q:"'She ______ (study) for three hours when I called.' — Choose the correct form:",opts:["studied","has studied","had been studying","was studying"]},
+{n:151,sub:"English",topic:"Articles",q:"Choose the correct article: '______ honest man is always respected.'",opts:["A","An","The","No article"]},
+{n:152,sub:"English",topic:"Articles",q:"'He is ______ European.' — Fill in the correct article:",opts:["an","a","the","no article needed"]},
+{n:153,sub:"English",topic:"Articles",q:"'______ sun rises in the east.' — Fill in the blank:",opts:["A","An","The","No article"]},
+{n:154,sub:"English",topic:"Articles",q:"Which sentence uses an article incorrectly?",opts:["She is a teacher.","He is the honest man.","It is an umbrella.","He bought a car."]},
+{n:155,sub:"English",topic:"Articles",q:"'She plays ______ piano beautifully.' — Choose the correct article:",opts:["a","an","the","no article"]},
+{n:156,sub:"English",topic:"Preposition",q:"'He is good ______ mathematics.' — Choose the correct preposition:",opts:["in","at","on","with"]},
+{n:157,sub:"English",topic:"Preposition",q:"'She has been ill ______ Monday.' — Choose the correct preposition:",opts:["from","for","since","by"]},
+{n:158,sub:"English",topic:"Preposition",q:"'He jumped ______ the wall.' (meaning he cleared it) — Choose correct preposition:",opts:["above","over","on","across"]},
+{n:159,sub:"English",topic:"Preposition",q:"'The book is ______ the table.' (resting on top) — Choose correct preposition:",opts:["above","over","on","upon"]},
+{n:160,sub:"English",topic:"Preposition",q:"'I am angry ______ him.' — Choose the correct preposition:",opts:["to","at","with","on"]},
+// GK
+{n:161,sub:"GK",topic:"Current Affairs",q:"Who is the current President of India (as of 2024)?",opts:["Ram Nath Kovind","Droupadi Murmu","Pratibha Patil","A.P.J. Abdul Kalam"]},
+{n:162,sub:"GK",topic:"Current Affairs",q:"The headquarters of ISRO (Indian Space Research Organisation) is located in:",opts:["Mumbai","New Delhi","Bengaluru","Hyderabad"]},
+{n:163,sub:"GK",topic:"Current Affairs",q:"Chandrayaan-3 successfully landed near the Moon's South Pole in which year?",opts:["2021","2022","2023","2024"]},
+{n:164,sub:"GK",topic:"Current Affairs",q:"Which country hosted the G20 Summit in 2023?",opts:["USA","Japan","India","China"]},
+{n:165,sub:"GK",topic:"India GK",q:"The largest state of India by area is:",opts:["Madhya Pradesh","Maharashtra","Rajasthan","Uttar Pradesh"]},
+{n:166,sub:"GK",topic:"Bihar GK",q:"The State Animal of Bihar is:",opts:["Tiger","Gaur (Indian Bison)","Deer","Elephant"]},
+{n:167,sub:"GK",topic:"Bihar GK",q:"The total number of districts in Bihar is:",opts:["36","38","40","42"]},
+{n:168,sub:"GK",topic:"Bihar GK",q:"The ancient name of Patna, capital of Bihar, was:",opts:["Pataliputra","Vaishali","Rajgriha","Gaya"]},
+{n:169,sub:"GK",topic:"Bihar GK",q:"The ruins of ancient Nalanda University are located in which district?",opts:["Patna","Gaya","Nalanda","Nawada"]},
+{n:170,sub:"GK",topic:"Bihar GK",q:"Bihar Day (Bihar Diwas) is celebrated on:",opts:["15 March","22 March","26 January","1 November"]},
+{n:171,sub:"GK",topic:"India GK",q:"The highest civilian honour of India is:",opts:["Padma Vibhushan","Bharat Ratna","Padma Bhushan","Ashoka Chakra"]},
+{n:172,sub:"GK",topic:"India GK",q:"The Parliament of India consists of how many houses?",opts:["1","2","3","4"]},
+{n:173,sub:"GK",topic:"India GK",q:"Which sport is traditionally regarded as India's national game?",opts:["Cricket","Football","Hockey","Kabaddi"]},
+{n:174,sub:"GK",topic:"India GK",q:"The Constitution of India was adopted by the Constituent Assembly on:",opts:["15 August 1947","26 January 1950","26 November 1949","2 October 1947"]},
+{n:175,sub:"GK",topic:"India GK",q:"The maximum number of elected seats in the Lok Sabha is:",opts:["543","545","550","552"]},
+{n:176,sub:"GK",topic:"Science GK",q:"The speed of light in vacuum is approximately:",opts:["3 × 10⁶ m/s","3 × 10⁸ m/s","3 × 10¹⁰ m/s","3 × 10⁴ m/s"]},
+{n:177,sub:"GK",topic:"Science GK",q:"The full form of DNA is:",opts:["Deoxy Nucleic Acid","Deoxyribonucleic Acid","Di-Nuclear Acid","Deoxyribose Nitrogen Acid"]},
+{n:178,sub:"GK",topic:"Science GK",q:"Penicillin was discovered by:",opts:["Louis Pasteur","Alexander Fleming","Edward Jenner","Robert Koch"]},
+{n:179,sub:"GK",topic:"Science GK",q:"The longest bone in the human body is the:",opts:["Radius","Tibia","Femur","Humerus"]},
+{n:180,sub:"GK",topic:"Science GK",q:"The chemical name of Vitamin C is:",opts:["Retinol","Thiamine","Ascorbic acid","Riboflavin"]},
+{n:181,sub:"GK",topic:"Awards",q:"The Nobel Prize is NOT awarded in the field of:",opts:["Peace","Mathematics","Literature","Medicine"]},
+{n:182,sub:"GK",topic:"Awards",q:"The highest wartime gallantry award of India is:",opts:["Maha Vir Chakra","Param Vir Chakra","Ashoka Chakra","Vir Chakra"]},
+{n:183,sub:"GK",topic:"Awards",q:"The Sahitya Akademi Award is given by:",opts:["Government of India","Sahitya Akademi, New Delhi","Rashtrapati Bhavan","UGC"]},
+{n:184,sub:"GK",topic:"Awards",q:"The Oscar Award (Academy Award) is related to the field of:",opts:["Music","Literature","Cinema (Films)","Sports"]},
+{n:185,sub:"GK",topic:"Awards",q:"The Man Booker Prize (Booker Prize) is awarded for books written in:",opts:["French","German","English","Spanish"]},
+{n:186,sub:"GK",topic:"Sports",q:"Who won the ICC Cricket World Cup 2023?",opts:["India","Australia","England","New Zealand"]},
+{n:187,sub:"GK",topic:"Sports",q:"Olympic Gold Medals are actually made of:",opts:["Pure gold","Silver coated with gold","Gold and copper alloy","Platinum"]},
+{n:188,sub:"GK",topic:"Sports",q:"Which country won the FIFA World Cup 2022?",opts:["Brazil","France","Argentina","Portugal"]},
+{n:189,sub:"GK",topic:"Sports",q:"India won its first Cricket World Cup in the year:",opts:["1975","1979","1983","1987"]},
+{n:190,sub:"GK",topic:"Sports",q:"The legendary footballer Pelé belonged to which country?",opts:["Argentina","Italy","Brazil","Portugal"]},
+{n:191,sub:"GK",topic:"Important Dates",q:"World Environment Day is celebrated on:",opts:["5 June","5 May","22 April","16 September"]},
+{n:192,sub:"GK",topic:"Important Dates",q:"National Science Day (Rashtriya Vigyan Diwas) is celebrated on:",opts:["26 January","28 February","15 March","7 April"]},
+{n:193,sub:"GK",topic:"Important Dates",q:"International Women's Day is celebrated on:",opts:["7 March","8 March","9 March","10 March"]},
+{n:194,sub:"GK",topic:"Important Dates",q:"India's Independence Day is celebrated on:",opts:["26 January","15 August","2 October","14 November"]},
+{n:195,sub:"GK",topic:"Important Dates",q:"United Nations Day is celebrated on:",opts:["1 January","24 October","10 December","5 June"]},
+{n:196,sub:"GK",topic:"Famous Persons",q:"The slogan 'Inquilab Zindabad' was first given by:",opts:["Mahatma Gandhi","Bhagat Singh","Subhas Chandra Bose","Chandrashekhar Azad"]},
+{n:197,sub:"GK",topic:"Famous Persons",q:"Who is known as 'Mother of the Poor'?",opts:["Sarojini Naidu","Indira Gandhi","Mother Teresa","Kasturba Gandhi"]},
+{n:198,sub:"GK",topic:"Famous Persons",q:"The slogan 'Jai Jawan Jai Kisan' was given by:",opts:["Jawaharlal Nehru","Lal Bahadur Shastri","Indira Gandhi","Mahatma Gandhi"]},
+{n:199,sub:"GK",topic:"Famous Persons",q:"Albert Einstein received the Nobel Prize for:",opts:["Theory of Relativity","Photoelectric Effect","Quantum Theory","Law of Gravitation"]},
+{n:200,sub:"GK",topic:"Mixed GK",q:"Who was the first Prime Minister of India?",opts:["Mahatma Gandhi","Sardar Vallabhbhai Patel","Jawaharlal Nehru","Dr. Rajendra Prasad"]}
+];
+
+let studentName = "";
+let answers = {};
+let filteredIndices = [];
+let current = 0; 
+let timerInterval;
+let endTime;
+const TEST_DURATION_MS = 145 * 60 * 1000; 
+
+window.onload = function() {
+  studentName = localStorage.getItem("dcece_studentName");
+  let savedEndTime = localStorage.getItem("dcece_endTime");
+  
+  if(studentName && savedEndTime && Date.now() < parseInt(savedEndTime)) {
+    endTime = parseInt(savedEndTime);
+    answers = JSON.parse(localStorage.getItem("dcece_200_answers")) || {};
+    document.getElementById("start-screen").style.display = "none";
+    document.getElementById("main-test-area").style.display = "block";
+    startTimer();
+    filterSubject("All");
+  } else {
+    localStorage.removeItem("dcece_200_answers");
+    localStorage.removeItem("dcece_studentName");
+    localStorage.removeItem("dcece_endTime");
+  }
+};
+
+function startTest() {
+  const nameInput = document.getElementById("studentNameInput").value.trim();
+  if(!nameInput) {
+    alert("Please enter your Name or Roll No. to start the test!");
+    return;
+  }
+  
+  studentName = nameInput;
+  localStorage.setItem("dcece_studentName", studentName);
+  
+  endTime = Date.now() + TEST_DURATION_MS;
+  localStorage.setItem("dcece_endTime", endTime.toString());
+  
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("main-test-area").style.display = "block";
+  
+  startTimer();
+  filterSubject("All");
+}
+
+function startTimer() {
+  updateTimerDisplay(); 
+  timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+function updateTimerDisplay() {
+  let now = Date.now();
+  let left = Math.max(0, endTime - now);
+  
+  let totalSeconds = Math.floor(left / 1000);
+  let h = Math.floor(totalSeconds / 3600);
+  let m = Math.floor((totalSeconds % 3600) / 60);
+  let s = totalSeconds % 60;
+  
+  document.getElementById("timer").innerText = 
+    `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+
+  if (left <= 0) {
+    clearInterval(timerInterval);
+    submitTest(true); 
+  }
+}
+
+function filterSubject(sub) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    if(btn.getAttribute('data-sub') === sub) btn.classList.add('active');
+    else btn.classList.remove('active');
+  });
+
+  filteredIndices = [];
+  questions.forEach((q, i) => {
+    if (sub === "All" || q.sub === sub) filteredIndices.push(i);
+  });
+  
+  current = 0;
+  document.getElementById('showingBadge').innerHTML = `Showing: <span>${filteredIndices.length}</span> / ${questions.length}`;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if(filteredIndices.length === 0) return;
+  
+  const actualIndex = filteredIndices[current];
+  const q = questions[actualIndex];
+  
+  document.getElementById("qNo").innerText = `Question ${actualIndex + 1} of ${questions.length}`;
+  document.getElementById("qSub").innerText = `${q.sub} - ${q.topic}`;
+  document.getElementById("question").innerText = q.q;
+  
+  let html = "";
+  const letters = ['A','B','C','D'];
+  q.opts.forEach((opt, index) => {
+    const selected = answers[actualIndex] == index ? "selected" : "";
+    html += `
+      <div class="option ${selected}" onclick="selectOption(${actualIndex}, ${index})">
+        <strong>${letters[index]}.</strong> ${opt}
+      </div>
+    `;
+  });
+  document.getElementById("options").innerHTML = html;
+  
+  document.getElementById("prevBtn").disabled = current === 0;
+  
+  const isLast = current === filteredIndices.length - 1;
+  document.getElementById("skipBtn").disabled = isLast;
+  document.getElementById("nextBtn").innerText = isLast ? "End of Subject" : "Save & Next";
+  
+  renderPalette();
+}
+
+function selectOption(actualIndex, index) {
+  answers[actualIndex] = index;
+  localStorage.setItem("dcece_200_answers", JSON.stringify(answers));
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (current < filteredIndices.length - 1) {
+    current++;
+    renderQuestion();
+  }
+}
+
+function skipQuestion() {
+  const actualIndex = filteredIndices[current];
+  delete answers[actualIndex];
+  localStorage.setItem("dcece_200_answers", JSON.stringify(answers));
+  if (current < filteredIndices.length - 1) {
+    current++;
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+}
+
+function jumpQuestion(actualIndex) {
+  current = filteredIndices.indexOf(actualIndex);
+  renderQuestion();
+}
+
+function renderPalette() {
+  let html = "";
+  filteredIndices.forEach((actualIndex) => {
+    let classes = "p-btn";
+    if (answers[actualIndex] !== undefined) classes += " answered";
+    if (actualIndex === filteredIndices[current]) classes += " active-q";
+    html += `<button class="${classes}" onclick="jumpQuestion(${actualIndex})">${actualIndex + 1}</button>`;
+  });
+  document.getElementById("palette").innerHTML = html;
+}
+
+function submitTest(isAuto = false) {
+  if(!isAuto && !confirm("Are you sure you want to submit the final test? You cannot undo this.")) return;
+  
+  clearInterval(timerInterval);
+  document.getElementById("loading-overlay").style.display = "block";
+  
+  let correct = 0;
+  let incorrect = 0;
+  let unattempted = 0;
+  
+  let detailedReport = `--- DETAILED QUESTION ANALYSIS ---\n\n`;
+
+  questions.forEach((q, index) => {
+    const correctAnsLetter = ansKey[q.n];
+    let userAnsLetter = "Not Attempted";
+    
+    if (answers[index] !== undefined) {
+      userAnsLetter = ['A','B','C','D'][answers[index]];
+    }
+
+    if (userAnsLetter === "Not Attempted") {
+      unattempted++;
+      detailedReport += `Q${q.n} (${q.sub}): Unattempted | Correct Ans: ${correctAnsLetter}\n`;
+    } else if (userAnsLetter === correctAnsLetter) {
+      correct++;
+      detailedReport += `Q${q.n} (${q.sub}): Selected: ${userAnsLetter} | Correct Ans: ${correctAnsLetter} [✅ Correct]\n`;
+    } else {
+      incorrect++;
+      detailedReport += `Q${q.n} (${q.sub}): Selected: ${userAnsLetter} | Correct Ans: ${correctAnsLetter} [❌ Incorrect]\n`;
+    }
+  });
+
+  let attempted = correct + incorrect;
+
+  let finalMessage = `Student Details:
+Name / Roll No: ${studentName}
+
+Test Result Summary:
+Total Questions: ${questions.length}
+Attempted: ${attempted}
+Unattempted: ${unattempted}
+Correct Answers: ${correct}
+Wrong Answers: ${incorrect}
+
+FINAL SCORE: ${correct} / ${questions.length}
+
+${detailedReport}`;
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
+      subject: `DCECE Test Result - ${studentName} (Score: ${correct})`,
+      message: finalMessage
+    }),
+  })
+  .then(response => {
+     document.getElementById("loading-overlay").style.display = "none";
+     showResultUI(attempted, unattempted, correct, incorrect);
+  })
+  .catch(error => {
+     alert("There was an error sending the result email. Showing results on screen anyway.");
+     document.getElementById("loading-overlay").style.display = "none";
+     showResultUI(attempted, unattempted, correct, incorrect);
+  });
+}
+
+function showResultUI(attempted, unattempted, correct, incorrect) {
+  // Clear local storage
+  localStorage.removeItem("dcece_studentName");
+  localStorage.removeItem("dcece_endTime");
+  // (Optional: You might want to keep the answers in storage if they accidentally refresh the results page, but clearing is safer)
+  
+  document.getElementById("main-test-area").style.display = "none";
+  
+  const result = document.getElementById("result");
+  const reviewArea = document.getElementById("review-area");
+  
+  result.style.display = "block";
+  document.body.appendChild(result); 
+  document.body.appendChild(reviewArea); 
+  
+  result.innerHTML = `
+    <h2>Test Submitted Successfully! ✅</h2>
+    <p>Student: <strong>${studentName}</strong></p>
+    <div style="text-align:left; max-width: 300px; margin: 20px auto; background: var(--card); padding: 15px; border-radius: 10px;">
+      <p>Total Questions: <strong>${questions.length}</strong></p>
+      <p>Attempted: <strong>${attempted}</strong></p>
+      <p style="color:var(--muted)">Unattempted: <strong>${unattempted}</strong></p>
+      <p style="color:var(--green)">Correct Answers: <strong>${correct}</strong></p>
+      <p style="color:var(--danger)">Wrong Answers: <strong>${incorrect}</strong></p>
+    </div>
+    <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
+    <p style="font-size: 14px; margin-top: 15px; color: #aaa;">Your detailed report has been successfully sent to the admin.</p>
+    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_200_answers');">Retake Test</button>
+  `;
+
+  // --- Build Detailed Review UI ---
+  let reviewHTML = '<div class="review-container">';
+  reviewHTML += '<h3 style="text-align:center; color:var(--primary); margin-bottom:30px; font-size:22px;">Detailed Answer Review</h3>';
+  
+  questions.forEach((q, index) => {
+    const correctAnsLetter = ansKey[q.n];
+    const correctAnsIndex = letterToIndex[correctAnsLetter];
+    const userAnsIndex = answers[index];
+    
+    let statusText = '<span style="color:var(--yellow)">⚠️ Unattempted</span>';
+    if(userAnsIndex !== undefined) {
+      if(userAnsIndex === correctAnsIndex) {
+        statusText = '<span style="color:var(--green)">✅ Correct</span>';
+      } else {
+        statusText = '<span style="color:var(--danger)">❌ Incorrect</span>';
+      }
+    }
+    
+    reviewHTML += `
+      <div class="review-q-card">
+        <div class="review-q-header">
+          <span style="color:var(--muted)">Q${q.n}. (${q.sub} - ${q.topic})</span>
+          ${statusText}
+        </div>
+        <div class="review-q-text">${q.q}</div>
+        <div class="review-options">
+    `;
+    
+    const letters = ['A','B','C','D'];
+    q.opts.forEach((opt, optIdx) => {
+      let optClass = "review-opt";
+      if (optIdx === correctAnsIndex) {
+        optClass += " correct";
+      } else if (optIdx === userAnsIndex) {
+        optClass += " wrong";
+      }
+      
+      reviewHTML += `<div class="${optClass}"><strong>${letters[optIdx]}.</strong> ${opt}</div>`;
+    });
+    
+    reviewHTML += `</div></div>`;
+  });
+  
+  reviewHTML += '</div>';
+  reviewArea.innerHTML = reviewHTML;
+  
+  // Clear answers from storage after rendering
+  localStorage.removeItem('dcece_200_answers');
+}
+</script>
+
+</body>
+</html>
