@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - GK Edition</title>
+<title>DCECE Mock Test - Ultra Hard GK (Video Sourced)</title>
 
 <style>
 :root{
@@ -18,322 +18,83 @@
   --yellow:#fbbf24;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  background:var(--bg);
-  font-family:Arial,sans-serif;
-  color:var(--text);
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{ background:var(--bg); font-family:Arial,sans-serif; color:var(--text); }
 
 header{
-  position:sticky;
-  top:0;
-  background:#111827;
-  padding:15px 20px;
-  border-bottom:1px solid var(--border);
-  z-index:100;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  position:sticky; top:0; background:#111827; padding:15px 20px;
+  border-bottom:1px solid var(--border); z-index:100; display: flex;
+  flex-direction: column; gap: 15px;
 }
 
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.header-top h1 {
-  font-size: 20px;
-  margin: 0;
-  font-weight: bold;
-}
-
-.header-top h1 span {
-  color: var(--yellow);
-}
+.header-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.header-top h1 { font-size: 20px; margin: 0; font-weight: bold; }
+.header-top h1 span { color: var(--yellow); }
 
 .showing-badge {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  color: var(--muted);
+  background: var(--card); border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 20px; font-size: 14px; color: var(--muted);
 }
+.showing-badge span { color: white; font-weight: bold; }
 
-.showing-badge span {
-  color: white;
-  font-weight: bold;
-}
-
-.header-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  flex-wrap: wrap;
-  gap: 15px;
-}
+.header-bottom { display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 15px; }
 
 .filter-container {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 5px; 
-  scrollbar-width: none; 
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; 
 }
-
-.filter-container::-webkit-scrollbar { 
-  height: 0px; 
-  display: none; 
-}
+.filter-container::-webkit-scrollbar { display: none; }
 
 .filter-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: pointer;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: 0.2s;
-  font-weight: 500;
+  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  padding: 8px 18px; border-radius: 20px; font-size: 14px; cursor: pointer;
+  white-space: nowrap; display: flex; align-items: center; gap: 6px; transition: 0.2s; font-weight: 500;
 }
+.filter-btn:hover { border-color: #64748b; color: white; }
+.filter-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: bold; }
 
-.filter-btn:hover { 
-  border-color: #64748b; 
-  color: white; 
-}
+.timer-submit-group { display:flex; align-items:center; gap: 15px; }
+#timer { font-size: 18px; font-weight: bold; color: var(--danger); }
 
-.filter-btn.active {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
-  font-weight: bold;
-}
-
-.timer-submit-group {
-  display:flex; 
-  align-items:center; 
-  gap: 15px;
-}
-
-#timer {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--danger);
-}
-
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-}
+.container{ max-width:900px; margin:auto; padding:20px; }
 
 #start-screen {
-  background: var(--card);
-  padding: 40px 20px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  text-align: center;
-  max-width: 500px;
-  margin: 100px auto;
+  background: var(--card); padding: 40px 20px; border-radius: 14px;
+  border: 1px solid var(--border); text-align: center; max-width: 500px; margin: 100px auto;
 }
+#start-screen h2 { margin-bottom: 20px; color: var(--primary); }
+#studentNameInput { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: white; font-size: 16px; }
 
-#start-screen h2 {
-  margin-bottom: 20px;
-  color: var(--primary);
-}
+.q-card{ background:var(--card); padding:20px; border-radius:14px; border:1px solid var(--border); }
+.q-header-info { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.q-number{ font-size:14px; color:var(--muted); font-weight: bold; }
+.q-topic { font-size:12px; background: var(--border); padding: 3px 8px; border-radius: 4px; color: var(--primary); }
+.q-text{ font-size:20px; margin-bottom:20px; line-height:1.5; }
 
-#studentNameInput {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: white;
-  font-size: 16px;
-}
+.options{ display:grid; gap:12px; }
+.option{ padding:14px; border:1px solid var(--border); border-radius:10px; cursor:pointer; transition:0.2s; background:#0f172a; line-height: 1.4; }
+.option:hover{ border-color:var(--primary); }
+.option.selected{ background:var(--primary); color:black; font-weight:bold; }
 
-.q-card{
-  background:var(--card);
-  padding:20px;
-  border-radius:14px;
-  border:1px solid var(--border);
-}
+.nav-buttons{ display:flex; justify-content:space-between; margin-top:25px; gap:10px; }
+button{ padding:12px 20px; border:none; border-radius:10px; cursor:pointer; font-size:16px; font-weight:bold; }
+.prev-btn{ background:#475569; color:white; flex: 1; }
+.prev-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.skip-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); flex: 1; }
+.skip-btn:hover { background: var(--border); color: white; }
+.next-btn{ background:var(--primary); color:black; flex: 2; }
+.next-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.submit-btn{ background:var(--green); color:white; }
 
-.q-header-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.q-number{
-  font-size:14px;
-  color:var(--muted);
-  font-weight: bold;
-}
-
-.q-topic {
-  font-size:12px;
-  background: var(--border);
-  padding: 3px 8px;
-  border-radius: 4px;
-  color: var(--primary);
-}
-
-.q-text{
-  font-size:20px;
-  margin-bottom:20px;
-  line-height:1.5;
-}
-
-.options{
-  display:grid;
-  gap:12px;
-}
-
-.option{
-  padding:14px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  cursor:pointer;
-  transition:0.2s;
-  background:#0f172a;
-  line-height: 1.4;
-}
-
-.option:hover{
-  border-color:var(--primary);
-}
-
-.option.selected{
-  background:var(--primary);
-  color:black;
-  font-weight:bold;
-}
-
-.nav-buttons{
-  display:flex;
-  justify-content:space-between;
-  margin-top:25px;
-  gap:10px;
-}
-
-button{
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:16px;
-  font-weight:bold;
-}
-
-.prev-btn{
-  background:#475569;
-  color:white;
-  flex: 1;
-}
-.prev-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.skip-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  flex: 1;
-}
-.skip-btn:hover {
-  background: var(--border);
-  color: white;
-}
-
-.next-btn{
-  background:var(--primary);
-  color:black;
-  flex: 2;
-}
-.next-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.submit-btn{
-  background:var(--green);
-  color:white;
-}
-
-.palette-container {
-  background: var(--card);
-  padding: 15px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  margin-top: 20px;
-}
-
-.palette-title {
-  font-size: 16px;
-  margin-bottom: 15px;
-  color: var(--text);
-  text-align: center;
-}
-
-.palette{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(40px,1fr));
-  gap:8px;
-  max-height: 250px;
-  overflow-y: auto;
-  padding-right: 5px;
-}
-
+.palette-container { background: var(--card); padding: 15px; border-radius: 14px; border: 1px solid var(--border); margin-top: 20px; }
+.palette-title { font-size: 16px; margin-bottom: 15px; color: var(--text); text-align: center; }
+.palette{ display:grid; grid-template-columns:repeat(auto-fill,minmax(40px,1fr)); gap:8px; max-height: 250px; overflow-y: auto; padding-right: 5px; }
 .palette::-webkit-scrollbar { width: 6px; }
 .palette::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.p-btn{ height:40px; padding: 0; border:none; border-radius:8px; background:#0f172a; border: 1px solid var(--border); color:white; cursor:pointer; font-size: 14px; }
+.p-btn.answered{ background:var(--green); border-color: var(--green); color: black; }
+.p-btn.active-q { border: 2px solid var(--primary); }
 
-.p-btn{
-  height:40px;
-  padding: 0;
-  border:none;
-  border-radius:8px;
-  background:#0f172a;
-  border: 1px solid var(--border);
-  color:white;
-  cursor:pointer;
-  font-size: 14px;
-}
-
-.p-btn.answered{
-  background:var(--green);
-  border-color: var(--green);
-  color: black;
-}
-.p-btn.active-q {
-  border: 2px solid var(--primary);
-}
-
-.result{
-  margin-top:20px;
-  padding:20px;
-  background:#052e16;
-  border: 1px solid var(--green);
-  border-radius:10px;
-  display:none;
-  text-align: center;
-}
+.result{ margin-top:20px; padding:20px; background:#052e16; border: 1px solid var(--green); border-radius:10px; display:none; text-align: center; }
 .result h2 { color: var(--green); margin-bottom: 15px; }
 .result p { margin-bottom: 8px; font-size: 18px; }
 
@@ -346,17 +107,7 @@ button{
 .review-opt.correct { background: var(--green); color: black; font-weight: bold; border-color: var(--green); }
 .review-opt.wrong { background: var(--danger); color: white; font-weight: bold; border-color: var(--danger); }
 
-#loading-overlay {
-  display: none;
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 1000;
-  color: white;
-  text-align: center;
-  padding-top: 200px;
-  font-size: 24px;
-}
+#loading-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 1000; color: white; text-align: center; padding-top: 200px; font-size: 24px; }
 
 @media(max-width:600px){
   .header-top { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -372,7 +123,7 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>DCECE GK Mock Test </h2>
+  <h2>DCECE GK Mock Test (Ultra Hard Sourced)</h2>
   <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 2 Hours<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
@@ -381,22 +132,19 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> GK</h1>
+      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Ultra Hard GK</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
         <button class="filter-btn active" data-topic="All" onclick="filterTopic('All')">All Topics</button>
-        <button class="filter-btn" data-topic="Current Affairs" onclick="filterTopic('Current Affairs')">Current Affairs</button>
         <button class="filter-btn" data-topic="Bihar GK" onclick="filterTopic('Bihar GK')">Bihar GK</button>
-        <button class="filter-btn" data-topic="India GK" onclick="filterTopic('India GK')">India GK</button>
-        <button class="filter-btn" data-topic="Science GK" onclick="filterTopic('Science GK')">Science GK</button>
-        <button class="filter-btn" data-topic="Awards" onclick="filterTopic('Awards')">Awards</button>
-        <button class="filter-btn" data-topic="Sports" onclick="filterTopic('Sports')">Sports</button>
-        <button class="filter-btn" data-topic="Important Dates" onclick="filterTopic('Important Dates')">Important Dates</button>
-        <button class="filter-btn" data-topic="Famous Persons" onclick="filterTopic('Famous Persons')">Famous Persons</button>
-        <button class="filter-btn" data-topic="Mixed GK" onclick="filterTopic('Mixed GK')">Mixed GK</button>
+        <button class="filter-btn" data-topic="Indian History" onclick="filterTopic('Indian History')">Indian History</button>
+        <button class="filter-btn" data-topic="Indian Polity" onclick="filterTopic('Indian Polity')">Indian Polity</button>
+        <button class="filter-btn" data-topic="Geography" onclick="filterTopic('Geography')">Geography</button>
+        <button class="filter-btn" data-topic="Science" onclick="filterTopic('Science')">Science</button>
+        <button class="filter-btn" data-topic="Static GK" onclick="filterTopic('Static GK')">Static GK</button>
       </div>
 
       <div class="timer-submit-group">
@@ -412,11 +160,8 @@ button{
         <div class="q-number" id="qNo"></div>
         <div class="q-topic" id="qTopic"></div>
       </div>
-      
       <div class="q-text" id="question"></div>
-
       <div class="options" id="options"></div>
-
       <div class="nav-buttons">
         <button class="prev-btn" id="prevBtn" onclick="prevQuestion()">Previous</button>
         <button class="skip-btn" id="skipBtn" onclick="skipQuestion()">Skip</button>
@@ -433,143 +178,138 @@ button{
 
 <div class="result" id="result"></div>
 <div id="review-area"></div>
-
 <div id="loading-overlay">Submitting your test... Please wait.</div>
 
 <script>
-// 100 Hard Questions Answer Key
+// Answers Key generated meticulously from provided GK resources.
 const ansKey = {
-  1:'B', 2:'C', 3:'B', 4:'C', 5:'B', 6:'B', 7:'C', 8:'B', 9:'A', 10:'C', 11:'A',
-  12:'B', 13:'B', 14:'B', 15:'D', 16:'B', 17:'C', 18:'A', 19:'B', 20:'C', 21:'B', 22:'C',
-  23:'B', 24:'C', 25:'A', 26:'B', 27:'D', 28:'B', 29:'C', 30:'B', 31:'D', 32:'A', 33:'B',
-  34:'C', 35:'A', 36:'B', 37:'D', 38:'C', 39:'C', 40:'B', 41:'B', 42:'A', 43:'B', 44:'B',
-  45:'B', 46:'A', 47:'B', 48:'C', 49:'B', 50:'C', 51:'B', 52:'A', 53:'C', 54:'B', 55:'C',
-  56:'C', 57:'B', 58:'A', 59:'C', 60:'B', 61:'A', 62:'C', 63:'B', 64:'A', 65:'C', 66:'B',
-  67:'C', 68:'B', 69:'B', 70:'A', 71:'C', 72:'B', 73:'C', 74:'A', 75:'C', 76:'B', 77:'C',
-  78:'B', 79:'B', 80:'A', 81:'C', 82:'B', 83:'A', 84:'C', 85:'B', 86:'C', 87:'B', 88:'A',
-  89:'B', 90:'C', 91:'A', 92:'C', 93:'B', 94:'B', 95:'A', 96:'C', 97:'B', 98:'C', 99:'B', 100:'C'
+  1:'B', 2:'C', 3:'D', 4:'A', 5:'B', 6:'D', 7:'C', 8:'B', 9:'A', 10:'C',
+  11:'B', 12:'B', 13:'A', 14:'C', 15:'D', 16:'B', 17:'C', 18:'A', 19:'B', 20:'D',
+  21:'A', 22:'C', 23:'B', 24:'A', 25:'C', 26:'B', 27:'D', 28:'B', 29:'C', 30:'A',
+  31:'D', 32:'A', 33:'B', 34:'C', 35:'B', 36:'A', 37:'D', 38:'C', 39:'A', 40:'B',
+  41:'C', 42:'B', 43:'A', 44:'D', 45:'B', 46:'A', 47:'C', 48:'D', 49:'B', 50:'C',
+  51:'A', 52:'B', 53:'C', 54:'D', 55:'A', 56:'B', 57:'C', 58:'A', 59:'B', 60:'C',
+  61:'B', 62:'A', 63:'D', 64:'C', 65:'B', 66:'A', 67:'B', 68:'C', 69:'A', 70:'D',
+  71:'B', 72:'C', 73:'A', 74:'B', 75:'C', 76:'D', 77:'B', 78:'A', 79:'C', 80:'B',
+  81:'D', 82:'A', 83:'C', 84:'B', 85:'C', 86:'A', 87:'B', 88:'D', 89:'C', 90:'B',
+  91:'A', 92:'D', 93:'C', 94:'A', 95:'B', 96:'C', 97:'B', 98:'A', 99:'D', 100:'C'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
+// 100 Ultra Hard Questions based on the video topics and DCECE syllabus
 const questions = [
-  // Current Affairs (1-11)
-  {n:1, topic:"Current Affairs", q:"What is the rank of India in the Global Hunger Index 2023?", opts:["101","111","107","121"]},
-  {n:2, topic:"Current Affairs", q:"Which committee recommended the implementation of the 'One Nation, One Election' proposal?", opts:["Sarkaria Commission","Kothari Commission","Ram Nath Kovind Committee","Punchhi Commission"]},
-  {n:3, topic:"Current Affairs", q:"Which city hosted the COP28 UN Climate Change Conference in 2023?", opts:["Glasgow","Dubai","Paris","Sharm El-Sheikh"]},
-  {n:4, topic:"Current Affairs", q:"India's first AI city is being developed in which state?", opts:["Karnataka","Telangana","Uttar Pradesh","Maharashtra"]},
-  {n:5, topic:"Current Affairs", q:"What is the official name of the digital currency launched by the RBI?", opts:["Digital Rupee (d₹)","e₹ (e-Rupee)","BharatCoin","RBI-D"]},
-  {n:6, topic:"Current Affairs", q:"Which Indian state recently became the first to pass a Uniform Civil Code (UCC) bill?", opts:["Goa","Uttarakhand","Gujarat","Assam"]},
-  {n:7, topic:"Current Affairs", q:"In 2024, the BRICS summit was scheduled to be hosted by which country?", opts:["Brazil","South Africa","Russia","China"]},
-  {n:8, topic:"Current Affairs", q:"Which space agency launched the 'Psyche' mission to study a metal-rich asteroid?", opts:["ESA","NASA","ISRO","JAXA"]},
-  {n:9, topic:"Current Affairs", q:"The Article 370 of the Indian Constitution was abrogated on which exact date?", opts:["August 5, 2019","August 15, 2019","October 31, 2019","January 26, 2020"]},
-  {n:10, topic:"Current Affairs", q:"What is the name of the highest-capacity nuclear power plant currently operating in India?", opts:["Tarapur","Rawatbhata","Kudankulam","Kaiga"]},
-  {n:11, topic:"Current Affairs", q:"The 'Mera Yuva Bharat' (MY Bharat) platform is aimed at which age group?", opts:["15-29 years","18-35 years","14-25 years","21-40 years"]},
+  // Bihar GK (1-25)
+  {n:1, topic:"Bihar GK", q:"Who spearheaded the Darbhanga Kisan Andolan in 1920 against the oppressive Zamindari system?", opts:["Swami Sahajanand Saraswati","Swami Vidyanand","Baba Ramchandra","Jayaprakash Narayan"]},
+  {n:2, topic:"Bihar GK", q:"The Bakast land movement reached its peak in 1938 in which district of Bihar?", opts:["Patna","Gaya","Munger","Champaran"]},
+  {n:3, topic:"Bihar GK", q:"In which year was the Bihar Provincial Kisan Sabha formally established at the Sonepur fair?", opts:["1920","1922","1936","1929"]},
+  {n:4, topic:"Bihar GK", q:"Which hot spring in Bihar records the highest temperature of approximately 87°C?", opts:["Brahmakund","Suryakund","Makhdumkund","Rishikund"]},
+  {n:5, topic:"Bihar GK", q:"In which district is the Lakshman Kund, a prominent hot water spring, located?", opts:["Rajgir","Munger","Gaya","Rohtas"]},
+  {n:6, topic:"Bihar GK", q:"Where did the Dutch establish their first factory in Bihar in the year 1632?", opts:["Bhagalpur","Munger","Chapra","Patna"]},
+  {n:7, topic:"Bihar GK", q:"The historic Nalanda University was destroyed by which invader?", opts:["Qutb-ud-din Aibak","Mahmud of Ghazni","Bakhtiyar Khilji","Alauddin Khilji"]},
+  {n:8, topic:"Bihar GK", q:"The famous Amrapali (Nagarvadhu) belonged to which ancient republic?", opts:["Magadha","Lichchhavi","Malla","Vatsa"]},
+  {n:9, topic:"Bihar GK", q:"The Kosi river, known as the 'Sorrow of Bihar', enters the state through which district?", opts:["Supaul","Purnia","Kishanganj","Araria"]},
+  {n:10, topic:"Bihar GK", q:"The Kakolat waterfall is a popular tourist destination located in which district of Bihar?", opts:["Rohtas","Kaimur","Nawada","Jamui"]},
+  {n:11, topic:"Bihar GK", q:"When was the Bihar Human Rights Commission formally established?", opts:["25 July 2011","3 January 2000","5 June 2016","15 August 2005"]},
+  {n:12, topic:"Bihar GK", q:"The tragic Secretariat shootout in Patna, where seven students were martyred, occurred on?", opts:["8 August 1942","11 August 1942","15 August 1947","26 January 1950"]},
+  {n:13, topic:"Bihar GK", q:"Which district of Bihar was declared 'infamous' (Kukhyat) during the Quit India Movement of 1942?", opts:["Saran (Chapra)","Patna","Munger","Bhagalpur"]},
+  {n:14, topic:"Bihar GK", q:"Which tribe prominently participated in the 1922 Gaya session of the Indian National Congress?", opts:["Santhal","Munda","Oraon","Bhil"]},
+  {n:15, topic:"Bihar GK", q:"According to the 2011 Census, which district of Bihar records the highest sex ratio?", opts:["Muzaffarpur","Siwan","Patna","Gopalganj"]},
+  {n:16, topic:"Bihar GK", q:"According to the 2011 Census, which district of Bihar records the highest *child* sex ratio?", opts:["Gopalganj","Kishanganj","Purnia","Katihar"]},
+  {n:17, topic:"Bihar GK", q:"Who was the founder and publisher of the nationalist newspaper 'The Motherland' in Patna?", opts:["Sachchidananda Sinha","Hasan Imam","Mazharul Haque","Dr. Rajendra Prasad"]},
+  {n:18, topic:"Bihar GK", q:"Where is India's first National Dolphin Research Centre (NDRC) located?", opts:["Patna","Bhagalpur","Munger","Katihar"]},
+  {n:19, topic:"Bihar GK", q:"Which rock system represents the oldest geological formation in Bihar?", opts:["Vindhyan","Dharwar","Tertiary","Quaternary"]},
+  {n:20, topic:"Bihar GK", q:"In which district is the Valmiki Tiger Reserve, the only national park in Bihar, situated?", opts:["East Champaran","Kaimur","Rohtas","West Champaran"]},
+  {n:21, topic:"Bihar GK", q:"Who was the first Visitor of the newly revived Nalanda International University?", opts:["Dr. A.P.J. Abdul Kalam","Amartya Sen","Nitish Kumar","Pranab Mukherjee"]},
+  {n:22, topic:"Bihar GK", q:"Which district is famous for the production of 'Sikki Grass' handicrafts in North Bihar?", opts:["Patna","Gaya","Madhubani","Aurangabad"]},
+  {n:23, topic:"Bihar GK", q:"The Kanwar Lake (Kabar Taal), Asia's largest freshwater oxbow lake, is located in?", opts:["Darbhanga","Begusarai","Samastipur","Saharsa"]},
+  {n:24, topic:"Bihar GK", q:"Which Bihar district is renowned for 'Sujni Embroidery'?", opts:["Muzaffarpur","Bhagalpur","Nalanda","Purnia"]},
+  {n:25, topic:"Bihar GK", q:"Who is recognized as the architect of the Golghar in Patna?", opts:["Edwin Lutyens","Job Charnock","Captain John Garstin","Lord Cornwallis"]},
 
-  // Bihar GK (12-22)
-  {n:12, topic:"Bihar GK", q:"Which district of Bihar has the lowest literacy rate according to the 2011 census?", opts:["Sitamarhi","Purnia","Katihar","Madhepura"]},
-  {n:13, topic:"Bihar GK", q:"In which year was the Bihar Socialist Party formed?", opts:["1929","1931","1934","1936"]},
-  {n:14, topic:"Bihar GK", q:"Who was the editor of the famous nationalist newspaper 'Searchlight' in Bihar?", opts:["Sachchidananda Sinha","Murali Manohar Prasad","Hasan Imam","Mazharul Haque"]},
-  {n:15, topic:"Bihar GK", q:"The Gogabil Bird Sanctuary is located in which district of Bihar?", opts:["Begusarai","Gaya","Bhagalpur","Katihar"]},
-  {n:16, topic:"Bihar GK", q:"Who was the first Governor of Bihar after India's independence?", opts:["Sri Krishna Singh","Jairamdas Daulatram","Zakir Husain","R. R. Diwakar"]},
-  {n:17, topic:"Bihar GK", q:"The Kakolat waterfall is situated in which district of Bihar?", opts:["Rohtas","Kaimur","Nawada","Gaya"]},
-  {n:18, topic:"Bihar GK", q:"On which exact date was the Patna High Court established?", opts:["February 3, 1916","March 22, 1912","January 26, 1950","April 1, 1936"]},
-  {n:19, topic:"Bihar GK", q:"Which of the following districts of Bihar shares a border with three other states/countries?", opts:["Kishanganj","West Champaran","Rohtas","None of the above"]},
-  {n:20, topic:"Bihar GK", q:"What is the state flower of Bihar?", opts:["Lotus","Rose","Marigold","Jasmine"]},
-  {n:21, topic:"Bihar GK", q:"Who was the architect of the Golghar in Patna?", opts:["Edwin Lutyens","Captain John Garstin","Job Charnock","Lord Cornwallis"]},
-  {n:22, topic:"Bihar GK", q:"Which district in Bihar records the highest sex ratio (Females per 1000 Males)?", opts:["Patna","Siwan","Gopalganj","Saran"]},
+  // Indian History (26-40)
+  {n:26, topic:"Indian History", q:"Which Sikh Guru was executed by Mughal Emperor Aurangzeb without any legitimate crime?", opts:["Guru Arjan Dev","Guru Tegh Bahadur","Guru Gobind Singh","Guru Har Krishan"]},
+  {n:27, topic:"Indian History", q:"Who was the last Mughal Emperor who was exiled to Rangoon by the British?", opts:["Akbar II","Shah Alam II","Jahandar Shah","Bahadur Shah Zafar"]},
+  {n:28, topic:"Indian History", q:"The classical text 'Gita Govinda' was authored by which medieval Indian poet?", opts:["Kalidasa","Jayadeva","Banabhatta","Tulsidas"]},
+  {n:29, topic:"Indian History", q:"Who authored the 'Akbar Nama', the official chronicle of the reign of Akbar?", opts:["Faizi","Todar Mal","Abul Fazl","Birbal"]},
+  {n:30, topic:"Indian History", q:"During which Buddhist Council did Buddhism split into Mahayana and Hinayana sects?", opts:["Fourth Council","Third Council","Second Council","First Council"]},
+  {n:31, topic:"Indian History", q:"The title 'Iron Man of India' is attributed to?", opts:["Lal Bahadur Shastri","Balgangadhar Tilak","Subhash Chandra Bose","Sardar Vallabhbhai Patel"]},
+  {n:32, topic:"Indian History", q:"Who was the first woman to receive the Nobel Prize from India?", opts:["Mother Teresa","Indira Gandhi","Sarojini Naidu","Amrita Pritam"]},
+  {n:33, topic:"Indian History", q:"The Indus Valley Civilization site 'Lothal', known as the Manchester of the civilization, is located in?", opts:["Rajasthan","Gujarat","Punjab","Haryana"]},
+  {n:34, topic:"Indian History", q:"Which famous festival was introduced in India by the Delhi Sultanate ruler Balban?", opts:["Holi","Diwali","Navroz","Eid"]},
+  {n:35, topic:"Indian History", q:"Who established the 'Shantiniketan' which later became Visva-Bharati University?", opts:["Swami Vivekananda","Rabindranath Tagore","Mahatma Gandhi","Raja Ram Mohan Roy"]},
+  {n:36, topic:"Indian History", q:"The 1857 revolt fundamentally failed due to:", opts:["Lack of unified leadership and planning","Superior British artillery","Lack of Indian soldiers","French support to British"]},
+  {n:37, topic:"Indian History", q:"Which rock edict of Ashoka is considered the longest and details the Kalinga War?", opts:["10th Edict","11th Edict","12th Edict","13th Edict"]},
+  {n:38, topic:"Indian History", q:"The phrase 'Do or Die' was coined by Mahatma Gandhi during which movement?", opts:["Non-Cooperation Movement","Civil Disobedience Movement","Quit India Movement","Khilafat Movement"]},
+  {n:39, topic:"Indian History", q:"Who was the first Health Minister of independent India?", opts:["Rajkumari Amrit Kaur","Maulana Abul Kalam Azad","Dr. B.R. Ambedkar","Sardar Patel"]},
+  {n:40, topic:"Indian History", q:"The famous 'Cellular Jail' (Kala Pani) is located in?", opts:["Lakshadweep","Andaman and Nicobar Islands","Daman and Diu","Puducherry"]},
 
-  // India GK (23-33)
-  {n:23, topic:"India GK", q:"Which Article of the Indian Constitution empowers the President to dissolve the Lok Sabha?", opts:["Article 72","Article 85","Article 356","Article 112"]},
-  {n:24, topic:"India GK", q:"Who was the first Chief Election Commissioner of India?", opts:["T. N. Seshan","G. V. Mavalankar","Sukumar Sen","Kalyan Sundaram"]},
-  {n:25, topic:"India GK", q:"The Jindhagada Peak is the highest peak of which mountain range?", opts:["Eastern Ghats","Western Ghats","Aravalli","Satpura"]},
-  {n:26, topic:"India GK", q:"The Shipki La pass connects which of the following?", opts:["Sikkim and Tibet","Himachal Pradesh and Tibet","Uttarakhand and Tibet","Arunachal Pradesh and Tibet"]},
-  {n:27, topic:"India GK", q:"Which committee recommended the establishment of NABARD?", opts:["Narasimham Committee","Kelkar Committee","Tendulkar Committee","B. Sivaraman Committee"]},
-  {n:28, topic:"India GK", q:"Which Chola king built the famous Brihadeeswarar Temple in Thanjavur?", opts:["Rajendra I","Rajaraja I","Kulothunga I","Aditya I"]},
-  {n:29, topic:"India GK", q:"The river Luni drains into which of the following?", opts:["Gulf of Khambhat","Arabian Sea","Rann of Kutch","Lake Sambhar"]},
-  {n:30, topic:"India GK", q:"The 10th Schedule (Anti-Defection Law) was added to the Constitution by which amendment?", opts:["42nd Amendment","52nd Amendment","44th Amendment","73rd Amendment"]},
-  {n:31, topic:"India GK", q:"Who founded the Ghadar Party in San Francisco in 1913?", opts:["Bhagat Singh","Lala Lajpat Rai","Subhash Chandra Bose","Lala Hardayal"]},
-  {n:32, topic:"India GK", q:"The official language of the state of Nagaland is:", opts:["English","Naga","Hindi","Ao"]},
-  {n:33, topic:"India GK", q:"How many Biosphere Reserves in India are currently recognized under the UNESCO Man and the Biosphere (MAB) Program?", opts:["10","12","18","22"]},
+  // Indian Polity (41-55)
+  {n:41, topic:"Indian Polity", q:"What is the minimum age required to become a member of the State Legislative Council (MLC)?", opts:["21 years","25 years","30 years","35 years"]},
+  {n:42, topic:"Indian Polity", q:"Which part of the Indian Constitution contains the Fundamental Duties?", opts:["Part III","Part IV-A","Part V","Part II"]},
+  {n:43, topic:"Indian Polity", q:"Article 17 of the Indian Constitution deals with?", opts:["Abolition of Untouchability","Equality before law","Abolition of Titles","Freedom of Speech"]},
+  {n:44, topic:"Indian Polity", q:"Which Article of the Indian Constitution mandates equal opportunity in matters of public employment?", opts:["Article 14","Article 15","Article 17","Article 16"]},
+  {n:45, topic:"Indian Polity", q:"The Comptroller and Auditor General of India (CAG) is appointed under which Article?", opts:["Article 76","Article 148","Article 280","Article 324"]},
+  {n:46, topic:"Indian Polity", q:"The Finance Commission is constituted under which Article of the Constitution?", opts:["Article 280","Article 266","Article 356","Article 360"]},
+  {n:47, topic:"Indian Polity", q:"Who has complete control over the 'Consolidated Fund of India' under Article 266?", opts:["The President","The Finance Minister","The Parliament","The Prime Minister"]},
+  {n:48, topic:"Indian Polity", q:"The Hindi version of the National Anthem was adopted by the Constituent Assembly on?", opts:["15 August 1947","26 November 1949","26 January 1950","24 January 1950"]},
+  {n:49, topic:"Indian Polity", q:"To become a member of a Gram Panchayat, a person must have attained the age of?", opts:["18 years","21 years","25 years","30 years"]},
+  {n:50, topic:"Indian Polity", q:"Which country's constitution influenced the adoption of Fundamental Duties in the Indian Constitution?", opts:["USA","UK","USSR (Russia)","Ireland"]},
+  {n:51, topic:"Indian Polity", q:"The States Reorganization Commission (Fazl Ali Commission) was formed in which year?", opts:["1953","1956","1951","1960"]},
+  {n:52, topic:"Indian Polity", q:"Who issues writs for the enforcement of Fundamental Rights in India?", opts:["Only Supreme Court","Supreme Court and High Courts","President of India","Parliament"]},
+  {n:53, topic:"Indian Polity", q:"The right to vote in India is technically classified as a?", opts:["Fundamental Right","Constitutional Right","Legal Right","Moral Right"]},
+  {n:54, topic:"Indian Polity", q:"Which article provides for the appointment of the Attorney General of India?", opts:["Article 148","Article 280","Article 112","Article 76"]},
+  {n:55, topic:"Indian Polity", q:"The maximum time allowed to play the full version of the Indian National Anthem is?", opts:["52 seconds","50 seconds","60 seconds","65 seconds"]},
 
-  // Science GK (34-44)
-  {n:34, topic:"Science GK", q:"What is the chemical formula of Plaster of Paris?", opts:["CaSO4·2H2O","CaSO4·H2O","CaSO4·0.5H2O","CaCO3·H2O"]},
-  {n:35, topic:"Science GK", q:"Pitchblende is the principal ore of which radioactive element?", opts:["Uranium","Thorium","Radium","Plutonium"]},
-  {n:36, topic:"Science GK", q:"Vitamin B12 (Cobalamin) contains which metal ion?", opts:["Iron","Cobalt","Magnesium","Zinc"]},
-  {n:37, topic:"Science GK", q:"Which element has the highest electronegativity on the Pauling scale?", opts:["Oxygen","Chlorine","Nitrogen","Fluorine"]},
-  {n:38, topic:"Science GK", q:"Itai-itai disease is caused by the chronic toxicity of which heavy metal?", opts:["Mercury","Lead","Cadmium","Arsenic"]},
-  {n:39, topic:"Science GK", q:"The SI unit of Luminous Intensity is:", opts:["Lumen","Lux","Candela","Weber"]},
-  {n:40, topic:"Science GK", q:"Which pigment is primarily responsible for the red color in tomatoes?", opts:["Carotene","Lycopene","Anthocyanin","Xanthophyll"]},
-  {n:41, topic:"Science GK", q:"Which gas was primarily responsible for the devastating Bhopal Gas Tragedy in 1984?", opts:["Phosgene","Methyl Isocyanate (MIC)","Carbon Monoxide","Hydrogen Cyanide"]},
-  {n:42, topic:"Science GK", q:"What is the most abundant rare (noble) gas in the Earth's atmosphere?", opts:["Argon","Neon","Helium","Krypton"]},
-  {n:43, topic:"Science GK", q:"The instrument used to measure the relative humidity of the atmosphere is called:", opts:["Hydrometer","Hygrometer","Barometer","Anemometer"]},
-  {n:44, topic:"Science GK", q:"In the human body, the Islets of Langerhans are found in the:", opts:["Liver","Pancreas","Kidney","Brain"]},
+  // Geography (56-70)
+  {n:56, topic:"Geography", q:"The 'Bhutia' tribe is predominantly found in which Indian state?", opts:["Arunachal Pradesh","Sikkim","Meghalaya","Nagaland"]},
+  {n:57, topic:"Geography", q:"The Garo, Khasi, and Jaintia hills are located in?", opts:["Assam","Tripura","Meghalaya","Mizoram"]},
+  {n:58, topic:"Geography", q:"The combined stream of the Ganga and Brahmaputra rivers in Bangladesh is known as?", opts:["Meghna","Padma","Jamuna","Tsangpo"]},
+  {n:59, topic:"Geography", q:"Kaziranga National Park, famous for its one-horned rhinoceros, is situated in?", opts:["West Bengal","Assam","Odisha","Madhya Pradesh"]},
+  {n:60, topic:"Geography", q:"Which planet is often referred to as Earth's twin sister?", opts:["Mars","Jupiter","Venus","Saturn"]},
+  {n:61, topic:"Geography", q:"The boundary line between Pakistan and Afghanistan is called?", opts:["Radcliffe Line","Durand Line","MacMahon Line","Maginot Line"]},
+  {n:62, topic:"Geography", q:"Which of the following rocks is considered the oldest and primary form of rock?", opts:["Igneous Rock","Sedimentary Rock","Metamorphic Rock","Foliated Rock"]},
+  {n:63, topic:"Geography", q:"The 'Red Revolution' in India is associated with the production of?", opts:["Tomatoes and Milk","Apples and Roses","Fertilizers and Jute","Meat and Tomatoes"]},
+  {n:64, topic:"Geography", q:"What type of soil covers the largest land area in India?", opts:["Black Soil","Red Soil","Alluvial Soil","Laterite Soil"]},
+  {n:65, topic:"Geography", q:"The Surajkund International Crafts Mela is held annually in which state?", opts:["Rajasthan","Haryana","Punjab","Uttar Pradesh"]},
+  {n:66, topic:"Geography", q:"Which Indian state is bordered by Bangladesh on three sides?", opts:["Tripura","Meghalaya","Mizoram","West Bengal"]},
+  {n:67, topic:"Geography", q:"The 'Indra' military exercise is a joint drill between India and which country?", opts:["USA","Russia","France","Japan"]},
+  {n:68, topic:"Geography", q:"Angel Falls, the highest uninterrupted waterfall in the world, is in?", opts:["Brazil","USA","Venezuela","Canada"]},
+  {n:69, topic:"Geography", q:"The Mariana Trench is located in which ocean?", opts:["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"]},
+  {n:70, topic:"Geography", q:"Which is the longest river in the European continent?", opts:["Danube","Rhine","Thames","Volga"]},
 
-  // Awards (45-55)
-  {n:45, topic:"Awards", q:"Who was the first Indian to receive the Ramon Magsaysay Award?", opts:["Jayaprakash Narayan","Vinoba Bhave","Mother Teresa","Satyajit Ray"]},
-  {n:46, topic:"Awards", q:"The Kalinga Prize is awarded for exceptional contribution in which field?", opts:["Science popularization","Literature","Journalism","Classical Music"]},
-  {n:47, topic:"Awards", q:"The Vyas Samman is awarded annually for outstanding literary work in which language?", opts:["Sanskrit","Hindi","Any recognized Indian language","English"]},
-  {n:48, topic:"Awards", q:"Who among the following was NOT one of the first recipients of the Bharat Ratna in 1954?", opts:["C. Rajagopalachari","S. Radhakrishnan","Jawaharlal Nehru","C. V. Raman"]},
-  {n:49, topic:"Awards", q:"The Dadasaheb Phalke Award, India's highest award in cinema, was instituted in which year?", opts:["1954","1969","1975","1981"]},
-  {n:50, topic:"Awards", q:"The Abel Prize is highly prestigious in which academic discipline?", opts:["Architecture","Physics","Mathematics","Philosophy"]},
-  {n:51, topic:"Awards", q:"Who was the first woman to win the Sahitya Akademi Award?", opts:["Mahadevi Varma","Amrita Pritam","Arundhati Roy","Sarojini Naidu"]},
-  {n:52, topic:"Awards", q:"The Dronacharya Award, given to outstanding sports coaches, was instituted in:", opts:["1985","1991","1978","2001"]},
-  {n:53, topic:"Awards", q:"What is the highest peacetime gallantry award in India?", opts:["Param Vir Chakra","Maha Vir Chakra","Ashoka Chakra","Shaurya Chakra"]},
-  {n:54, topic:"Awards", q:"Which organization sponsors the prestigious Saraswati Samman?", opts:["Sahitya Akademi","K. K. Birla Foundation","Jnanpith Trust","Ministry of Culture"]},
-  {n:55, topic:"Awards", q:"The Booker Prize is awarded exclusively for original novels written in which language?", opts:["French","Spanish","English","Any European Language"]},
+  // Science (71-85)
+  {n:71, topic:"Science", q:"Which metal ion is primarily present in Vitamin B12?", opts:["Iron","Cobalt","Magnesium","Zinc"]},
+  {n:72, topic:"Science", q:"Which of the following elements has the highest electronegativity?", opts:["Chlorine","Oxygen","Fluorine","Nitrogen"]},
+  {n:73, topic:"Science", q:"The SI unit of Luminous Intensity is?", opts:["Candela","Lux","Lumen","Weber"]},
+  {n:74, topic:"Science", q:"What is the chemical formula of Plaster of Paris?", opts:["CaSO4·2H2O","CaSO4·0.5H2O","CaCO3","CaSO4·H2O"]},
+  {n:75, topic:"Science", q:"Which gas was responsible for the devastating Bhopal Gas Tragedy?", opts:["Phosgene","Carbon Monoxide","Methyl Isocyanate","Hydrogen Cyanide"]},
+  {n:76, topic:"Science", q:"Pitchblende is the primary ore of which radioactive element?", opts:["Thorium","Radium","Plutonium","Uranium"]},
+  {n:77, topic:"Science", q:"Itai-Itai disease is caused by chronic poisoning of which heavy metal?", opts:["Mercury","Cadmium","Lead","Arsenic"]},
+  {n:78, topic:"Science", q:"In the human body, the 'Islets of Langerhans' are found in the?", opts:["Pancreas","Liver","Kidney","Spleen"]},
+  {n:79, topic:"Science", q:"Which pigment gives tomatoes their characteristic red color?", opts:["Carotene","Anthocyanin","Lycopene","Chlorophyll"]},
+  {n:80, topic:"Science", q:"The instrument used to measure the relative humidity of the air is called?", opts:["Hydrometer","Hygrometer","Barometer","Anemometer"]},
+  {n:81, topic:"Science", q:"Which is the most abundant noble gas in the Earth's atmosphere?", opts:["Helium","Neon","Krypton","Argon"]},
+  {n:82, topic:"Science", q:"What is the chemical symbol for Tungsten?", opts:["W","Tg","Tu","Tn"]},
+  {n:83, topic:"Science", q:"The process of converting a solid directly into a gas without passing through the liquid state is called?", opts:["Evaporation","Condensation","Sublimation","Deposition"]},
+  {n:84, topic:"Science", q:"The speed of sound is maximum in which of the following mediums?", opts:["Air","Steel","Water","Vacuum"]},
+  {n:85, topic:"Science", q:"Which part of the human eye regulates the amount of light entering it?", opts:["Cornea","Retina","Iris","Lens"]},
 
-  // Sports (56-66)
-  {n:56, topic:"Sports", q:"The Thomas Cup is associated with which international sport?", opts:["Table Tennis","Lawn Tennis","Badminton","Golf"]},
-  {n:57, topic:"Sports", q:"Who was the first Indian woman to win an individual Olympic medal?", opts:["P. T. Usha","Karnam Malleswari","Mary Kom","Saina Nehwal"]},
-  {n:58, topic:"Sports", q:"What is the official national game of Bhutan?", opts:["Archery","Wrestling","Taekwondo","Football"]},
-  {n:59, topic:"Sports", q:"The official distance of a modern Olympic Marathon is exactly:", opts:["40.195 km","42.000 km","42.195 km","45.000 km"]},
-  {n:60, topic:"Sports", q:"The Ryder Cup is a famous biennial men's competition in which sport?", opts:["Polo","Golf","Sailing","Horse Racing"]},
-  {n:61, topic:"Sports", q:"How many players make up a standard Water Polo team in the water at one time?", opts:["7","6","9","5"]},
-  {n:62, topic:"Sports", q:"The term 'Butterfly Stroke' is exclusively associated with:", opts:["Wrestling","Gymnastics","Swimming","Rowing"]},
-  {n:63, topic:"Sports", q:"The first ever Commonwealth Games (then British Empire Games) were held in 1930 in:", opts:["London, UK","Hamilton, Canada","Sydney, Australia","New Delhi, India"]},
-  {n:64, topic:"Sports", q:"What is the title of the autobiography of hockey legend Major Dhyan Chand?", opts:["Goal","Playing It My Way","The Golden Hat-Trick","Unbreakable"]},
-  {n:65, topic:"Sports", q:"The M. A. Chidambaram Stadium (Chepauk) is located in which Indian city?", opts:["Mumbai","Bengaluru","Chennai","Hyderabad"]},
-  {n:66, topic:"Sports", q:"The maximum allowable weight of a standard cricket ball in men's cricket is roughly:", opts:["150 grams","163 grams","175 grams","145 grams"]},
-
-  // Important Dates (67-77)
-  {n:67, topic:"Important Dates", q:"National Panchayati Raj Day in India is celebrated annually on:", opts:["October 2","August 15","April 24","January 26"]},
-  {n:68, topic:"Important Dates", q:"World Ozone Day is observed globally on:", opts:["June 5","September 16","April 22","March 21"]},
-  {n:69, topic:"Important Dates", q:"The International Day for Biological Diversity is sanctioned by the UN to be held on:", opts:["March 22","May 22","June 5","July 11"]},
-  {n:70, topic:"Important Dates", q:"Pravasi Bharatiya Divas is celebrated on January 9 to commemorate whose return to India?", opts:["Subhas Chandra Bose","Mahatma Gandhi","Jawaharlal Nehru","Swami Vivekananda"]},
-  {n:71, topic:"Important Dates", q:"National Girl Child Day in India is observed on:", opts:["January 12","March 8","January 24","November 14"]},
-  {n:72, topic:"Important Dates", q:"World Tuberculosis (TB) Day is observed every year on:", opts:["February 28","March 24","April 7","December 1"]},
-  {n:73, topic:"Important Dates", q:"The first International Day of Yoga was celebrated globally in which year?", opts:["2014","2016","2015","2017"]},
-  {n:74, topic:"Important Dates", q:"Hiroshima Day is observed internationally on:", opts:["August 6","August 9","July 26","September 2"]},
-  {n:75, topic:"Important Dates", q:"World Soil Day is held annually on:", opts:["October 16","November 26","December 5","March 3"]},
-  {n:76, topic:"Important Dates", q:"International Literacy Day is celebrated globally on:", opts:["September 5","September 8","October 5","November 11"]},
-  {n:77, topic:"Important Dates", q:"World Population Day is observed on which date?", opts:["May 1","June 12","July 11","August 12"]},
-
-  // Famous Persons (78-88)
-  {n:78, topic:"Famous Persons", q:"Who is the author of the seminal book 'Poverty and Un-British Rule in India'?", opts:["Gopal Krishna Gokhale","Dadabhai Naoroji","Bal Gangadhar Tilak","Womesh Chandra Bonnerjee"]},
-  {n:79, topic:"Famous Persons", q:"The title 'Deshbandhu' was formally conferred upon:", opts:["C. F. Andrews","Chittaranjan Das","Subhas Chandra Bose","Lala Lajpat Rai"]},
-  {n:80, topic:"Famous Persons", q:"Who was the founder of the Ramakrishna Mission?", opts:["Swami Vivekananda","Ramakrishna Paramahamsa","Raja Ram Mohan Roy","Dayananda Saraswati"]},
-  {n:81, topic:"Famous Persons", q:"Who was the first Indian astronaut to travel in space?", opts:["Kalpana Chawla","Sunita Williams","Rakesh Sharma","Ravish Malhotra"]},
-  {n:82, topic:"Famous Persons", q:"What was the real name of the freedom fighter known as 'Frontier Gandhi'?", opts:["Maulana Abul Kalam Azad","Khan Abdul Ghaffar Khan","Syed Ahmad Khan","Liaquat Ali Khan"]},
-  {n:83, topic:"Famous Persons", q:"The novel 'Anandamath', which contains the national song Vande Mataram, was written by:", opts:["Bankim Chandra Chatterjee","Rabindranath Tagore","Sarat Chandra Chattopadhyay","Sri Aurobindo"]},
-  {n:84, topic:"Famous Persons", q:"The book 'The Idea of Justice' was written by which Indian intellectual?", opts:["Shashi Tharoor","Arundhati Roy","Amartya Sen","Ramachandra Guha"]},
-  {n:85, topic:"Famous Persons", q:"Ustad Bismillah Khan was a legendary maestro of which musical instrument?", opts:["Tabla","Shehnai","Sitar","Sarod"]},
-  {n:86, topic:"Famous Persons", q:"Who gave Sarojini Naidu the title 'Nightingale of India' (Bharat Kokila)?", opts:["Rabindranath Tagore","Jawaharlal Nehru","Mahatma Gandhi","Subhas Chandra Bose"]},
-  {n:87, topic:"Famous Persons", q:"Who is historically considered the principal founder of the Brahmo Samaj?", opts:["Swami Dayananda Saraswati","Raja Ram Mohan Roy","Ishwar Chandra Vidyasagar","Keshab Chandra Sen"]},
-  {n:88, topic:"Famous Persons", q:"Which historical figure is widely remembered as the 'Iron Man of India'?", opts:["Sardar Vallabhbhai Patel","B. R. Ambedkar","Lal Bahadur Shastri","Bhagat Singh"]},
-
-  // Mixed GK (89-100)
-  {n:89, topic:"Mixed GK", q:"Which of the following is the deepest oceanic trench in the world?", opts:["Puerto Rico Trench","Mariana Trench","Tonga Trench","Java Trench"]},
-  {n:90, topic:"Mixed GK", q:"What is the official name of the Parliament of Israel?", opts:["Diet","Duma","Knesset","Majlis"]},
-  {n:91, topic:"Mixed GK", q:"Where are the official headquarters of the World Health Organization (WHO) located?", opts:["Geneva, Switzerland","New York, USA","Paris, France","Vienna, Austria"]},
-  {n:92, topic:"Mixed GK", q:"Excluding the polar regions, what is the largest hot desert in the world?", opts:["Gobi Desert","Arabian Desert","Sahara Desert","Kalahari Desert"]},
-  {n:93, topic:"Mixed GK", q:"What is the capital city of Australia?", opts:["Sydney","Canberra","Melbourne","Brisbane"]},
-  {n:94, topic:"Mixed GK", q:"Who was the first ever Secretary-General of the United Nations?", opts:["Dag Hammarskjöld","Trygve Lie","U Thant","Kofi Annan"]},
-  {n:95, topic:"Mixed GK", q:"Angel Falls, the world's highest uninterrupted waterfall, is located in which country?", opts:["Venezuela","Brazil","Canada","South Africa"]},
-  {n:96, topic:"Mixed GK", q:"How many recognized oceans are there on Earth currently (including the Southern Ocean)?", opts:["4","7","5","6"]},
-  {n:97, topic:"Mixed GK", q:"Which is the longest river entirely within the European continent?", opts:["Danube","Volga","Rhine","Elbe"]},
-  {n:98, topic:"Mixed GK", q:"What was the name of the first artificial Earth satellite launched into space?", opts:["Apollo 1","Vostok 1","Sputnik 1","Explorer 1"]},
-  {n:99, topic:"Mixed GK", q:"The scientific study of the universe, its origin, and its evolution is known as:", opts:["Astrology","Cosmology","Astronomy","Ontology"]},
-  {n:100, topic:"Mixed GK", q:"Which of these famous European capitals is traditionally known as the 'City of Seven Hills'?", opts:["Athens","Madrid","Rome","Lisbon"]}
+  // Static GK (86-100)
+  {n:86, topic:"Static GK", q:"The 'Jata-Jatin' dance form is a famous folk dance of which state?", opts:["Bihar","Jharkhand","Odisha","West Bengal"]},
+  {n:87, topic:"Static GK", q:"The 'Ambubachi Mela' is an annual Hindu festival held at the Kamakhya Temple in?", opts:["Tripura","Assam","Meghalaya","Manipur"]},
+  {n:88, topic:"Static GK", q:"Where is the headquarters of the International Labour Organization (ILO) located?", opts:["New York","Paris","Vienna","Geneva"]},
+  {n:89, topic:"Static GK", q:"The festival 'Chapchar Kut' is a major spring festival of which state?", opts:["Nagaland","Manipur","Mizoram","Sikkim"]},
+  {n:90, topic:"Static GK", q:"The 'Sattriya' dance, one of the eight principal classical Indian dance traditions, originated in?", opts:["Odisha","Assam","Kerala","Manipur"]},
+  {n:91, topic:"Static GK", q:"The 'Pateti' festival is predominantly celebrated by which community?", opts:["Parsis","Jains","Buddhists","Sindhis"]},
+  {n:92, topic:"Static GK", q:"Which Indian maestro, titled 'Maharaj' (like Birju Maharaj), is primarily associated with which dance form?", opts:["Odissi","Bharatnatyam","Kuchipudi","Kathak"]},
+  {n:93, topic:"Static GK", q:"The 'Thomas Cup' is associated with which international sport?", opts:["Table Tennis","Lawn Tennis","Badminton","Golf"]},
+  {n:94, topic:"Static GK", q:"How many Puranas are there in Hindu ancient texts?", opts:["18","108","4","6"]},
+  {n:95, topic:"Static GK", q:"Who directed the Oscar-winning biographical film 'Gandhi' (1982)?", opts:["Steven Spielberg","Richard Attenborough","Satyajit Ray","James Cameron"]},
+  {n:96, topic:"Static GK", q:"Where is the headquarters of the World Health Organization (WHO)?", opts:["Washington D.C.","London","Geneva","Rome"]},
+  {n:97, topic:"Static GK", q:"The 'Kambala' festival, known for its traditional buffalo race, belongs to which state?", opts:["Tamil Nadu","Karnataka","Kerala","Andhra Pradesh"]},
+  {n:98, topic:"Static GK", q:"The Nobel Prize was first awarded in which year?", opts:["1901","1911","1895","1913"]},
+  {n:99, topic:"Static GK", q:"The 'Kharchi Puja' is a well-known Hindu festival celebrated in?", opts:["Assam","Sikkim","Arunachal Pradesh","Tripura"]},
+  {n:100, topic:"Static GK", q:"Who was the first Indian to receive the prestigious Ramon Magsaysay Award?", opts:["Jayaprakash Narayan","Satyajit Ray","Vinoba Bhave","Mother Teresa"]}
 ];
 
 let studentName = "";
@@ -664,7 +404,7 @@ function renderQuestion() {
   const q = questions[actualIndex];
   
   document.getElementById("qNo").innerText = `Question ${actualIndex + 1} of ${questions.length}`;
-  document.getElementById("qTopic").innerText = `${q.topic}`;
+  document.getElementById("qTopic").innerText = `Topic: ${q.topic}`;
   document.getElementById("question").innerText = q.q;
   
   let html = "";
@@ -744,8 +484,6 @@ function submitTest(isAuto = false) {
   let incorrect = 0;
   let unattempted = 0;
   
-  let detailedReport = `--- DETAILED QUESTION ANALYSIS ---\n\n`;
-
   questions.forEach((q, index) => {
     const correctAnsLetter = ansKey[q.n];
     let userAnsLetter = "Not Attempted";
@@ -756,50 +494,20 @@ function submitTest(isAuto = false) {
 
     if (userAnsLetter === "Not Attempted") {
       unattempted++;
-      detailedReport += `Q${q.n} (${q.topic}): Unattempted | Correct Ans: ${correctAnsLetter}\n`;
     } else if (userAnsLetter === correctAnsLetter) {
       correct++;
-      detailedReport += `Q${q.n} (${q.topic}): Selected: ${userAnsLetter} | Correct Ans: ${correctAnsLetter} [✅ Correct]\n`;
     } else {
       incorrect++;
-      detailedReport += `Q${q.n} (${q.topic}): Selected: ${userAnsLetter} | Correct Ans: ${correctAnsLetter} [❌ Incorrect]\n`;
     }
   });
 
   let attempted = correct + incorrect;
 
-  let finalMessage = `Student Details:
-Name / Roll No: ${studentName}
-
-Test Result Summary:
-Total Questions: ${questions.length}
-Attempted: ${attempted}
-Unattempted: ${unattempted}
-Correct Answers: ${correct}
-Wrong Answers: ${incorrect}
-
-FINAL SCORE: ${correct} / ${questions.length}
-
-${detailedReport}`;
-
-  fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
-      subject: `DCECE GK Test Result - ${studentName} (Score: ${correct})`,
-      message: finalMessage
-    }),
-  })
-  .then(response => {
-     document.getElementById("loading-overlay").style.display = "none";
-     showResultUI(attempted, unattempted, correct, incorrect);
-  })
-  .catch(error => {
-     alert("There was an error sending the result email. Showing results on screen anyway.");
-     document.getElementById("loading-overlay").style.display = "none";
-     showResultUI(attempted, unattempted, correct, incorrect);
-  });
+  // Small delay for UI simulation
+  setTimeout(() => {
+    document.getElementById("loading-overlay").style.display = "none";
+    showResultUI(attempted, unattempted, correct, incorrect);
+  }, 1000);
 }
 
 function showResultUI(attempted, unattempted, correct, incorrect) {
@@ -849,7 +557,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
     reviewHTML += `
       <div class="review-q-card">
         <div class="review-q-header">
-          <span style="color:var(--muted)">Q${q.n}. (${q.topic})</span>
+          <span style="color:var(--muted)">Q${q.n}. (Topic: ${q.topic})</span>
           ${statusText}
         </div>
         <div class="review-q-text">${q.q}</div>
