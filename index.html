@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - Hard Chemistry</title>
+<title>DCECE Mock Test - Ultra Hard GK Edition</title>
 
 <style>
 :root{
@@ -141,7 +141,6 @@ header{
   padding:20px;
 }
 
-/* Start Screen Styles */
 #start-screen {
   background: var(--card);
   padding: 40px 20px;
@@ -338,7 +337,6 @@ button{
 .result h2 { color: var(--green); margin-bottom: 15px; }
 .result p { margin-bottom: 8px; font-size: 18px; }
 
-/* Review Section Styles */
 .review-container { margin-top: 30px; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto; padding: 0 10px; }
 .review-q-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
 .review-q-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; font-weight: bold; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
@@ -374,7 +372,7 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>DCECE Mock Test - Hard Chemistry</h2>
+  <h2>DCECE GK Mock Test (Ultra Hard)</h2>
   <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 2 Hours<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
@@ -383,20 +381,22 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Hard Chemistry Set</h1>
+      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Ultra Hard GK</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
-        <button class="filter-btn active" data-topic="All" onclick="filterTopic('All')">All</button>
-        <button class="filter-btn" data-topic="Atomic Structure" onclick="filterTopic('Atomic Structure')">⚛️ Atomic Structure</button>
-        <button class="filter-btn" data-topic="Mole Concept" onclick="filterTopic('Mole Concept')">⚖️ Mole Concept</button>
-        <button class="filter-btn" data-topic="Thermodynamics" onclick="filterTopic('Thermodynamics')">🔥 Thermodynamics</button>
-        <button class="filter-btn" data-topic="Equilibrium" onclick="filterTopic('Equilibrium')">⚖️ Equilibrium</button>
-        <button class="filter-btn" data-topic="Chemical Bonding" onclick="filterTopic('Chemical Bonding')">🔗 Chemical Bonding</button>
-        <button class="filter-btn" data-topic="Periodic Table" onclick="filterTopic('Periodic Table')">📊 Periodic Table</button>
-        <button class="filter-btn" data-topic="S-Block" onclick="filterTopic('S-Block')">🪨 S-Block</button>
+        <button class="filter-btn active" data-topic="All" onclick="filterTopic('All')">All Topics</button>
+        <button class="filter-btn" data-topic="Current Affairs" onclick="filterTopic('Current Affairs')">Current Affairs</button>
+        <button class="filter-btn" data-topic="Bihar GK" onclick="filterTopic('Bihar GK')">Bihar GK</button>
+        <button class="filter-btn" data-topic="India GK" onclick="filterTopic('India GK')">India GK</button>
+        <button class="filter-btn" data-topic="Science GK" onclick="filterTopic('Science GK')">Science GK</button>
+        <button class="filter-btn" data-topic="Awards" onclick="filterTopic('Awards')">Awards</button>
+        <button class="filter-btn" data-topic="Sports" onclick="filterTopic('Sports')">Sports</button>
+        <button class="filter-btn" data-topic="Important Dates" onclick="filterTopic('Important Dates')">Important Dates</button>
+        <button class="filter-btn" data-topic="Famous Persons" onclick="filterTopic('Famous Persons')">Famous Persons</button>
+        <button class="filter-btn" data-topic="Mixed GK" onclick="filterTopic('Mixed GK')">Mixed GK</button>
       </div>
 
       <div class="timer-submit-group">
@@ -437,135 +437,139 @@ button{
 <div id="loading-overlay">Submitting your test... Please wait.</div>
 
 <script>
+// 100 Hard Questions Answer Key
 const ansKey = {
-  1:'B', 2:'C', 3:'B', 4:'C', 5:'B', 6:'B', 7:'C', 8:'A', 9:'B', 10:'C',
-  11:'C', 12:'B', 13:'B', 14:'D', 15:'B', 16:'C', 17:'C', 18:'B', 19:'B', 20:'B',
-  21:'B', 22:'C', 23:'B', 24:'D', 25:'C', 26:'B', 27:'B', 28:'B', 29:'C', 30:'B',
-  31:'C', 32:'B', 33:'C', 34:'B', 35:'C', 36:'C', 37:'A', 38:'B', 39:'D', 40:'B',
-  41:'C', 42:'C', 43:'B', 44:'C', 45:'B', 46:'B', 47:'C', 48:'C', 49:'B', 50:'B',
-  51:'A', 52:'B', 53:'C', 54:'C', 55:'B', 56:'D', 57:'B', 58:'C', 59:'C', 60:'B',
-  61:'C', 62:'B', 63:'C', 64:'B', 65:'C', 66:'A', 67:'B', 68:'B', 69:'D', 70:'C',
-  71:'C', 72:'B', 73:'C', 74:'A', 75:'C', 76:'B', 77:'C', 78:'B', 79:'C', 80:'C',
-  81:'B', 82:'D', 83:'B', 84:'C', 85:'B', 86:'C', 87:'B', 88:'B', 89:'C', 90:'B',
-  91:'C', 92:'A', 93:'B', 94:'B', 95:'C', 96:'B', 97:'D', 98:'C', 99:'B', 100:'C'
+  1:'B', 2:'C', 3:'B', 4:'C', 5:'B', 6:'B', 7:'C', 8:'B', 9:'A', 10:'C', 11:'A',
+  12:'B', 13:'B', 14:'B', 15:'D', 16:'B', 17:'C', 18:'A', 19:'B', 20:'C', 21:'B', 22:'C',
+  23:'B', 24:'C', 25:'A', 26:'B', 27:'D', 28:'B', 29:'C', 30:'B', 31:'D', 32:'A', 33:'B',
+  34:'C', 35:'A', 36:'B', 37:'D', 38:'C', 39:'C', 40:'B', 41:'B', 42:'A', 43:'B', 44:'B',
+  45:'B', 46:'A', 47:'B', 48:'C', 49:'B', 50:'C', 51:'B', 52:'A', 53:'C', 54:'B', 55:'C',
+  56:'C', 57:'B', 58:'A', 59:'C', 60:'B', 61:'A', 62:'C', 63:'B', 64:'A', 65:'C', 66:'B',
+  67:'C', 68:'B', 69:'B', 70:'A', 71:'C', 72:'B', 73:'C', 74:'A', 75:'C', 76:'B', 77:'C',
+  78:'B', 79:'B', 80:'A', 81:'C', 82:'B', 83:'A', 84:'C', 85:'B', 86:'C', 87:'B', 88:'A',
+  89:'B', 90:'C', 91:'A', 92:'C', 93:'B', 94:'B', 95:'A', 96:'C', 97:'B', 98:'C', 99:'B', 100:'C'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-// ATOMIC STRUCTURE (15)
-{n:1, topic:"Atomic Structure", q:"The number of radial nodes for a 3p orbital is:", opts:["0", "1", "2", "3"]},
-{n:2, topic:"Atomic Structure", q:"Which of the following sets of quantum numbers represents the highest energy of an electron in an atom?", opts:["n=3, l=1, m=1, s=+1/2", "n=3, l=2, m=1, s=+1/2", "n=4, l=0, m=0, s=+1/2", "n=3, l=0, m=0, s=+1/2"]},
-{n:3, topic:"Atomic Structure", q:"The ratio of the difference in energy between the first and second Bohr orbit to that between the second and third Bohr orbit is:", opts:["1/2", "27/5", "9/4", "4/9"]},
-{n:4, topic:"Atomic Structure", q:"If the uncertainty in position and momentum are equal, then uncertainty in velocity is:", opts:["√(h/π)", "1/2m √(h/π)", "1/2m √(h/π)", "√(h/2π)"]},
-{n:5, topic:"Atomic Structure", q:"The de Broglie wavelength of an electron in the nth Bohr orbit is related to the radius (r) of the orbit as:", opts:["nλ = πr", "nλ = 2πr", "nλ = 4πr", "nλ = r/2"]},
-{n:6, topic:"Atomic Structure", q:"Which transition in the hydrogen atomic spectrum will have the same wavelength as the transition n=4 to n=2 of He+ spectrum?", opts:["n=4 to n=3", "n=2 to n=1", "n=3 to n=2", "n=4 to n=2"]},
-{n:7, topic:"Atomic Structure", q:"The orbital angular momentum of an electron in a d-orbital is:", opts:["√2 h/2π", "√6 h/2π", "√6 h/2π", "0"]},
-{n:8, topic:"Atomic Structure", q:"What is the maximum number of electrons that can be accommodated in a subshell for which l=3?", opts:["14", "10", "6", "2"]},
-{n:9, topic:"Atomic Structure", q:"According to Bohr's theory, the angular momentum of an electron in the 5th orbit is:", opts:["2.5 h/π", "2.5 h/π", "1.0 h/π", "10 h/π"]},
-{n:10, topic:"Atomic Structure", q:"For which of the following species is the Bohr theory not applicable?", opts:["He+", "Li2+", "Be2+", "H"]},
-{n:11, topic:"Atomic Structure", q:"The number of unpair electrons in Mn2+ (Z=25) is:", opts:["2", "3", "5", "4"]},
-{n:12, topic:"Atomic Structure", q:"The kinetic energy of an electron in the second Bohr orbit of a hydrogen atom is [a0 is Bohr radius]:", opts:["h²/(4π²ma0²)", "h²/(32π²ma0²)", "h²/(16π²ma0²)", "h²/(64π²ma0²)"]},
-{n:13, topic:"Atomic Structure", q:"Rutherford's alpha-particle scattering experiment eventually led to the conclusion that:", opts:["Mass and energy are related", "Electrons occupy space around the nucleus", "Neutrons are buried deep in the nucleus", "The point of impact determines element creation"]},
-{n:14, topic:"Atomic Structure", q:"The total number of orbitals associated with the principal quantum number n=4 is:", opts:["4", "8", "12", "16"]},
-{n:15, topic:"Atomic Structure", q:"Isoelectronic species among the following are:", opts:["CO, CN-, NO+", "CO, CN-, NO, C2-", "CO+, CN+, NO-", "CO, CN, NO"]},
+  // Current Affairs (1-11)
+  {n:1, topic:"Current Affairs", q:"What is the rank of India in the Global Hunger Index 2023?", opts:["101","111","107","121"]},
+  {n:2, topic:"Current Affairs", q:"Which committee recommended the implementation of the 'One Nation, One Election' proposal?", opts:["Sarkaria Commission","Kothari Commission","Ram Nath Kovind Committee","Punchhi Commission"]},
+  {n:3, topic:"Current Affairs", q:"Which city hosted the COP28 UN Climate Change Conference in 2023?", opts:["Glasgow","Dubai","Paris","Sharm El-Sheikh"]},
+  {n:4, topic:"Current Affairs", q:"India's first AI city is being developed in which state?", opts:["Karnataka","Telangana","Uttar Pradesh","Maharashtra"]},
+  {n:5, topic:"Current Affairs", q:"What is the official name of the digital currency launched by the RBI?", opts:["Digital Rupee (d₹)","e₹ (e-Rupee)","BharatCoin","RBI-D"]},
+  {n:6, topic:"Current Affairs", q:"Which Indian state recently became the first to pass a Uniform Civil Code (UCC) bill?", opts:["Goa","Uttarakhand","Gujarat","Assam"]},
+  {n:7, topic:"Current Affairs", q:"In 2024, the BRICS summit was scheduled to be hosted by which country?", opts:["Brazil","South Africa","Russia","China"]},
+  {n:8, topic:"Current Affairs", q:"Which space agency launched the 'Psyche' mission to study a metal-rich asteroid?", opts:["ESA","NASA","ISRO","JAXA"]},
+  {n:9, topic:"Current Affairs", q:"The Article 370 of the Indian Constitution was abrogated on which exact date?", opts:["August 5, 2019","August 15, 2019","October 31, 2019","January 26, 2020"]},
+  {n:10, topic:"Current Affairs", q:"What is the name of the highest-capacity nuclear power plant currently operating in India?", opts:["Tarapur","Rawatbhata","Kudankulam","Kaiga"]},
+  {n:11, topic:"Current Affairs", q:"The 'Mera Yuva Bharat' (MY Bharat) platform is aimed at which age group?", opts:["15-29 years","18-35 years","14-25 years","21-40 years"]},
 
-// MOLE CONCEPT (15)
-{n:16, topic:"Mole Concept", q:"A gas mixture contains 50% helium and 50% methane by volume. What is the percent by weight of methane in the mixture?", opts:["20%", "40%", "80%", "50%"]},
-{n:17, topic:"Mole Concept", q:"Volume occupied by one molecule of water (density = 1 g/cm3) is:", opts:["3.0 x 10^-23 cm3", "5.5 x 10^-23 cm3", "3.0 x 10^-23 cm3", "1.5 x 10^-23 cm3"]},
-{n:18, topic:"Mole Concept", q:"How many moles of magnesium phosphate, Mg3(PO4)2 will contain 0.25 mole of oxygen atoms?", opts:["0.02", "3.125 x 10^-2", "1.25 x 10^-2", "2.5 x 10^-2"]},
-{n:19, topic:"Mole Concept", q:"If Avogadro number NA is changed from 6.022 x 10^23 to 6.022 x 10^20, this would change:", opts:["The mass of one mole of carbon", "The ratio of chemical species to each other in a balanced equation", "The ratio of elements to each other in a compound", "The definition of mass in units of grams"]},
-{n:20, topic:"Mole Concept", q:"In the reaction 4NH3(g) + 5O2(g) -> 4NO(g) + 6H2O(l), when 1 mole of ammonia and 1 mole of O2 are made to react to completion:", opts:["1.0 mole of H2O is produced", "All the oxygen will be consumed", "All the ammonia will be consumed", "1.5 mole of NO will be produced"]},
-{n:21, topic:"Mole Concept", q:"The empirical formula of a compound is CH2O. If its vapor density is 30, its molecular formula is:", opts:["C3H6O3", "C2H4O2", "C4H8O4", "CH2O"]},
-{n:22, topic:"Mole Concept", q:"Calculate the molality of 1 litre solution of 93% H2SO4 (weight/volume). The density of solution is 1.84 g/mL.", opts:["5.42", "8.65", "10.42", "12.35"]},
-{n:23, topic:"Mole Concept", q:"A metal oxide has the formula Z2O3. It can be reduced by hydrogen to give free metal and water. 0.1596 g of the metal oxide requires 6 mg of hydrogen for complete reduction. The atomic weight of the metal is:", opts:["27.9", "55.8", "79.8", "159.6"]},
-{n:24, topic:"Mole Concept", q:"What volume of oxygen gas (O2) measured at 0°C and 1 atm, is needed to burn completely 1 L of propane gas (C3H8) measured under the same conditions?", opts:["10 L", "7 L", "6 L", "5 L"]},
-{n:25, topic:"Mole Concept", q:"Mole fraction of the solute in a 1.00 molal aqueous solution is:", opts:["0.00177", "0.0344", "0.0177", "0.1770"]},
-{n:26, topic:"Mole Concept", q:"Which has the maximum number of molecules among the following?", opts:["44 g CO2", "48 g O3", "8 g H2", "64 g SO2"]},
-{n:27, topic:"Mole Concept", q:"The number of atoms in 0.1 mol of a triatomic gas is:", opts:["6.022 x 10^22", "1.806 x 10^23", "3.600 x 10^23", "1.806 x 10^22"]},
-{n:28, topic:"Mole Concept", q:"Molarity of liquid water if its density is 1.00 g/mL is:", opts:["5.55 M", "55.5 M", "1 M", "18 M"]},
-{n:29, topic:"Mole Concept", q:"Concentrated aqueous sulphuric acid is 98% H2SO4 by mass and has a density of 1.80 g.mL-1. Volume of acid required to make one litre of 0.1 M H2SO4 solution is:", opts:["11.10 mL", "16.65 mL", "5.55 mL", "22.20 mL"]},
-{n:30, topic:"Mole Concept", q:"The maximum number of molecules is present in:", opts:["15 L of H2 gas at STP", "5 L of N2 gas at STP", "0.5 g of H2 gas", "10 g of O2 gas"]},
+  // Bihar GK (12-22)
+  {n:12, topic:"Bihar GK", q:"Which district of Bihar has the lowest literacy rate according to the 2011 census?", opts:["Sitamarhi","Purnia","Katihar","Madhepura"]},
+  {n:13, topic:"Bihar GK", q:"In which year was the Bihar Socialist Party formed?", opts:["1929","1931","1934","1936"]},
+  {n:14, topic:"Bihar GK", q:"Who was the editor of the famous nationalist newspaper 'Searchlight' in Bihar?", opts:["Sachchidananda Sinha","Murali Manohar Prasad","Hasan Imam","Mazharul Haque"]},
+  {n:15, topic:"Bihar GK", q:"The Gogabil Bird Sanctuary is located in which district of Bihar?", opts:["Begusarai","Gaya","Bhagalpur","Katihar"]},
+  {n:16, topic:"Bihar GK", q:"Who was the first Governor of Bihar after India's independence?", opts:["Sri Krishna Singh","Jairamdas Daulatram","Zakir Husain","R. R. Diwakar"]},
+  {n:17, topic:"Bihar GK", q:"The Kakolat waterfall is situated in which district of Bihar?", opts:["Rohtas","Kaimur","Nawada","Gaya"]},
+  {n:18, topic:"Bihar GK", q:"On which exact date was the Patna High Court established?", opts:["February 3, 1916","March 22, 1912","January 26, 1950","April 1, 1936"]},
+  {n:19, topic:"Bihar GK", q:"Which of the following districts of Bihar shares a border with three other states/countries?", opts:["Kishanganj","West Champaran","Rohtas","None of the above"]},
+  {n:20, topic:"Bihar GK", q:"What is the state flower of Bihar?", opts:["Lotus","Rose","Marigold","Jasmine"]},
+  {n:21, topic:"Bihar GK", q:"Who was the architect of the Golghar in Patna?", opts:["Edwin Lutyens","Captain John Garstin","Job Charnock","Lord Cornwallis"]},
+  {n:22, topic:"Bihar GK", q:"Which district in Bihar records the highest sex ratio (Females per 1000 Males)?", opts:["Patna","Siwan","Gopalganj","Saran"]},
 
-// THERMODYNAMICS (14)
-{n:31, topic:"Thermodynamics", q:"For a spontaneous process in an isolated system, the change in entropy is:", opts:["Zero", "Negative", "Positive", "Cannot be determined"]},
-{n:32, topic:"Thermodynamics", q:"The enthalpy of fusion of water is 1.435 kcal/mol. The molar entropy change for the melting of ice at 0°C is:", opts:["10.52 cal/(mol K)", "5.26 cal/(mol K)", "21.04 cal/(mol K)", "0.526 cal/(mol K)"]},
-{n:33, topic:"Thermodynamics", q:"For the reaction: X2O4(l) -> 2XO2(g), ΔU = 2.1 kcal, ΔS = 20 cal K^-1 at 300 K. Hence, ΔG is:", opts:["2.7 kcal", " -2.7 kcal", " -0.3 kcal", "9.3 kcal"]},
-{n:34, topic:"Thermodynamics", q:"If an ideal gas expands isothermally and reversibly from 10 L to 20 L at 298 K, what is the work done? (Given 1 mol)", opts:["-1717 J", "-1717.4 J", "1717.4 J", "-2000 J"]},
-{n:35, topic:"Thermodynamics", q:"The heat of combustion of solid benzoic acid at constant volume is -321.3 kJ at 27°C. The heat of combustion at constant pressure is:", opts:["-321.3 - 300R", "-321.3 + 300R", "-321.3 - 150R", "-321.3 + 150R"]},
-{n:36, topic:"Thermodynamics", q:"Which of the following conditions implies a reaction is non-spontaneous at all temperatures?", opts:["ΔH < 0, ΔS > 0", "ΔH > 0, ΔS > 0", "ΔH > 0, ΔS < 0", "ΔH < 0, ΔS < 0"]},
-{n:37, topic:"Thermodynamics", q:"Identify the intensive property from the following:", opts:["Temperature", "Enthalpy", "Entropy", "Volume"]},
-{n:38, topic:"Thermodynamics", q:"For an ideal gas, Cp - Cv is equal to:", opts:["R/2", "R", "2R", "Zero"]},
-{n:39, topic:"Thermodynamics", q:"In an adiabatic process, which of the following is true?", opts:["q = w", "ΔU = 0", "ΔH = 0", "q = 0"]},
-{n:40, topic:"Thermodynamics", q:"Hess's law is an application of:", opts:["First law of thermodynamics", "Second law of thermodynamics", "Third law of thermodynamics", "Zeroth law of thermodynamics"]},
-{n:41, topic:"Thermodynamics", q:"The entropy of a perfectly crystalline solid at absolute zero is zero. This is the statement of:", opts:["First law", "Second law", "Third law", "Zeroth law"]},
-{n:42, topic:"Thermodynamics", q:"Under what conditions is the heat of reaction equal to the enthalpy change?", opts:["Constant volume", "Constant temperature", "Constant pressure", "Constant entropy"]},
-{n:43, topic:"Thermodynamics", q:"A gas expands from 3 dm3 to 5 dm3 against a constant pressure of 3 atm. The work done during expansion is used to heat 10 moles of water of temperature 290 K. Final temperature of water is:", opts:["290.8 K", "290.2 K", "291 K", "292 K"]},
-{n:44, topic:"Thermodynamics", q:"The standard enthalpy of formation of which of the following is zero at 298 K?", opts:["Br2(g)", "H2O(l)", "Br2(l)", "CH4(g)"]},
+  // India GK (23-33)
+  {n:23, topic:"India GK", q:"Which Article of the Indian Constitution empowers the President to dissolve the Lok Sabha?", opts:["Article 72","Article 85","Article 356","Article 112"]},
+  {n:24, topic:"India GK", q:"Who was the first Chief Election Commissioner of India?", opts:["T. N. Seshan","G. V. Mavalankar","Sukumar Sen","Kalyan Sundaram"]},
+  {n:25, topic:"India GK", q:"The Jindhagada Peak is the highest peak of which mountain range?", opts:["Eastern Ghats","Western Ghats","Aravalli","Satpura"]},
+  {n:26, topic:"India GK", q:"The Shipki La pass connects which of the following?", opts:["Sikkim and Tibet","Himachal Pradesh and Tibet","Uttarakhand and Tibet","Arunachal Pradesh and Tibet"]},
+  {n:27, topic:"India GK", q:"Which committee recommended the establishment of NABARD?", opts:["Narasimham Committee","Kelkar Committee","Tendulkar Committee","B. Sivaraman Committee"]},
+  {n:28, topic:"India GK", q:"Which Chola king built the famous Brihadeeswarar Temple in Thanjavur?", opts:["Rajendra I","Rajaraja I","Kulothunga I","Aditya I"]},
+  {n:29, topic:"India GK", q:"The river Luni drains into which of the following?", opts:["Gulf of Khambhat","Arabian Sea","Rann of Kutch","Lake Sambhar"]},
+  {n:30, topic:"India GK", q:"The 10th Schedule (Anti-Defection Law) was added to the Constitution by which amendment?", opts:["42nd Amendment","52nd Amendment","44th Amendment","73rd Amendment"]},
+  {n:31, topic:"India GK", q:"Who founded the Ghadar Party in San Francisco in 1913?", opts:["Bhagat Singh","Lala Lajpat Rai","Subhash Chandra Bose","Lala Hardayal"]},
+  {n:32, topic:"India GK", q:"The official language of the state of Nagaland is:", opts:["English","Naga","Hindi","Ao"]},
+  {n:33, topic:"India GK", q:"How many Biosphere Reserves in India are currently recognized under the UNESCO Man and the Biosphere (MAB) Program?", opts:["10","12","18","22"]},
 
-// EQUILIBRIUM (14)
-{n:45, topic:"Equilibrium", q:"For the reaction N2(g) + 3H2(g) <=> 2NH3(g), the units of Kc are:", opts:["mol L^-1", "mol^-2 L^2", "mol^-1 L", "mol^2 L^-2"]},
-{n:46, topic:"Equilibrium", q:"For the reaction A + 2B <=> C, the equilibrium constant is K. If the concentration of B is doubled, the equilibrium constant will be:", opts:["2K", "K", "K/2", "4K"]},
-{n:47, topic:"Equilibrium", q:"At a given temperature, the equilibrium constant for the reaction PCl5(g) <=> PCl3(g) + Cl2(g) is 2.4 x 10^-3. At the same temperature, the equilibrium constant for the reverse reaction is:", opts:["2.4 x 10^3", "2.4 x 10^-3", "4.16 x 10^2", "4.16 x 10^-2"]},
-{n:48, topic:"Equilibrium", q:"Which of the following factors will not change the equilibrium constant of a reaction?", opts:["Temperature", "Pressure", "Catalyst", "Both Pressure and Catalyst"]},
-{n:49, topic:"Equilibrium", q:"Le Chatelier's principle is applicable only to:", opts:["Irreversible reactions", "System in equilibrium", "Homogeneous reactions only", "Heterogeneous reactions only"]},
-{n:50, topic:"Equilibrium", q:"The pH of a 10^-8 M HCl solution is approximately:", opts:["8.0", "6.98", "7.0", "7.02"]},
-{n:51, topic:"Equilibrium", q:"Which of the following is a buffer solution?", opts:["CH3COOH + CH3COONa", "HCl + NaCl", "HNO3 + NH4NO3", "NaOH + NaCl"]},
-{n:52, topic:"Equilibrium", q:"The solubility product of AgCl is 1.8 x 10^-10. The solubility of AgCl in 0.1 M NaCl solution will be:", opts:["1.34 x 10^-5 M", "1.8 x 10^-9 M", "1.8 x 10^-11 M", "1.34 x 10^-4 M"]},
-{n:53, topic:"Equilibrium", q:"The conjugate base of H2PO4- is:", opts:["H3PO4", "PO4^3-", "HPO4^2-", "H2PO3-"]},
-{n:54, topic:"Equilibrium", q:"In the reaction: Ag+ + 2NH3 <=> [Ag(NH3)2]+, NH3 acts as:", opts:["Bronsted acid", "Arrhenius base", "Lewis base", "Lewis acid"]},
-{n:55, topic:"Equilibrium", q:"Addition of inert gas at constant pressure to the equilibrium N2(g) + 3H2(g) <=> 2NH3(g) will:", opts:["Shift equilibrium forward", "Shift equilibrium backward", "Have no effect", "Increase Kp"]},
-{n:56, topic:"Equilibrium", q:"The relation between Kp and Kc for the reaction 2SO2(g) + O2(g) <=> 2SO3(g) is:", opts:["Kp = Kc (RT)", "Kp = Kc", "Kc = Kp (RT)^2", "Kp = Kc (RT)^-1"]},
-{n:57, topic:"Equilibrium", q:"The active mass of 64 g of HI in a 2-litre flask is:", opts:["2", "0.25", "0.5", "1"]},
-{n:58, topic:"Equilibrium", q:"For the precipitation of a sparingly soluble salt, the ionic product must be:", opts:["Equal to Ksp", "Less than Ksp", "Greater than Ksp", "Zero"]},
+  // Science GK (34-44)
+  {n:34, topic:"Science GK", q:"What is the chemical formula of Plaster of Paris?", opts:["CaSO4·2H2O","CaSO4·H2O","CaSO4·0.5H2O","CaCO3·H2O"]},
+  {n:35, topic:"Science GK", q:"Pitchblende is the principal ore of which radioactive element?", opts:["Uranium","Thorium","Radium","Plutonium"]},
+  {n:36, topic:"Science GK", q:"Vitamin B12 (Cobalamin) contains which metal ion?", opts:["Iron","Cobalt","Magnesium","Zinc"]},
+  {n:37, topic:"Science GK", q:"Which element has the highest electronegativity on the Pauling scale?", opts:["Oxygen","Chlorine","Nitrogen","Fluorine"]},
+  {n:38, topic:"Science GK", q:"Itai-itai disease is caused by the chronic toxicity of which heavy metal?", opts:["Mercury","Lead","Cadmium","Arsenic"]},
+  {n:39, topic:"Science GK", q:"The SI unit of Luminous Intensity is:", opts:["Lumen","Lux","Candela","Weber"]},
+  {n:40, topic:"Science GK", q:"Which pigment is primarily responsible for the red color in tomatoes?", opts:["Carotene","Lycopene","Anthocyanin","Xanthophyll"]},
+  {n:41, topic:"Science GK", q:"Which gas was primarily responsible for the devastating Bhopal Gas Tragedy in 1984?", opts:["Phosgene","Methyl Isocyanate (MIC)","Carbon Monoxide","Hydrogen Cyanide"]},
+  {n:42, topic:"Science GK", q:"What is the most abundant rare (noble) gas in the Earth's atmosphere?", opts:["Argon","Neon","Helium","Krypton"]},
+  {n:43, topic:"Science GK", q:"The instrument used to measure the relative humidity of the atmosphere is called:", opts:["Hydrometer","Hygrometer","Barometer","Anemometer"]},
+  {n:44, topic:"Science GK", q:"In the human body, the Islets of Langerhans are found in the:", opts:["Liver","Pancreas","Kidney","Brain"]},
 
-// CHEMICAL BONDING (14)
-{n:59, topic:"Chemical Bonding", q:"The geometry of XeF4 molecule is:", opts:["Tetrahedral", "Octahedral", "Square planar", "Seesaw"]},
-{n:60, topic:"Chemical Bonding", q:"Which of the following molecules has a zero dipole moment?", opts:["NH3", "BF3", "H2O", "CHCl3"]},
-{n:61, topic:"Chemical Bonding", q:"The hybridization of the central atom in SF6 is:", opts:["sp3d", "sp3", "sp3d2", "d2sp3"]},
-{n:62, topic:"Chemical Bonding", q:"According to MO theory, the bond order of O2+ ion is:", opts:["2", "2.5", "1.5", "3"]},
-{n:63, topic:"Chemical Bonding", q:"Which of the following is paramagnetic?", opts:["N2", "CO", "O2", "F2"]},
-{n:64, topic:"Chemical Bonding", q:"In which of the following molecules/ions is the bond angle minimum?", opts:["NH3", "H2O", "CH4", "NH4+"]},
-{n:65, topic:"Chemical Bonding", q:"The formal charge on the central oxygen atom in an ozone molecule is:", opts:["0", "-1", "+1", "+2"]},
-{n:66, topic:"Chemical Bonding", q:"The species having pyramidal shape is:", opts:["SO3^2-", "BrF3", "SiO3^2-", "OSF2"]},
-{n:67, topic:"Chemical Bonding", q:"Hydrogen bonding is maximum in:", opts:["Ethanol", "Water", "Diethyl ether", "Hydrogen chloride"]},
-{n:68, topic:"Chemical Bonding", q:"In PO4^3- ion, the formal charge on the oxygen atom of P-O bond is:", opts:["+1", "-0.75", "-1", "-1.5"]},
-{n:69, topic:"Chemical Bonding", q:"Which of the following overlapping results in the formation of a pi bond?", opts:["s-s", "p-p (axial)", "s-p", "p-p (lateral)"]},
-{n:70, topic:"Chemical Bonding", q:"The structure of IF7 is:", opts:["Square pyramid", "Octahedral", "Pentagonal bipyramid", "Trigonal bipyramid"]},
-{n:71, topic:"Chemical Bonding", q:"Number of lone pairs of electrons on the central atom of ClF3 is:", opts:["0", "1", "2", "3"]},
-{n:72, topic:"Chemical Bonding", q:"The total number of sigma and pi bonds in benzene is:", opts:["12 sigma, 3 pi", "6 sigma, 3 pi", "12 sigma, 0 pi", "6 sigma, 6 pi"]},
+  // Awards (45-55)
+  {n:45, topic:"Awards", q:"Who was the first Indian to receive the Ramon Magsaysay Award?", opts:["Jayaprakash Narayan","Vinoba Bhave","Mother Teresa","Satyajit Ray"]},
+  {n:46, topic:"Awards", q:"The Kalinga Prize is awarded for exceptional contribution in which field?", opts:["Science popularization","Literature","Journalism","Classical Music"]},
+  {n:47, topic:"Awards", q:"The Vyas Samman is awarded annually for outstanding literary work in which language?", opts:["Sanskrit","Hindi","Any recognized Indian language","English"]},
+  {n:48, topic:"Awards", q:"Who among the following was NOT one of the first recipients of the Bharat Ratna in 1954?", opts:["C. Rajagopalachari","S. Radhakrishnan","Jawaharlal Nehru","C. V. Raman"]},
+  {n:49, topic:"Awards", q:"The Dadasaheb Phalke Award, India's highest award in cinema, was instituted in which year?", opts:["1954","1969","1975","1981"]},
+  {n:50, topic:"Awards", q:"The Abel Prize is highly prestigious in which academic discipline?", opts:["Architecture","Physics","Mathematics","Philosophy"]},
+  {n:51, topic:"Awards", q:"Who was the first woman to win the Sahitya Akademi Award?", opts:["Mahadevi Varma","Amrita Pritam","Arundhati Roy","Sarojini Naidu"]},
+  {n:52, topic:"Awards", q:"The Dronacharya Award, given to outstanding sports coaches, was instituted in:", opts:["1985","1991","1978","2001"]},
+  {n:53, topic:"Awards", q:"What is the highest peacetime gallantry award in India?", opts:["Param Vir Chakra","Maha Vir Chakra","Ashoka Chakra","Shaurya Chakra"]},
+  {n:54, topic:"Awards", q:"Which organization sponsors the prestigious Saraswati Samman?", opts:["Sahitya Akademi","K. K. Birla Foundation","Jnanpith Trust","Ministry of Culture"]},
+  {n:55, topic:"Awards", q:"The Booker Prize is awarded exclusively for original novels written in which language?", opts:["French","Spanish","English","Any European Language"]},
 
-// PERIODIC TABLE (14)
-{n:73, topic:"Periodic Table", q:"Which of the following has the highest first ionization energy?", opts:["Na", "Al", "N", "O"]},
-{n:74, topic:"Periodic Table", q:"The element with highest electron affinity is:", opts:["F", "Cl", "Br", "I"]},
-{n:75, topic:"Periodic Table", q:"Which of the following is an amphoteric oxide?", opts:["CO2", "MgO", "Al2O3", "SO2"]},
-{n:76, topic:"Periodic Table", q:"The atomic radii of transition elements belonging to a given period:", opts:["Decrease steadily", "Decrease initially, remain almost constant, then increase", "Increase steadily", "Remain completely constant"]},
-{n:77, topic:"Periodic Table", q:"The correct order of ionic radii of Y3+, La3+, Eu3+, Lu3+ is:", opts:["Lu3+ < Eu3+ < La3+ < Y3+", "Lu3+ < Eu3+ < Y3+ < La3+", "Y3+ < Lu3+ < Eu3+ < La3+", "Y3+ < La3+ < Eu3+ < Lu3+"]},
-{n:78, topic:"Periodic Table", q:"The diagonal relationship is not shown by:", opts:["Li and Mg", "Be and Al", "B and Si", "C and P"]},
-{n:79, topic:"Periodic Table", q:"Which of the following groups contains metals, non-metals, and metalloids?", opts:["Group 1", "Group 2", "Group 14", "Group 17"]},
-{n:80, topic:"Periodic Table", q:"The IUPAC name of an element with atomic number 119 is:", opts:["Unnilennium", "Unununnium", "Ununennium", "Unnilunium"]},
-{n:81, topic:"Periodic Table", q:"The shielding effect of inner electrons follows the order:", opts:["s > p > d > f", "f > d > p > s", "s = p = d = f", "p > s > d > f"]},
-{n:82, topic:"Periodic Table", q:"Which of the following pairs of elements has almost same atomic radii?", opts:["Zr and Hf", "Zn and Cd", "Na and K", "Li and Mg"]},
-{n:83, topic:"Periodic Table", q:"The most electronegative element among the following is:", opts:["S", "O", "N", "F"]},
-{n:84, topic:"Periodic Table", q:"Which transition metal shows the highest oxidation state?", opts:["Mn", "Cr", "Os", "Fe"]},
-{n:85, topic:"Periodic Table", q:"The effective nuclear charge (Zeff) for the outermost electron of a Na atom is approximately:", opts:["1", "2.2", "11", "8"]},
-{n:86, topic:"Periodic Table", q:"Lanthanide contraction is due to:", opts:["Perfect shielding of 4f electrons", "Imperfect shielding of 4f electrons", "Perfect shielding of 5d electrons", "Imperfect shielding of 5d electrons"]},
+  // Sports (56-66)
+  {n:56, topic:"Sports", q:"The Thomas Cup is associated with which international sport?", opts:["Table Tennis","Lawn Tennis","Badminton","Golf"]},
+  {n:57, topic:"Sports", q:"Who was the first Indian woman to win an individual Olympic medal?", opts:["P. T. Usha","Karnam Malleswari","Mary Kom","Saina Nehwal"]},
+  {n:58, topic:"Sports", q:"What is the official national game of Bhutan?", opts:["Archery","Wrestling","Taekwondo","Football"]},
+  {n:59, topic:"Sports", q:"The official distance of a modern Olympic Marathon is exactly:", opts:["40.195 km","42.000 km","42.195 km","45.000 km"]},
+  {n:60, topic:"Sports", q:"The Ryder Cup is a famous biennial men's competition in which sport?", opts:["Polo","Golf","Sailing","Horse Racing"]},
+  {n:61, topic:"Sports", q:"How many players make up a standard Water Polo team in the water at one time?", opts:["7","6","9","5"]},
+  {n:62, topic:"Sports", q:"The term 'Butterfly Stroke' is exclusively associated with:", opts:["Wrestling","Gymnastics","Swimming","Rowing"]},
+  {n:63, topic:"Sports", q:"The first ever Commonwealth Games (then British Empire Games) were held in 1930 in:", opts:["London, UK","Hamilton, Canada","Sydney, Australia","New Delhi, India"]},
+  {n:64, topic:"Sports", q:"What is the title of the autobiography of hockey legend Major Dhyan Chand?", opts:["Goal","Playing It My Way","The Golden Hat-Trick","Unbreakable"]},
+  {n:65, topic:"Sports", q:"The M. A. Chidambaram Stadium (Chepauk) is located in which Indian city?", opts:["Mumbai","Bengaluru","Chennai","Hyderabad"]},
+  {n:66, topic:"Sports", q:"The maximum allowable weight of a standard cricket ball in men's cricket is roughly:", opts:["150 grams","163 grams","175 grams","145 grams"]},
 
-// S-BLOCK (14)
-{n:87, topic:"S-Block", q:"Which alkali metal is the most powerful reducing agent in aqueous solution?", opts:["Na", "Li", "K", "Cs"]},
-{n:88, topic:"S-Block", q:"Which of the following carbonates is least thermally stable?", opts:["Na2CO3", "BeCO3", "MgCO3", "CaCO3"]},
-{n:89, topic:"S-Block", q:"The blue colour of alkali metals in liquid ammonia is due to the presence of:", opts:["Metal cations", "Solvated metal ions", "Ammoniated electrons", "NH2- ions"]},
-{n:90, topic:"S-Block", q:"Which of the following alkaline earth metals does not impart any colour to the bunsen flame?", opts:["Ca", "Be", "Sr", "Ba"]},
-{n:91, topic:"S-Block", q:"Plaster of Paris is chemically:", opts:["CaSO4.2H2O", "CaSO4", "CaSO4.1/2H2O", "CaSO4.H2O"]},
-{n:92, topic:"S-Block", q:"Which of the following compounds is known as baking soda?", opts:["NaHCO3", "Na2CO3.10H2O", "NaCl", "NaOH"]},
-{n:93, topic:"S-Block", q:"The solubility of alkaline earth metal sulphates in water decreases in the sequence:", opts:["Mg > Ca > Sr > Ba", "Ba > Sr > Ca > Mg", "Ca > Mg > Ba > Sr", "Sr > Ba > Mg > Ca"]},
-{n:94, topic:"S-Block", q:"Which of the following reacts with nitrogen directly to form nitride?", opts:["Na", "Li", "K", "Rb"]},
-{n:95, topic:"S-Block", q:"Washing soda is:", opts:["Na2CO3", "NaHCO3", "Na2CO3.10H2O", "NaOH"]},
-{n:96, topic:"S-Block", q:"Which among the following is the most dense?", opts:["Li", "Os", "K", "Na"]},
-{n:97, topic:"S-Block", q:"Suspension of slaked lime in water is known as:", opts:["Lime water", "Quick lime", "Aqueous lime", "Milk of lime"]},
-{n:98, topic:"S-Block", q:"The formula of dead burnt plaster is:", opts:["CaSO4.2H2O", "CaSO4.1/2H2O", "CaSO4", "CaO"]},
-{n:99, topic:"S-Block", q:"Which one of the following is used in photoelectric cells?", opts:["Na", "Cs", "Li", "Ca"]},
-{n:100, topic:"S-Block", q:"Calcium is obtained by the:", opts:["Electrolysis of molten CaCl2", "Reduction of CaO with C", "Reduction of CaO with CO", "Electrolysis of aqueous CaCl2"]}
+  // Important Dates (67-77)
+  {n:67, topic:"Important Dates", q:"National Panchayati Raj Day in India is celebrated annually on:", opts:["October 2","August 15","April 24","January 26"]},
+  {n:68, topic:"Important Dates", q:"World Ozone Day is observed globally on:", opts:["June 5","September 16","April 22","March 21"]},
+  {n:69, topic:"Important Dates", q:"The International Day for Biological Diversity is sanctioned by the UN to be held on:", opts:["March 22","May 22","June 5","July 11"]},
+  {n:70, topic:"Important Dates", q:"Pravasi Bharatiya Divas is celebrated on January 9 to commemorate whose return to India?", opts:["Subhas Chandra Bose","Mahatma Gandhi","Jawaharlal Nehru","Swami Vivekananda"]},
+  {n:71, topic:"Important Dates", q:"National Girl Child Day in India is observed on:", opts:["January 12","March 8","January 24","November 14"]},
+  {n:72, topic:"Important Dates", q:"World Tuberculosis (TB) Day is observed every year on:", opts:["February 28","March 24","April 7","December 1"]},
+  {n:73, topic:"Important Dates", q:"The first International Day of Yoga was celebrated globally in which year?", opts:["2014","2016","2015","2017"]},
+  {n:74, topic:"Important Dates", q:"Hiroshima Day is observed internationally on:", opts:["August 6","August 9","July 26","September 2"]},
+  {n:75, topic:"Important Dates", q:"World Soil Day is held annually on:", opts:["October 16","November 26","December 5","March 3"]},
+  {n:76, topic:"Important Dates", q:"International Literacy Day is celebrated globally on:", opts:["September 5","September 8","October 5","November 11"]},
+  {n:77, topic:"Important Dates", q:"World Population Day is observed on which date?", opts:["May 1","June 12","July 11","August 12"]},
+
+  // Famous Persons (78-88)
+  {n:78, topic:"Famous Persons", q:"Who is the author of the seminal book 'Poverty and Un-British Rule in India'?", opts:["Gopal Krishna Gokhale","Dadabhai Naoroji","Bal Gangadhar Tilak","Womesh Chandra Bonnerjee"]},
+  {n:79, topic:"Famous Persons", q:"The title 'Deshbandhu' was formally conferred upon:", opts:["C. F. Andrews","Chittaranjan Das","Subhas Chandra Bose","Lala Lajpat Rai"]},
+  {n:80, topic:"Famous Persons", q:"Who was the founder of the Ramakrishna Mission?", opts:["Swami Vivekananda","Ramakrishna Paramahamsa","Raja Ram Mohan Roy","Dayananda Saraswati"]},
+  {n:81, topic:"Famous Persons", q:"Who was the first Indian astronaut to travel in space?", opts:["Kalpana Chawla","Sunita Williams","Rakesh Sharma","Ravish Malhotra"]},
+  {n:82, topic:"Famous Persons", q:"What was the real name of the freedom fighter known as 'Frontier Gandhi'?", opts:["Maulana Abul Kalam Azad","Khan Abdul Ghaffar Khan","Syed Ahmad Khan","Liaquat Ali Khan"]},
+  {n:83, topic:"Famous Persons", q:"The novel 'Anandamath', which contains the national song Vande Mataram, was written by:", opts:["Bankim Chandra Chatterjee","Rabindranath Tagore","Sarat Chandra Chattopadhyay","Sri Aurobindo"]},
+  {n:84, topic:"Famous Persons", q:"The book 'The Idea of Justice' was written by which Indian intellectual?", opts:["Shashi Tharoor","Arundhati Roy","Amartya Sen","Ramachandra Guha"]},
+  {n:85, topic:"Famous Persons", q:"Ustad Bismillah Khan was a legendary maestro of which musical instrument?", opts:["Tabla","Shehnai","Sitar","Sarod"]},
+  {n:86, topic:"Famous Persons", q:"Who gave Sarojini Naidu the title 'Nightingale of India' (Bharat Kokila)?", opts:["Rabindranath Tagore","Jawaharlal Nehru","Mahatma Gandhi","Subhas Chandra Bose"]},
+  {n:87, topic:"Famous Persons", q:"Who is historically considered the principal founder of the Brahmo Samaj?", opts:["Swami Dayananda Saraswati","Raja Ram Mohan Roy","Ishwar Chandra Vidyasagar","Keshab Chandra Sen"]},
+  {n:88, topic:"Famous Persons", q:"Which historical figure is widely remembered as the 'Iron Man of India'?", opts:["Sardar Vallabhbhai Patel","B. R. Ambedkar","Lal Bahadur Shastri","Bhagat Singh"]},
+
+  // Mixed GK (89-100)
+  {n:89, topic:"Mixed GK", q:"Which of the following is the deepest oceanic trench in the world?", opts:["Puerto Rico Trench","Mariana Trench","Tonga Trench","Java Trench"]},
+  {n:90, topic:"Mixed GK", q:"What is the official name of the Parliament of Israel?", opts:["Diet","Duma","Knesset","Majlis"]},
+  {n:91, topic:"Mixed GK", q:"Where are the official headquarters of the World Health Organization (WHO) located?", opts:["Geneva, Switzerland","New York, USA","Paris, France","Vienna, Austria"]},
+  {n:92, topic:"Mixed GK", q:"Excluding the polar regions, what is the largest hot desert in the world?", opts:["Gobi Desert","Arabian Desert","Sahara Desert","Kalahari Desert"]},
+  {n:93, topic:"Mixed GK", q:"What is the capital city of Australia?", opts:["Sydney","Canberra","Melbourne","Brisbane"]},
+  {n:94, topic:"Mixed GK", q:"Who was the first ever Secretary-General of the United Nations?", opts:["Dag Hammarskjöld","Trygve Lie","U Thant","Kofi Annan"]},
+  {n:95, topic:"Mixed GK", q:"Angel Falls, the world's highest uninterrupted waterfall, is located in which country?", opts:["Venezuela","Brazil","Canada","South Africa"]},
+  {n:96, topic:"Mixed GK", q:"How many recognized oceans are there on Earth currently (including the Southern Ocean)?", opts:["4","7","5","6"]},
+  {n:97, topic:"Mixed GK", q:"Which is the longest river entirely within the European continent?", opts:["Danube","Volga","Rhine","Elbe"]},
+  {n:98, topic:"Mixed GK", q:"What was the name of the first artificial Earth satellite launched into space?", opts:["Apollo 1","Vostok 1","Sputnik 1","Explorer 1"]},
+  {n:99, topic:"Mixed GK", q:"The scientific study of the universe, its origin, and its evolution is known as:", opts:["Astrology","Cosmology","Astronomy","Ontology"]},
+  {n:100, topic:"Mixed GK", q:"Which of these famous European capitals is traditionally known as the 'City of Seven Hills'?", opts:["Athens","Madrid","Rome","Lisbon"]}
 ];
 
 let studentName = "";
@@ -574,7 +578,7 @@ let filteredIndices = [];
 let current = 0; 
 let timerInterval;
 let endTime;
-const TEST_DURATION_MS = 120 * 60 * 1000; 
+const TEST_DURATION_MS = 120 * 60 * 1000; // 2 Hours for 100 Questions
 
 window.onload = function() {
   studentName = localStorage.getItem("dcece_studentName");
@@ -783,7 +787,7 @@ ${detailedReport}`;
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
-      subject: `DCECE Chemistry Test Result - ${studentName} (Score: ${correct})`,
+      subject: `DCECE GK Test Result - ${studentName} (Score: ${correct})`,
       message: finalMessage
     }),
   })
