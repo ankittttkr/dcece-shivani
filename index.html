@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - 100 Maths MCQ Practice Set</title>
+<title>DCECE Mock Test - Hard Level PYQs</title>
 
 <style>
 :root{
@@ -141,6 +141,7 @@ header{
   padding:20px;
 }
 
+/* Start Screen Styles */
 #start-screen {
   background: var(--card);
   padding: 40px 20px;
@@ -337,6 +338,7 @@ button{
 .result h2 { color: var(--green); margin-bottom: 15px; }
 .result p { margin-bottom: 8px; font-size: 18px; }
 
+/* Review Section Styles */
 .review-container { margin-top: 30px; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto; padding: 0 10px; }
 .review-q-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
 .review-q-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; font-weight: bold; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
@@ -350,7 +352,7 @@ button{
   display: none;
   position: fixed;
   top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.8);
   z-index: 1000;
   color: white;
   text-align: center;
@@ -372,7 +374,7 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>DCECE Mock Test - Maths (Number System, HCF/LCM)</h2>
+  <h2>Welcome to DCECE Mock Test (Hard Level)</h2>
   <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
@@ -381,13 +383,19 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>DCECE Bihar &mdash; <span>Maths (100 MCQ)</span> Practice Set</h1>
+      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Practice Set</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
-        <button class="filter-btn active" data-sub="Maths" onclick="filterSubject('Maths')">➗ Maths (Hard Level)</button>
+        <button class="filter-btn active" data-sub="All" onclick="filterSubject('All')">All</button>
+        <button class="filter-btn" data-sub="Physics" onclick="filterSubject('Physics')">⚡ Physics</button>
+        <button class="filter-btn" data-sub="Chemistry" onclick="filterSubject('Chemistry')">🧪 Chemistry</button>
+        <button class="filter-btn" data-sub="Biology" onclick="filterSubject('Biology')">🌿 Biology</button>
+        <button class="filter-btn" data-sub="Hindi" onclick="filterSubject('Hindi')">Ⓗ Hindi</button>
+        <button class="filter-btn" data-sub="English" onclick="filterSubject('English')">Ⓔ English</button>
+        <button class="filter-btn" data-sub="GK" onclick="filterSubject('GK')">🌐 GK</button>
       </div>
 
       <div class="timer-submit-group">
@@ -425,126 +433,137 @@ button{
 <div class="result" id="result"></div>
 <div id="review-area"></div>
 
-<div id="loading-overlay">Submitting your test and sending email...<br><span style="font-size: 16px; color: var(--muted); margin-top: 10px; display: inline-block;">Please wait, do not close the window.</span></div>
+<div id="loading-overlay">Submitting your test... Please wait.</div>
 
 <script>
-// Answer Key matching the 100 questions.
+// Answer Key for 100 Hard Level Questions
 const ansKey = {
-  1:'B', 2:'C', 3:'A', 4:'C', 5:'B', 6:'A', 7:'B', 8:'C', 9:'A', 10:'B',
-  11:'D', 12:'B', 13:'A', 14:'C', 15:'D', 16:'B', 17:'C', 18:'A', 19:'D', 20:'B',
-  21:'A', 22:'C', 23:'B', 24:'D', 25:'A', 26:'B', 27:'B', 28:'D', 29:'C', 30:'A',
-  31:'D', 32:'B', 33:'C', 34:'C', 35:'A', 36:'B', 37:'D', 38:'C', 39:'A', 40:'B',
-  41:'C', 42:'D', 43:'A', 44:'B', 45:'C', 46:'A', 47:'D', 48:'B', 49:'C', 50:'C',
-  51:'A', 52:'B', 53:'C', 54:'D', 55:'A', 56:'B', 57:'C', 58:'A', 59:'D', 60:'C',
-  61:'B', 62:'C', 63:'A', 64:'B', 65:'D', 66:'A', 67:'B', 68:'C', 69:'D', 70:'A',
-  71:'C', 72:'B', 73:'C', 74:'A', 75:'D', 76:'B', 77:'C', 78:'A', 79:'C', 80:'B',
-  81:'D', 82:'A', 83:'B', 84:'C', 85:'A', 86:'B', 87:'C', 88:'D', 89:'B', 90:'A',
-  91:'C', 92:'D', 93:'A', 94:'B', 95:'A', 96:'C', 97:'B', 98:'D', 99:'A', 100:'C'
+  1:'B', 2:'C', 3:'A', 4:'D', 5:'B', 6:'C', 7:'A', 8:'D', 9:'C', 10:'B',
+  11:'B', 12:'C', 13:'A', 14:'D', 15:'C', 16:'B', 17:'C', 18:'A', 19:'D', 20:'C',
+  21:'B', 22:'C', 23:'B', 24:'D', 25:'B', 26:'A', 27:'D', 28:'B', 29:'C', 30:'A',
+  31:'C', 32:'A', 33:'B', 34:'D', 35:'B', 36:'C', 37:'A', 38:'D', 39:'C', 40:'B',
+  41:'B', 42:'C', 43:'A', 44:'D', 45:'B', 46:'C', 47:'B', 48:'A', 49:'D', 50:'C',
+  51:'A', 52:'B', 53:'C', 54:'A', 55:'D', 56:'B', 57:'C', 58:'D', 59:'B', 60:'A',
+  61:'B', 62:'C', 63:'A', 64:'D', 65:'C', 66:'B', 67:'A', 68:'C', 69:'D', 70:'B',
+  71:'C', 72:'A', 73:'D', 74:'B', 75:'C', 76:'B', 77:'C', 78:'A', 79:'D', 80:'B',
+  81:'C', 82:'A', 83:'D', 84:'B', 85:'C', 86:'B', 87:'C', 88:'A', 89:'D', 90:'B',
+  91:'C', 92:'B', 93:'D', 94:'A', 95:'C', 96:'B', 97:'D', 98:'C', 99:'A', 100:'B'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-  {n:1,sub:"Maths",q:"Find the HCF of 9/10, 12/25, 18/35, and 21/40.",opts:["3/5","3/1400","9/100","252/5"]},
-  {n:2,sub:"Maths",q:"What is the LCM of 1/3, 5/6, 2/9, and 4/27?",opts:["10/27","20/81","20/3","1/54"]},
-  {n:3,sub:"Maths",q:"The HCF of two numbers is 8 and their LCM is 48. If one number is 24, what is the other?",opts:["16","32","40","12"]},
-  {n:4,sub:"Maths",q:"Find the greatest number that will divide 43, 91, and 183 so as to leave the same remainder in each case.",opts:["7","9","4","13"]},
-  {n:5,sub:"Maths",q:"The LCM of two numbers is 495 and their HCF is 5. If the sum of the numbers is 100, then their difference is:",opts:["5","10","15","20"]},
-  {n:6,sub:"Maths",q:"Find the least number which when divided by 20, 25, 35, and 40 leaves remainders 14, 19, 29, and 34 respectively.",opts:["1394","1404","1414","1384"]},
-  {n:7,sub:"Maths",q:"What is the greatest 4-digit number exactly divisible by 12, 15, 20, and 35?",opts:["9999","9660","9840","9960"]},
-  {n:8,sub:"Maths",q:"Three bells toll at intervals of 9, 12, and 15 minutes respectively. If they start tolling together, after what time will they next toll together?",opts:["3 hours","2 hours 45 mins","3 hours 0 mins","3 hours 15 mins"]},
-  {n:9,sub:"Maths",q:"The sum of two numbers is 528 and their HCF is 33. The number of pairs of numbers satisfying the above conditions is:",opts:["4","2","3","5"]},
-  {n:10,sub:"Maths",q:"Find the smallest number which leaves a remainder of 3 when divided by any of the numbers 5, 6, 8, 9, and 12.",opts:["363","360","366","357"]},
-  {n:11,sub:"Maths",q:"The HCF and LCM of two polynomials are (x+1) and (x^3-x^2-x+1) respectively. If one polynomial is (x^2-1), the other is:",opts:["x^2+2x+1","x^2-2x-1","x^3-1","x^2-2x+1"]},
-  {n:12,sub:"Maths",q:"Which of the following fractions is the largest: 7/8, 13/16, 31/40, 63/80?",opts:["31/40","7/8","13/16","63/80"]},
-  {n:13,sub:"Maths",q:"A farmer has 945 cows and 2475 sheep. He farms them into flocks, keeping cows and sheep separate and having the same number of animals in each flock. What is the maximum number of animals in each flock?",opts:["45","15","25","35"]},
-  {n:14,sub:"Maths",q:"Find the HCF of 0.63, 1.05, and 2.1.",opts:["0.21","2.1","0.021","21"]},
-  {n:15,sub:"Maths",q:"If the product of two co-prime numbers is 117, then their LCM should be:",opts:["1","13","9","117"]},
-  {n:16,sub:"Maths",q:"The unit digit in the product (784 x 618 x 917 x 463) is:",opts:["2","8","4","6"]},
-  {n:17,sub:"Maths",q:"What is the unit digit of (3^65 x 6^59 x 7^71)?",opts:["1","2","4","6"]},
-  {n:18,sub:"Maths",q:"If a number is multiplied by 3 and the product is divided by 8, it leaves a remainder of 5. The smallest such positive integer is:",opts:["7","13","5","11"]},
-  {n:19,sub:"Maths",q:"Which of the following numbers is divisible by 11?",opts:["4823718","4832718","8423718","4832718 (Check sum of odd/even pos) => Let's pick 4832718"]},
-  {n:20,sub:"Maths",q:"A number when divided by 899 gives a remainder of 63. If the same number is divided by 29, the remainder will be:",opts:["2","5","13","4"]},
-  {n:21,sub:"Maths",q:"What is the remainder when 17^200 is divided by 18?",opts:["1","17","0","2"]},
-  {n:22,sub:"Maths",q:"The value of (0.333...) + (0.444...) is equivalent to the fraction:",opts:["7/10","7/99","7/9","1/3"]},
-  {n:23,sub:"Maths",q:"Find the sum of divisors of 360.",opts:["1170","1170","1180","24"]},
-  {n:24,sub:"Maths",q:"What is the number of trailing zeroes in 100! (100 factorial)?",opts:["20","21","22","24"]},
-  {n:25,sub:"Maths",q:"The difference between the squares of two consecutive odd integers is always divisible by:",opts:["8","7","6","3"]},
-  {n:26,sub:"Maths",q:"A 3-digit number 4a3 is added to another 3-digit number 984 to give a 4-digit number 13b7, which is divisible by 11. Then (a + b) is:",opts:["10","11","12","15"]},
-  {n:27,sub:"Maths",q:"The smallest positive integer n for which 864 * n is a perfect cube is:",opts:["1","2","3","4"]},
-  {n:28,sub:"Maths",q:"Let N be the greatest number that will divide 1305, 4665, and 6905, leaving the same remainder in each case. Then the sum of the digits in N is:",opts:["4","5","6","8"]},
-  {n:29,sub:"Maths",q:"HCF of 2^3 x 3^2 x 5 x 7^4, 2^2 x 3^5 x 5^2 x 7^3, and 2^3 x 5^3 x 7^2 is:",opts:["2^2 x 5 x 7^2","2^3 x 3^2 x 5","2^2 x 5 x 7^2","2^2 x 5 x 7^3"]},
-  {n:30,sub:"Maths",q:"The LCM of two numbers is 12 times their HCF. The sum of HCF and LCM is 403. If one number is 93, find the other number.",opts:["124","128","134","138"]},
-  {n:31,sub:"Maths",q:"The ratio of two numbers is 3:4 and their HCF is 4. What is their LCM?",opts:["12","16","24","48"]},
-  {n:32,sub:"Maths",q:"Six bells commence tolling together and toll at intervals of 2, 4, 6, 8, 10, and 12 seconds respectively. In 30 minutes, how many times do they toll together?",opts:["4","16","15","17"]},
-  {n:33,sub:"Maths",q:"Find the greatest number of five digits which when divided by 3, 5, 8, 12 leaves a remainder of 2 in each case.",opts:["99999","99958","99962","99960"]},
-  {n:34,sub:"Maths",q:"HCF of fractions 2/3, 4/5, and 6/7 is:",opts:["12/105","2/105","2/105","12/105"]}, // Fixed logic inside
-  {n:35,sub:"Maths",q:"If N = 4^11 + 4^12 + 4^13 + 4^14, then how many positive factors of N are there?",opts:["92","48","50","51"]},
-  {n:36,sub:"Maths",q:"Find the unit digit of 1! + 2! + 3! + ... + 100!",opts:["1","3","5","7"]},
-  {n:37,sub:"Maths",q:"What is the total number of prime factors in the expression (4^11) x (7^5) x (11^2)?",opts:["18","20","22","29"]},
-  {n:38,sub:"Maths",q:"When a number is divided by 13, the remainder is 11. When the same number is divided by 17, the remainder is 9. What is the number?",opts:["339","349","340","350"]},
-  {n:39,sub:"Maths",q:"Two numbers both greater than 29, have HCF 29 and LCM 4147. The sum of the numbers is:",opts:["696","666","690","660"]},
-  {n:40,sub:"Maths",q:"Which of the following statements is true? LCM of two co-primes is equal to their product.",opts:["False","True","Sometimes true","None of these"]},
-  {n:41,sub:"Maths",q:"Find the number of divisors of 10800.",opts:["30","45","60","75"]},
-  {n:42,sub:"Maths",q:"If a and b are odd numbers, then which of the following is even?",opts:["a+b+1","ab","ab+2","a+b"]},
-  {n:43,sub:"Maths",q:"Which is the largest among the fractions: 5/113, 7/120, 13/145, 17/160?",opts:["17/160","5/113","7/120","13/145"]},
-  {n:44,sub:"Maths",q:"The decimal representation of an irrational number is:",opts:["Always terminating","Neither terminating nor repeating","Always repeating","None of these"]},
-  {n:45,sub:"Maths",q:"A rectangular courtyard 3.78 meters long and 5.25 meters wide is to be paved exactly with square tiles, all of the same size. Find the largest size of the tile.",opts:["14 cm","15 cm","21 cm","35 cm"]},
-  {n:46,sub:"Maths",q:"What is the remainder when 2^31 is divided by 5?",opts:["3","1","2","4"]},
-  {n:47,sub:"Maths",q:"Find the missing digit 'x' if the number 7x342 is divisible by 9.",opts:["1","2","5","2"]}, // Re-evaluated
-  {n:48,sub:"Maths",q:"How many numbers between 200 and 600 are divisible by 4, 5, and 6?",opts:["5","6","7","8"]},
-  {n:49,sub:"Maths",q:"If x and y are co-prime, then x^2 and y^2 are:",opts:["Not co-prime","Even","Co-prime","Odd"]},
-  {n:50,sub:"Maths",q:"The sum of the digits of a two-digit number is 15. If 9 is added to the number, the digits are reversed. Find the number.",opts:["69","87","78","96"]},
-  {n:51,sub:"Maths",q:"What is the least multiple of 7, which when divided by 2, 3, 4, 5 and 6 leaves the remainder 1, 2, 3, 4 and 5 respectively?",opts:["119","239","359","479"]},
-  {n:52,sub:"Maths",q:"Find the largest number which divides 62, 132, and 237 leaving the same remainder in each case.",opts:["30","35","40","45"]},
-  {n:53,sub:"Maths",q:"The HCF of two numbers is 11 and their LCM is 7700. If one of the numbers is 275, the other is:",opts:["279","283","308","318"]},
-  {n:54,sub:"Maths",q:"What is the HCF of a/b, c/d, e/f?",opts:["LCM(a,c,e) / HCF(b,d,f)","HCF(a,c,e) / HCF(b,d,f)","LCM(a,c,e) / LCM(b,d,f)","HCF(a,c,e) / LCM(b,d,f)"]},
-  {n:55,sub:"Maths",q:"What is the LCM of 3, 2.7, and 0.09?",opts:["27","2.7","0.27","0.027"]},
-  {n:56,sub:"Maths",q:"Find the unit digit of (123^456 x 456^123).",opts:["2","6","4","8"]},
-  {n:57,sub:"Maths",q:"Find the number of trailing zeroes in the product of the first 100 prime numbers.",opts:["0","10","1","100"]},
-  {n:58,sub:"Maths",q:"If N = 1! - 2! + 3! - 4! ... + 99! - 100!, then what is the unit digit of N?",opts:["1","2","3","4"]},
-  {n:59,sub:"Maths",q:"If the number 653xy is divisible by 90, then (x+y) = ?",opts:["2","3","4","4"]},
-  {n:60,sub:"Maths",q:"What is the remainder when (15^300 + 23^300) is divided by 19?",opts:["0","1","2","8"]},
-  {n:61,sub:"Maths",q:"A number when divided successively by 4 and 5 leaves remainders 1 and 4 respectively. When it is successively divided by 5 and 4, the respective remainders will be:",opts:["1, 2","4, 1","3, 2","2, 3"]},
-  {n:62,sub:"Maths",q:"The LCM of two numbers is 44 times their HCF. The sum of the LCM and HCF is 1125. If one number is 25, find the other.",opts:["100","200","1100","250"]},
-  {n:63,sub:"Maths",q:"Which of the following fractions is the smallest: 15/16, 19/20, 24/25, 34/35?",opts:["15/16","19/20","24/25","34/35"]},
-  {n:64,sub:"Maths",q:"The sum of the reciprocals of two numbers is 7/24. If their HCF is 2 and LCM is 48, find the sum of the numbers.",opts:["10","14","18","22"]},
-  {n:65,sub:"Maths",q:"How many positive integers less than 1000 are multiples of 5 and are also multiples of 3?",opts:["66","67","68","66"]}, // 999 / 15 = 66.6
-  {n:66,sub:"Maths",q:"If x = 0.123123123..., then x can be expressed as a rational number p/q. What is the sum of p and q if they are co-prime?",opts:["374","375","376","377"]}, // 123/999 = 41/333. Sum = 374
-  {n:67,sub:"Maths",q:"What is the highest power of 5 contained in 200!?",opts:["48","49","50","51"]},
-  {n:68,sub:"Maths",q:"The HCF of 1.08, 0.36 and 0.9 is:",opts:["0.03","0.9","0.18","10.8"]},
-  {n:69,sub:"Maths",q:"The product of two co-primes is 253. Their LCM is:",opts:["1","11","23","253"]},
-  {n:70,sub:"Maths",q:"LCM of two distinct prime numbers x and y (x > y) is 161. The value of 3y - x is:",opts:["-2","2","5","-5"]}, // x=23, y=7. 3(7)-23 = -2
-  {n:71,sub:"Maths",q:"A number is formed by writing the first 50 natural numbers sequentially (1234567891011...). Find the remainder when this number is divided by 9.",opts:["2","4","5","8"]}, // Sum of digits = 50*51/2 ? No, sum of digits of 1 to 50 is 330. 330%9 = 6. Let's make an option 6. Let's fix option C to 6.
-  {n:72,sub:"Maths",q:"The unit digit of the expression 25^6251 + 36^528 + 73^54 is:",opts:["4","0","6","8"]}, // 5 + 6 + 9 = 20 -> 0.
-  {n:73,sub:"Maths",q:"Find the remainder when 7^99 is divided by 2400.",opts:["1","7","343","2401"]}, // 7^4 = 2401. 2401 = 1 mod 2400. 7^99 = (7^4)^24 * 7^3 = 1 * 343 = 343.
-  {n:74,sub:"Maths",q:"The LCM of two numbers is 495 and their HCF is 5. If the sum of the numbers is 100, find the numbers.",opts:["45 and 55","50 and 50","60 and 40","65 and 35"]},
-  {n:75,sub:"Maths",q:"Let p be a prime number greater than 3. Then p^2 - 1 is always divisible by:",opts:["6","12","18","24"]},
-  {n:76,sub:"Maths",q:"Find the least perfect square which is divisible by 21, 36, and 66.",opts:["213444","214344","214434","213444 (Let's assume this)"]}, // 21,36,66. LCM = 2772 = 2^2 x 3^2 x 7 x 11. x 7 x 11 = 213444
-  {n:77,sub:"Maths",q:"Which of the following is an irrational number?",opts:["22/7","3.14","Pi (π)","Square root of 16"]},
-  {n:78,sub:"Maths",q:"The total number of even factors of 2^3 x 3^4 x 5^2 is:",opts:["60","45","50","75"]}, // (3) * (5) * (3) = 45.
-  {n:79,sub:"Maths",q:"If N = 9^9, find the number of positive divisors of N.",opts:["9","18","19","81"]}, // N = 3^18, so 19 divisors.
-  {n:80,sub:"Maths",q:"A student was asked to find the arithmetic mean of the following 12 numbers: 3, 11, 7, 9, 15, 13, 8, 19, 17, 21, 14 and x. He found the mean to be 12. The value of x will be:",opts:["3","7","13","17"]},
-  {n:81,sub:"Maths",q:"Three wheels making 60, 36 and 24 revolutions in a minute start with a certain point in their circumference downwards. Find when they will again come together in the same position.",opts:["5 seconds","10 seconds","15 seconds","20 seconds"]}, // Time per rev = 1s, 5/3s, 5/2s. LCM(1, 5/3, 5/2) = 5.
-  {n:82,sub:"Maths",q:"If the sum of a number and its square is 182, what is the number?",opts:["13","14","28","-14"]},
-  {n:83,sub:"Maths",q:"Find the HCF of (x^3 - y^3) and (x^2 - y^2).",opts:["(x+y)","(x-y)","(x^2+y^2)","(x^2-xy+y^2)"]},
-  {n:84,sub:"Maths",q:"What is the unit digit of 4^1 + 9^2 + 4^3 + 9^4 + ... + 4^99 + 9^100?",opts:["0","1","5","9"]}, // 4+1 + 4+1... = 5*50 = 250 -> 0.
-  {n:85,sub:"Maths",q:"The sum of the digits of a 3-digit number is subtracted from the number. The resulting number is always divisible by:",opts:["9","10","11","6"]},
-  {n:86,sub:"Maths",q:"The HCF of 3240, 3600 and a third number is 36 and their LCM is 2^4 x 3^5 x 5^2 x 7^2. The third number is:",opts:["2^2 x 3^5 x 7^2","2^2 x 3^2 x 5 x 7^2","2^3 x 3^5 x 7^2","2^2 x 3^5 x 5 x 7^2"]}, // 2^2 x 3^5 x 7^2 = 283500? Actually a known PYQ, ans is 2^2 x 3^5 x 7^2
-  {n:87,sub:"Maths",q:"What is the remainder when (1! + 2! + 3! + ... + 100!) is divided by 5?",opts:["1","2","3","4"]}, // 1 + 2 + 6 + 24 = 33 % 5 = 3
-  {n:88,sub:"Maths",q:"Which of the following numbers is completely divisible by 99?",opts:["3572404","135792","913464","114345"]}, // 114345 sum = 18, alt sum = 1+4+4 = 9, 1+3+5 = 9. Yes!
-  {n:89,sub:"Maths",q:"The LCM of two numbers is 120 and their HCF is 10. Which of the following can be the sum of those two numbers?",opts:["140","70","80","100"]}, // 30,40 -> sum 70.
-  {n:90,sub:"Maths",q:"If N is an integer, then (N^3 - N) is always divisible by:",opts:["6","4","5","7"]},
-  {n:91,sub:"Maths",q:"The smallest perfect square which is exactly divisible by 2, 3, 4, 5, and 6 is:",opts:["1600","400","900","3600"]}, // LCM = 60. Square multiple = 900.
-  {n:92,sub:"Maths",q:"The HCF and LCM of two numbers are 12 and 336 respectively. If one number is 84, the other is:",opts:["36","48","72","48 (Oops)"]}, // wait, 12 * 336 / 84 = 48. Let's make option D 48.
-  {n:93,sub:"Maths",q:"Four different electronic devices make a beep after every 30 minutes, 1 hour, 1.5 hours, and 1 hour 45 minutes respectively. If they all beeped together at 12 noon, they will beep together again at:",opts:["12 midnight","3 AM","6 AM","9 AM"]}, // 30, 60, 90, 105 mins. LCM = 1260 mins = 21 hours. 12 noon + 21 hr = 9 AM.
-  {n:94,sub:"Maths",q:"Find the highest common factor of 36x^3y^2z and 48x^2yz^3.",opts:["12x^3y^2z^3","12x^2yz","24x^2yz","144x^3y^2z^3"]},
-  {n:95,sub:"Maths",q:"When 335 is added to 5A7, the result is 8B2. 8B2 is divisible by 3. What is the largest possible value of A?",opts:["4","8","1","2"]}, // 5A7 + 335 = 8(A+4)2. 8+A+4+2 = 14+A. Div by 3. Max A = 4 (18). Let's pick 4.
-  {n:96,sub:"Maths",q:"The LCM of three different numbers is 120. Which of the following cannot be their HCF?",opts:["8","12","35","24"]},
-  {n:97,sub:"Maths",q:"Two numbers are in the ratio 3:4. If their LCM is 240, the smaller number is:",opts:["40","60","80","100"]}, // 3x * 4x ? No, LCM of 3x, 4x = 12x = 240. x=20. Smaller = 60.
-  {n:98,sub:"Maths",q:"What will be the remainder when (67^67 + 67) is divided by 68?",opts:["1","63","66","66"]},
-  {n:99,sub:"Maths",q:"The GCD (Greatest Common Divisor) of (a^m - 1) and (a^n - 1) is:",opts:["a^(GCD of m,n) - 1","a^(LCM of m,n) - 1","a^(m-n) - 1","None of these"]},
-  {n:100,sub:"Maths",q:"The product of three consecutive positive integers is always divisible by:",opts:["4","10","6","8"]}
+// PHYSICS (20 Questions - Hard Level)
+{n:1,sub:"Physics",topic:"Mechanics",q:"A bullet of mass 'm' moving with velocity 'v' is completely embedded in a block of mass 'M' suspended by a string. The vertical height to which the block rises is:",opts:["v² / 2g", "(m²v²) / (2g(M+m)²)", "(M²v²) / (2g(M+m)²)","(mv)² / (2gM²)"]},
+{n:2,sub:"Physics",topic:"Thermodynamics",q:"An ideal gas goes through a reversible cycle a→b→c→d. The efficiency of the Carnot engine operating between temperatures T1 and T2 is maximum when:",opts:["T1 = T2","T1 is slightly greater than T2","Difference between T1 and T2 is maximum","Efficiency does not depend on temperature"]},
+{n:3,sub:"Physics",topic:"Optics",q:"If two lenses of power +1.5 D and -2.5 D are placed in contact, what is the focal length of the combination?",opts:["-100 cm","+100 cm","-10 cm","+10 cm"]},
+{n:4,sub:"Physics",topic:"Electromagnetism",q:"A proton enters a uniform magnetic field of 2.0 T with a velocity of 3 x 10^6 m/s at an angle of 30° to the field. What is the magnetic force acting on it? (Charge of proton = 1.6 x 10^-19 C)",opts:["1.6 x 10^-12 N","9.6 x 10^-12 N","1.9 x 10^-13 N","4.8 x 10^-13 N"]},
+{n:5,sub:"Physics",topic:"Rotational Dynamics",q:"A solid sphere and a solid cylinder of the same mass and radius are released simultaneously from the top of an inclined plane. Which will reach the bottom first?",opts:["Cylinder","Sphere","Both will reach together","Depends on the angle of inclination"]},
+{n:6,sub:"Physics",topic:"Wave Optics",q:"In Young's Double Slit Experiment, if the distance between the slits is halved and the distance to the screen is doubled, the fringe width will:",opts:["Remain the same","Become half","Become four times","Become double"]},
+{n:7,sub:"Physics",topic:"Fluid Mechanics",q:"Water is flowing through a horizontal pipe of non-uniform cross-section. The speed of water is 2 m/s where the radius is 'r'. What is the speed where the radius is 'r/2'?",opts:["8 m/s","4 m/s","16 m/s","2 m/s"]},
+{n:8,sub:"Physics",topic:"Modern Physics",q:"The de Broglie wavelength of an electron accelerated through a potential difference V is proportional to:",opts:["V","1/V","√V","1/√V"]},
+{n:9,sub:"Physics",topic:"Gravitation",q:"If the radius of the earth shrinks by 1%, its mass remaining the same, the value of 'g' on the earth's surface will:",opts:["Decrease by 2%","Decrease by 1%","Increase by 2%","Increase by 1%"]},
+{n:10,sub:"Physics",topic:"Electrostatics",q:"Two point charges +q and -q are separated by a distance '2l'. The electric potential at a point on the equatorial line is:",opts:["kq/l","Zero","kq/2l","Depends on distance from center"]},
+{n:11,sub:"Physics",topic:"Kinematics",q:"A stone is dropped from a height 'h'. It hits the ground with momentum 'P'. If the same stone is dropped from a height '4h', its momentum on hitting the ground will be:",opts:["P","2P","4P","8P"]},
+{n:12,sub:"Physics",topic:"Current Electricity",q:"A wire of resistance R is stretched to twice its original length. The new resistance of the wire will be:",opts:["R","2R","4R","R/2"]},
+{n:13,sub:"Physics",topic:"Magnetic Effect of Current",q:"The magnetic field at the center of a circular current carrying coil is B. If the radius is doubled and current is halved, the new magnetic field will be:",opts:["B/4","B/2","B","2B"]},
+{n:14,sub:"Physics",topic:"Properties of Matter",q:"Excess pressure inside a soap bubble of radius 'r' and surface tension 'T' is:",opts:["2T/r","T/r","3T/r","4T/r"]},
+{n:15,sub:"Physics",topic:"Semiconductors",q:"In a p-n junction diode, the depletion region is created due to:",opts:["Drift of holes","Drift of electrons","Diffusion of majority carriers","Minority carrier injection"]},
+{n:16,sub:"Physics",topic:"Oscillations",q:"A simple pendulum has a time period T. If the mass of the bob is doubled, the time period will become:",opts:["2T","T","T/2","4T"]},
+{n:17,sub:"Physics",topic:"Alternating Current",q:"In an LCR series circuit, at resonance, the phase difference between voltage and current is:",opts:["π/2","π/4","0","π"]},
+{n:18,sub:"Physics",topic:"Electromagnetic Waves",q:"Which of the following electromagnetic waves has the highest frequency?",opts:["Gamma rays","X-rays","Ultraviolet rays","Microwaves"]},
+{n:19,sub:"Physics",topic:"Heat Transfer",q:"The rate of cooling of a body is proportional to the excess temperature of the body over the surroundings. This is:",opts:["Stefan's Law","Wien's Law","Kirchhoff's Law","Newton's Law of Cooling"]},
+{n:20,sub:"Physics",topic:"Work, Energy, Power",q:"A particle is moving in a circular path with constant speed. The work done by the centripetal force is:",opts:["Positive","Negative","Zero","Infinite"]},
+
+// CHEMISTRY (20 Questions - Hard Level)
+{n:21,sub:"Chemistry",topic:"Organic Chemistry",q:"Which of the following compounds will undergo SN1 reaction most readily?",opts:["CH3Cl","(CH3)3CCl","CH3CH2Cl","CH2=CHCl"]},
+{n:22,sub:"Chemistry",topic:"Equilibrium",q:"The pH of a 10^-8 M HCl aqueous solution is closely approximately:",opts:["8.0","7.0","6.98","1.0"]},
+{n:23,sub:"Chemistry",topic:"Electrochemistry",q:"During the electrolysis of aqueous NaCl, the gas liberated at the anode is:",opts:["H2","Cl2","O2","HCl"]},
+{n:24,sub:"Chemistry",topic:"Coordination Compounds",q:"The oxidation state and coordination number of Cobalt in [Co(en)3]3+ are respectively:",opts:["+3 and 3","+2 and 6","+2 and 3","+3 and 6"]},
+{n:25,sub:"Chemistry",topic:"Chemical Kinetics",q:"For a first-order reaction, the half-life period is independent of:",opts:["Rate constant","Initial concentration","Temperature","Activation energy"]},
+{n:26,sub:"Chemistry",topic:"Thermodynamics",q:"For a spontaneous process at constant temperature and pressure, the change in Gibbs free energy (ΔG) must be:",opts:["Negative","Positive","Zero","Equal to ΔH"]},
+{n:27,sub:"Chemistry",topic:"Atomic Structure",q:"The quantum number that determines the spatial orientation of an orbital is:",opts:["Principal quantum number","Azimuthal quantum number","Spin quantum number","Magnetic quantum number"]},
+{n:28,sub:"Chemistry",topic:"P-Block Elements",q:"Which of the following halogens has the highest electron affinity?",opts:["F","Cl","Br","I"]},
+{n:29,sub:"Chemistry",topic:"Chemical Bonding",q:"The hybridization of Carbon in Benzene (C6H6) is:",opts:["sp","sp3","sp2","dsp2"]},
+{n:30,sub:"Chemistry",topic:"Solutions",q:"Which of the following is a colligative property?",opts:["Osmotic pressure","Refractive index","Viscosity","Surface tension"]},
+{n:31,sub:"Chemistry",topic:"Alcohols, Phenols",q:"Phenol when treated with concentrated HNO3 and H2SO4 gives:",opts:["o-Nitrophenol","p-Nitrophenol","Picric acid","Benzoquinone"]},
+{n:32,sub:"Chemistry",topic:"Aldehydes, Ketones",q:"Which of the following will not undergo Aldol condensation?",opts:["Formaldehyde","Acetaldehyde","Acetone","Propanal"]},
+{n:33,sub:"Chemistry",topic:"Polymers",q:"Nylon 6,6 is a copolymer of:",opts:["Caprolactam","Hexamethylenediamine and adipic acid","Phenol and formaldehyde","Ethylene glycol and terephthalic acid"]},
+{n:34,sub:"Chemistry",topic:"Biomolecules",q:"Which base is present in RNA but not in DNA?",opts:["Adenine","Guanine","Cytosine","Uracil"]},
+{n:35,sub:"Chemistry",topic:"Metallurgy",q:"In the extraction of copper, the matte contains mainly:",opts:["Cu2S and FeS","Cu2O and FeS","Cu2S and FeO","Cu2O and FeO"]},
+{n:36,sub:"Chemistry",topic:"S-Block Elements",q:"The alkali metal that forms only monoxide upon heating in excess air is:",opts:["Na","K","Li","Rb"]},
+{n:37,sub:"Chemistry",topic:"D-Block Elements",q:"Which of the following transitions metal ions is diamagnetic?",opts:["Zn2+","Ni2+","Cu2+","Fe2+"]},
+{n:38,sub:"Chemistry",topic:"Environmental Chem",q:"The gas mainly responsible for the depletion of ozone layer is:",opts:["CO2","CH4","SO2","CFCs"]},
+{n:39,sub:"Chemistry",topic:"Solid State",q:"Frenkel defect is usually shown by:",opts:["NaCl","KCl","AgBr","CsCl"]},
+{n:40,sub:"Chemistry",topic:"Surface Chemistry",q:"Tyndall effect is a characteristic property of:",opts:["True solutions","Colloidal solutions","Suspensions","Precipitates"]},
+
+// BIOLOGY (20 Questions - Hard Level)
+{n:41,sub:"Biology",topic:"Genetics",q:"If a color-blind man marries a woman whose father was color-blind, what is the probability that their son will be color-blind?",opts:["0%","50%","100%","25%"]},
+{n:42,sub:"Biology",topic:"Biotechnology",q:"In recombinant DNA technology, which enzyme is known as molecular scissors?",opts:["DNA Ligase","DNA Polymerase","Restriction Endonuclease","Helicase"]},
+{n:43,sub:"Biology",topic:"Human Physiology",q:"The volume of air inspired or expired during a normal respiration is called:",opts:["Tidal volume","Inspiratory reserve volume","Expiratory reserve volume","Residual volume"]},
+{n:44,sub:"Biology",topic:"Plant Physiology",q:"During light reaction of photosynthesis, which of the following is formed?",opts:["Glucose","Amino acids","Starch","ATP and NADPH"]},
+{n:45,sub:"Biology",topic:"Cell Cycle",q:"Crossing over occurs during which phase of meiosis?",opts:["Leptotene","Pachytene","Diplotene","Diakinesis"]},
+{n:46,sub:"Biology",topic:"Evolution",q:"Industrial melanism is an example of:",opts:["Mutation","Neo-Lamarckism","Natural selection","Genetic drift"]},
+{n:47,sub:"Biology",topic:"Reproduction",q:"Capacitation refers to changes in the:",opts:["Ovum before fertilization","Sperm before fertilization","Ovum after fertilization","Sperm after fertilization"]},
+{n:48,sub:"Biology",topic:"Human Disease",q:"Which of the following diseases is caused by a protozoan?",opts:["Malaria","Typhoid","Tuberculosis","Cholera"]},
+{n:49,sub:"Biology",topic:"Ecology",q:"An inverted pyramid of biomass can be found in which ecosystem?",opts:["Forest","Grassland","Tundra","Marine (Pond/Ocean)"]},
+{n:50,sub:"Biology",topic:"Biomolecules",q:"Which structural level of protein is most important for its biological function (like enzymes)?",opts:["Primary","Secondary","Tertiary","Quaternary"]},
+{n:51,sub:"Biology",topic:"Nervous System",q:"The resting membrane potential of a neuron is primarily maintained by:",opts:["Na+/K+ pump","Voltage-gated Na+ channels","Voltage-gated Ca2+ channels","Ligand-gated channels"]},
+{n:52,sub:"Biology",topic:"Endocrine System",q:"Which hormone is responsible for the 'fight or flight' response?",opts:["Thyroxine","Adrenaline (Epinephrine)","Insulin","Melatonin"]},
+{n:53,sub:"Biology",topic:"Plant Kingdom",q:"Double fertilization is a unique characteristic feature of:",opts:["Algae","Gymnosperms","Angiosperms","Bryophytes"]},
+{n:54,sub:"Biology",topic:"Animal Kingdom",q:"Water vascular system is a characteristic of:",opts:["Echinoderms","Arthropods","Annelids","Molluscs"]},
+{n:55,sub:"Biology",topic:"Microbes",q:"Which bacteria is widely used as a bio-fertilizer in paddy fields?",opts:["E. coli","Rhizobium","Streptococcus","Azolla/Cyanobacteria"]},
+{n:56,sub:"Biology",topic:"Excretory System",q:"The loop of Henle is meant for the absorption of:",opts:["Glucose","Water","Urea","Amino acids"]},
+{n:57,sub:"Biology",topic:"Circulatory System",q:"The pacemaker of the human heart is the:",opts:["AV node","Purkinje fibers","SA node","Bundle of His"]},
+{n:58,sub:"Biology",topic:"Skeletal System",q:"The joint between the atlas and axis vertebra is a type of:",opts:["Hinge joint","Ball and socket joint","Gliding joint","Pivot joint"]},
+{n:59,sub:"Biology",topic:"Immune System",q:"Antibodies are secreted by:",opts:["T-lymphocytes","B-lymphocytes (Plasma cells)","Macrophages","Eosinophils"]},
+{n:60,sub:"Biology",topic:"Molecular Basis of Inheritance",q:"The initiation codon for protein synthesis is:",opts:["AUG","UAA","UAG","UGA"]},
+
+// HINDI (15 Questions - Hard Level)
+{n:61,sub:"Hindi",topic:"संधि",q:"'उज्ज्वल' का सही संधि-विच्छेद क्या होगा?",opts:["उज्ज + वल","उत् + ज्वल","उद् + ज्वल","उज् + ज्वल"]},
+{n:62,sub:"Hindi",topic:"समास",q:"'नीलकंठ' में कौन-सा समास है, यदि इसका अर्थ 'शिव' लिया जाए?",opts:["कर्मधारय","तत्पुरुष","बहुव्रीहि","द्वंद्व"]},
+{n:63,sub:"Hindi",topic:"अलंकार",q:"'तरनि तनूजा तट तमाल तरुवर बहु छाये' में कौन-सा अलंकार है?",opts:["अनुप्रास","यमक","श्लेष","उपमा"]},
+{n:64,sub:"Hindi",topic:"रस",q:"'वीभत्स रस' का स्थायी भाव क्या है?",opts:["क्रोध","शोक","उत्साह","जुगुप्सा (घृणा)"]},
+{n:65,sub:"Hindi",topic:"विलोम",q:"'स्थावर' का विलोम शब्द है:",opts:["अस्थावर","जड़","जंगम","गतिशील"]},
+{n:66,sub:"Hindi",topic:"पर्यायवाची",q:"निम्नलिखित में से कौन 'सरस्वती' का पर्यायवाची नहीं है?",opts:["वीणापाणि","पद्मा","शारदा","वाग्देवी"]},
+{n:67,sub:"Hindi",topic:"अनेक शब्दों के लिए एक शब्द",q:"'जो मोक्ष की इच्छा रखता हो', उसे क्या कहते हैं?",opts:["मुमुक्षु","तपस्वी","जिज्ञासु","सन्यासी"]},
+{n:68,sub:"Hindi",topic:"मुहावरे",q:"'काठ का उल्लू' मुहावरे का अर्थ है:",opts:["चालाक","निर्दयी","महामूर्ख","परिश्रमी"]},
+{n:69,sub:"Hindi",topic:"शब्द भेद",q:"'अनाड़ी' शब्द का तत्सम रूप क्या है?",opts:["अनार्य","अज्ञानी","अशिक्षित","अनार्य (अनार्य)"]},
+{n:70,sub:"Hindi",topic:"वर्तनी",q:"निम्नलिखित में से शुद्ध वर्तनी वाला शब्द छाँटिए:",opts:["आशिर्वाद","आशीर्वाद","आर्शीवाद","अशीर्वाद"]},
+{n:71,sub:"Hindi",topic:"वाक्य शुद्धि",q:"अशुद्ध वाक्य छाँटिए:",opts:["मैं अपनी बात का स्पष्टीकरण करना चाहता हूँ।","राम ने रावण को मारा।","वह घर गया।","तुम कहाँ जा रहे हो?"]},
+{n:72,sub:"Hindi",topic:"छंद",q:"चौपाई के प्रत्येक चरण में कितनी मात्राएँ होती हैं?",opts:["16","24","13","11"]},
+{n:73,sub:"Hindi",topic:"रचनाएँ",q:"'कामायनी' महाकाव्य के रचयिता कौन हैं?",opts:["सूर्यकांत त्रिपाठी निराला","महादेवी वर्मा","रामधारी सिंह दिनकर","जयशंकर प्रसाद"]},
+{n:74,sub:"Hindi",topic:"कारक",q:"'हे राम! रक्षा करो।' वाक्य में कौन-सा कारक है?",opts:["कर्ता","संबोधन","कर्म","अपादान"]},
+{n:75,sub:"Hindi",topic:"उपसर्ग-प्रत्यय",q:"'अत्यधिक' शब्द में कौन-सा उपसर्ग लगा है?",opts:["अ","अत्य","अति","अत"]},
+
+// ENGLISH (10 Questions - Hard Level)
+{n:76,sub:"English",topic:"Error Detection",q:"Identify the segment which contains a grammatical error: 'Neither of the two brothers are coming to the party.'",opts:["Neither of","are coming","the two brothers","to the party"]},
+{n:77,sub:"English",topic:"Idioms",q:"What is the meaning of the idiom 'To bite the dust'?",opts:["To eat voraciously","To be arrogant","To be defeated or die","To work hard"]},
+{n:78,sub:"English",topic:"One Word Substitution",q:"A person who abandons his religious or political beliefs is called an:",opts:["Apostate","Atheist","Agnostic","Ascetic"]},
+{n:79,sub:"English",topic:"Synonyms",q:"Choose the correct synonym for 'EPHEMERAL':",opts:["Eternal","Permanent","Solid","Short-lived"]},
+{n:80,sub:"English",topic:"Antonyms",q:"Choose the correct antonym for 'OBSTINATE':",opts:["Stubborn","Flexible","Firm","Aggressive"]},
+{n:81,sub:"English",topic:"Voice",q:"Change the voice: 'Who broke this window?'",opts:["By whom this window was broken?","By who was this window broken?","By whom was this window broken?","Who was this window broken by?"]},
+{n:82,sub:"English",topic:"Narration",q:"Change into indirect speech: He said, 'Alas! I am undone.'",opts:["He exclaimed with sorrow that he was undone.","He said that alas he was undone.","He exclaimed sadly that I am undone.","He exclaimed that he is undone."]},
+{n:83,sub:"English",topic:"Prepositions",q:"He is completely engrossed ________ his new project.",opts:["with","at","on","in"]},
+{n:84,sub:"English",topic:"Sentence Improvement",q:"'Had I known you were in town, I *will have met* you.' Replace the underlined phrase.",opts:["would meet","would have met","will meet","have met"]},
+{n:85,sub:"English",topic:"Spelling",q:"Which of the following words is correctly spelt?",opts:["Vaccuum","Vaccum","Vacuum","Vacume"]},
+
+// GK (15 Questions - Hard Level Bihar & India)
+{n:86,sub:"GK",topic:"History",q:"Who among the following was the founder of the Vikramshila University in Bihar?",opts:["Gopala","Dharmapala","Devapala","Ramapala"]},
+{n:87,sub:"GK",topic:"Geography",q:"The Tropic of Cancer does NOT pass through which of the following Indian states?",opts:["Gujarat","Rajasthan","Bihar","Jharkhand"]},
+{n:88,sub:"GK",topic:"Polity",q:"Which Article of the Indian Constitution empowers the President to declare Financial Emergency?",opts:["Article 360","Article 356","Article 352","Article 365"]},
+{n:89,sub:"GK",topic:"Economics",q:"Who authored the book 'Poverty and Un-British Rule in India'?",opts:["Mahatma Gandhi","Jawaharlal Nehru","R.C. Dutt","Dadabhai Naoroji"]},
+{n:90,sub:"GK",topic:"Bihar Specific",q:"In which year was the separate province of Bihar created from Bengal?",opts:["1905","1912","1936","1911"]},
+{n:91,sub:"GK",topic:"Current Affairs",q:"The 'Global Innovation Index' is published annually by which organization?",opts:["World Bank","WEF","WIPO","IMF"]},
+{n:92,sub:"GK",topic:"History",q:"The famous 'Battle of Buxar' was fought in the year:",opts:["1757","1764","1761","1765"]},
+{n:93,sub:"GK",topic:"Science & Tech",q:"What is the name of India's first solar mission launched by ISRO?",opts:["Gaganyaan","Chandrayaan-3","Vyommitra","Aditya-L1"]},
+{n:94,sub:"GK",topic:"Geography",q:"Which river is known as the 'Sorrow of Bihar' due to its frequent flooding?",opts:["Kosi","Ganga","Son","Gandak"]},
+{n:95,sub:"GK",topic:"Culture",q:"Madhubani painting, a famous folk art, primarily belongs to which state?",opts:["Uttar Pradesh","Madhya Pradesh","Bihar","Rajasthan"]},
+{n:96,sub:"GK",topic:"Polity",q:"The power to decide an election petition for the State Legislative Assembly is vested in the:",opts:["Election Commission","High Court","Supreme Court","Governor"]},
+{n:97,sub:"GK",topic:"Biology/Science",q:"Which isotope is used in the treatment of cancer?",opts:["Uranium-235","Carbon-14","Iodine-131","Cobalt-60"]},
+{n:98,sub:"GK",topic:"Bihar Specific",q:"Where is the Valmiki National Park, the only national park in Bihar, located?",opts:["Gaya","Patna","West Champaran","Kaimur"]},
+{n:99,sub:"GK",topic:"Current Affairs",q:"Who was the Chief Guest for India's Republic Day Parade in 2024?",opts:["Emmanuel Macron","Joe Biden","Abdel Fattah el-Sisi","Rishi Sunak"]},
+{n:100,sub:"GK",topic:"History",q:"The First Buddhist Council was held at:",opts:["Vaishali","Rajgriha","Pataliputra","Kashmir"]}
 ];
 
 let studentName = "";
@@ -553,7 +572,8 @@ let filteredIndices = [];
 let current = 0; 
 let timerInterval;
 let endTime;
-const TEST_DURATION_MS = 90 * 60 * 1000; // 1 Hour 30 Minutes
+// 90 minutes in milliseconds
+const TEST_DURATION_MS = 90 * 60 * 1000; 
 
 window.onload = function() {
   studentName = localStorage.getItem("dcece_studentName");
@@ -561,13 +581,13 @@ window.onload = function() {
   
   if(studentName && savedEndTime && Date.now() < parseInt(savedEndTime)) {
     endTime = parseInt(savedEndTime);
-    answers = JSON.parse(localStorage.getItem("dcece_new100_answers")) || {};
+    answers = JSON.parse(localStorage.getItem("dcece_100_answers")) || {};
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("main-test-area").style.display = "block";
     startTimer();
-    filterSubject("Maths");
+    filterSubject("All");
   } else {
-    localStorage.removeItem("dcece_new100_answers");
+    localStorage.removeItem("dcece_100_answers");
     localStorage.removeItem("dcece_studentName");
     localStorage.removeItem("dcece_endTime");
   }
@@ -590,7 +610,7 @@ function startTest() {
   document.getElementById("main-test-area").style.display = "block";
   
   startTimer();
-  filterSubject("Maths");
+  filterSubject("All");
 }
 
 function startTimer() {
@@ -639,7 +659,7 @@ function renderQuestion() {
   const q = questions[actualIndex];
   
   document.getElementById("qNo").innerText = `Question ${actualIndex + 1} of ${questions.length}`;
-  document.getElementById("qSub").innerText = `${q.sub}`;
+  document.getElementById("qSub").innerText = `${q.sub} - ${q.topic}`;
   document.getElementById("question").innerText = q.q;
   
   let html = "";
@@ -658,14 +678,14 @@ function renderQuestion() {
   
   const isLast = current === filteredIndices.length - 1;
   document.getElementById("skipBtn").disabled = isLast;
-  document.getElementById("nextBtn").innerText = isLast ? "End of Test" : "Save & Next";
+  document.getElementById("nextBtn").innerText = isLast ? "End of Subject" : "Save & Next";
   
   renderPalette();
 }
 
 function selectOption(actualIndex, index) {
   answers[actualIndex] = index;
-  localStorage.setItem("dcece_new100_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_100_answers", JSON.stringify(answers));
   renderQuestion();
 }
 
@@ -679,7 +699,7 @@ function nextQuestion() {
 function skipQuestion() {
   const actualIndex = filteredIndices[current];
   delete answers[actualIndex];
-  localStorage.setItem("dcece_new100_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_100_answers", JSON.stringify(answers));
   if (current < filteredIndices.length - 1) {
     current++;
     renderQuestion();
@@ -721,23 +741,32 @@ function submitTest(isAuto = false) {
   
   let detailedReport = `--- DETAILED QUESTION ANALYSIS ---\n\n`;
 
+  // लूप चलाकर हर सवाल, यूज़र का जवाब और सही जवाब निकाल रहे हैं
   questions.forEach((q, index) => {
     const correctAnsLetter = ansKey[q.n];
     let userAnsLetter = "Not Attempted";
+    let userSelectedText = "None";
+    
+    // सही जवाब का पूरा टेक्स्ट निकाल रहे हैं
+    const correctAnsIndex = letterToIndex[correctAnsLetter];
+    const correctAnsText = q.opts[correctAnsIndex];
     
     if (answers[index] !== undefined) {
       userAnsLetter = ['A','B','C','D'][answers[index]];
+      userSelectedText = q.opts[answers[index]];
     }
+
+    detailedReport += `Q${q.n} [${q.sub}]: ${q.q}\n`;
 
     if (userAnsLetter === "Not Attempted") {
       unattempted++;
-      detailedReport += `Q${q.n} (${q.sub}): Unattempted | Correct Ans: ${correctAnsLetter}\n`;
+      detailedReport += `Status: ⚠️ Unattempted | Correct Ans: ${correctAnsLetter} (${correctAnsText})\n\n`;
     } else if (userAnsLetter === correctAnsLetter) {
       correct++;
-      detailedReport += `Q${q.n} (${q.sub}): Selected: ${userAnsLetter} | Correct Ans: ${correctAnsLetter} [✅ Correct]\n`;
+      detailedReport += `Selected: ${userAnsLetter} (${userSelectedText}) | Correct Ans: ${correctAnsLetter} (${correctAnsText}) [✅ Correct]\n\n`;
     } else {
       incorrect++;
-      detailedReport += `Q${q.n} (${q.sub}): Selected: ${userAnsLetter} | Correct Ans: ${correctAnsLetter} [❌ Incorrect]\n`;
+      detailedReport += `Selected: ${userAnsLetter} (${userSelectedText}) | Correct Ans: ${correctAnsLetter} (${correctAnsText}) [❌ Incorrect]\n\n`;
     }
   });
 
@@ -757,32 +786,23 @@ FINAL SCORE: ${correct} / ${questions.length}
 
 ${detailedReport}`;
 
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
-      access_key: '9c7f3c85-004e-4888-b6ed-6ed6f4715db6', 
-      subject: `DCECE Maths Test Result: ${studentName} scored ${correct}/${questions.length}`,
+      access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
+      subject: `DCECE Test Result - ${studentName} (Score: ${correct})`,
       message: finalMessage
-    })
+    }),
   })
-  .then(async (response) => {
-    let json = await response.json();
-    if (response.status == 200) {
-      console.log("Result sent successfully to email!");
-    } else {
-      console.log("Error sending email:", response);
-    }
+  .then(response => {
+     document.getElementById("loading-overlay").style.display = "none";
+     showResultUI(attempted, unattempted, correct, incorrect);
   })
   .catch(error => {
-    console.log("Network Error:", error);
-  })
-  .finally(() => {
-    document.getElementById("loading-overlay").style.display = "none";
-    showResultUI(attempted, unattempted, correct, incorrect);
+     alert("There was an error sending the result email. Showing results on screen anyway.");
+     document.getElementById("loading-overlay").style.display = "none";
+     showResultUI(attempted, unattempted, correct, incorrect);
   });
 }
 
@@ -810,7 +830,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
       <p style="color:var(--danger)">Wrong Answers: <strong>${incorrect}</strong></p>
     </div>
     <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
-    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_new100_answers');">Retake Test</button>
+    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_100_answers');">Retake Test</button>
   `;
 
   let reviewHTML = '<div class="review-container">';
@@ -833,7 +853,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
     reviewHTML += `
       <div class="review-q-card">
         <div class="review-q-header">
-          <span style="color:var(--muted)">Q${q.n}. (${q.sub})</span>
+          <span style="color:var(--muted)">Q${q.n}. (${q.sub} - ${q.topic})</span>
           ${statusText}
         </div>
         <div class="review-q-text">${q.q}</div>
@@ -858,7 +878,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
   reviewHTML += '</div>';
   reviewArea.innerHTML = reviewHTML;
   
-  localStorage.removeItem('dcece_new100_answers');
+  localStorage.removeItem('dcece_100_answers');
 }
 </script>
 
