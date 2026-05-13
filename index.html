@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - Hard Level PYQs</title>
+<title>DCECE Mock Test - Day 3 Practice Set</title>
 
 <style>
 :root{
@@ -141,7 +141,6 @@ header{
   padding:20px;
 }
 
-/* Start Screen Styles */
 #start-screen {
   background: var(--card);
   padding: 40px 20px;
@@ -338,7 +337,6 @@ button{
 .result h2 { color: var(--green); margin-bottom: 15px; }
 .result p { margin-bottom: 8px; font-size: 18px; }
 
-/* Review Section Styles */
 .review-container { margin-top: 30px; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto; padding: 0 10px; }
 .review-q-card { background: var(--card); border: 1px solid var(--border); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
 .review-q-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; font-weight: bold; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
@@ -352,7 +350,7 @@ button{
   display: none;
   position: fixed;
   top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   z-index: 1000;
   color: white;
   text-align: center;
@@ -374,7 +372,7 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>Welcome to DCECE Mock Test (Hard Level)</h2>
+  <h2>DCECE Mock Test - Day 3 Topics</h2>
   <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
@@ -383,18 +381,16 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Practice Set</h1>
+      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Day 3 Set</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
-        <button class="filter-btn active" data-sub="All" onclick="filterSubject('All')">All</button>
-        <button class="filter-btn" data-sub="Physics" onclick="filterSubject('Physics')">⚡ Physics</button>
+        <button class="filter-btn active" data-sub="All" onclick="filterSubject('All')">All Subjects</button>
         <button class="filter-btn" data-sub="Chemistry" onclick="filterSubject('Chemistry')">🧪 Chemistry</button>
-        <button class="filter-btn" data-sub="Biology" onclick="filterSubject('Biology')">🌿 Biology</button>
+        <button class="filter-btn" data-sub="Maths" onclick="filterSubject('Maths')">➗ Maths</button>
         <button class="filter-btn" data-sub="Hindi" onclick="filterSubject('Hindi')">Ⓗ Hindi</button>
-        <button class="filter-btn" data-sub="English" onclick="filterSubject('English')">Ⓔ English</button>
         <button class="filter-btn" data-sub="GK" onclick="filterSubject('GK')">🌐 GK</button>
       </div>
 
@@ -433,137 +429,133 @@ button{
 <div class="result" id="result"></div>
 <div id="review-area"></div>
 
-<div id="loading-overlay">Submitting your test... Please wait.</div>
+<div id="loading-overlay">Submitting your test and sending email...<br><span style="font-size: 16px; color: var(--muted); margin-top: 10px; display: inline-block;">Please wait, do not close the window.</span></div>
 
 <script>
-// Answer Key for 100 Hard Level Questions
+// Accurate Answer Key matching the 100 questions.
 const ansKey = {
-  1:'B', 2:'C', 3:'A', 4:'D', 5:'B', 6:'C', 7:'A', 8:'D', 9:'C', 10:'B',
-  11:'B', 12:'C', 13:'A', 14:'D', 15:'C', 16:'B', 17:'C', 18:'A', 19:'D', 20:'C',
-  21:'B', 22:'C', 23:'B', 24:'D', 25:'B', 26:'A', 27:'D', 28:'B', 29:'C', 30:'A',
-  31:'C', 32:'A', 33:'B', 34:'D', 35:'B', 36:'C', 37:'A', 38:'D', 39:'C', 40:'B',
-  41:'B', 42:'C', 43:'A', 44:'D', 45:'B', 46:'C', 47:'B', 48:'A', 49:'D', 50:'C',
-  51:'A', 52:'B', 53:'C', 54:'A', 55:'D', 56:'B', 57:'C', 58:'D', 59:'B', 60:'A',
-  61:'B', 62:'C', 63:'A', 64:'D', 65:'C', 66:'B', 67:'A', 68:'C', 69:'D', 70:'B',
-  71:'C', 72:'A', 73:'D', 74:'B', 75:'C', 76:'B', 77:'C', 78:'A', 79:'D', 80:'B',
-  81:'C', 82:'A', 83:'D', 84:'B', 85:'C', 86:'B', 87:'C', 88:'A', 89:'D', 90:'B',
-  91:'C', 92:'B', 93:'D', 94:'A', 95:'C', 96:'B', 97:'D', 98:'C', 99:'A', 100:'B'
+  1:'C', 2:'A', 3:'B', 4:'A', 5:'B', 6:'C', 7:'B', 8:'B', 9:'B', 10:'C',
+  11:'A', 12:'A', 13:'B', 14:'C', 15:'C', 16:'A', 17:'C', 18:'B', 19:'A', 20:'B',
+  21:'A', 22:'A', 23:'B', 24:'D', 25:'C', 26:'B', 27:'C', 28:'A', 29:'B', 30:'A',
+  31:'C', 32:'A', 33:'C', 34:'B', 35:'B', 36:'B', 37:'B', 38:'A', 39:'A', 40:'C',
+  41:'B', 42:'C', 43:'B', 44:'C', 45:'A', 46:'B', 47:'C', 48:'C', 49:'B', 50:'B',
+  51:'B', 52:'C', 53:'B', 54:'B', 55:'A', 56:'B', 57:'A', 58:'C', 59:'C', 60:'B',
+  61:'A', 62:'B', 63:'C', 64:'B', 65:'C', 66:'B', 67:'C', 68:'A', 69:'B', 70:'B',
+  71:'A', 72:'B', 73:'B', 74:'B', 75:'A', 76:'B', 77:'B', 78:'C', 79:'B', 80:'C',
+  81:'B', 82:'A', 83:'C', 84:'A', 85:'C', 86:'B', 87:'D', 88:'B', 89:'A', 90:'B',
+  91:'C', 92:'B', 93:'B', 94:'A', 95:'C', 96:'B', 97:'C', 98:'B', 99:'C', 100:'B'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-// PHYSICS (20 Questions - Hard Level)
-{n:1,sub:"Physics",topic:"Mechanics",q:"A bullet of mass 'm' moving with velocity 'v' is completely embedded in a block of mass 'M' suspended by a string. The vertical height to which the block rises is:",opts:["v² / 2g", "(m²v²) / (2g(M+m)²)", "(M²v²) / (2g(M+m)²)","(mv)² / (2gM²)"]},
-{n:2,sub:"Physics",topic:"Thermodynamics",q:"An ideal gas goes through a reversible cycle a→b→c→d. The efficiency of the Carnot engine operating between temperatures T1 and T2 is maximum when:",opts:["T1 = T2","T1 is slightly greater than T2","Difference between T1 and T2 is maximum","Efficiency does not depend on temperature"]},
-{n:3,sub:"Physics",topic:"Optics",q:"If two lenses of power +1.5 D and -2.5 D are placed in contact, what is the focal length of the combination?",opts:["-100 cm","+100 cm","-10 cm","+10 cm"]},
-{n:4,sub:"Physics",topic:"Electromagnetism",q:"A proton enters a uniform magnetic field of 2.0 T with a velocity of 3 x 10^6 m/s at an angle of 30° to the field. What is the magnetic force acting on it? (Charge of proton = 1.6 x 10^-19 C)",opts:["1.6 x 10^-12 N","9.6 x 10^-12 N","1.9 x 10^-13 N","4.8 x 10^-13 N"]},
-{n:5,sub:"Physics",topic:"Rotational Dynamics",q:"A solid sphere and a solid cylinder of the same mass and radius are released simultaneously from the top of an inclined plane. Which will reach the bottom first?",opts:["Cylinder","Sphere","Both will reach together","Depends on the angle of inclination"]},
-{n:6,sub:"Physics",topic:"Wave Optics",q:"In Young's Double Slit Experiment, if the distance between the slits is halved and the distance to the screen is doubled, the fringe width will:",opts:["Remain the same","Become half","Become four times","Become double"]},
-{n:7,sub:"Physics",topic:"Fluid Mechanics",q:"Water is flowing through a horizontal pipe of non-uniform cross-section. The speed of water is 2 m/s where the radius is 'r'. What is the speed where the radius is 'r/2'?",opts:["8 m/s","4 m/s","16 m/s","2 m/s"]},
-{n:8,sub:"Physics",topic:"Modern Physics",q:"The de Broglie wavelength of an electron accelerated through a potential difference V is proportional to:",opts:["V","1/V","√V","1/√V"]},
-{n:9,sub:"Physics",topic:"Gravitation",q:"If the radius of the earth shrinks by 1%, its mass remaining the same, the value of 'g' on the earth's surface will:",opts:["Decrease by 2%","Decrease by 1%","Increase by 2%","Increase by 1%"]},
-{n:10,sub:"Physics",topic:"Electrostatics",q:"Two point charges +q and -q are separated by a distance '2l'. The electric potential at a point on the equatorial line is:",opts:["kq/l","Zero","kq/2l","Depends on distance from center"]},
-{n:11,sub:"Physics",topic:"Kinematics",q:"A stone is dropped from a height 'h'. It hits the ground with momentum 'P'. If the same stone is dropped from a height '4h', its momentum on hitting the ground will be:",opts:["P","2P","4P","8P"]},
-{n:12,sub:"Physics",topic:"Current Electricity",q:"A wire of resistance R is stretched to twice its original length. The new resistance of the wire will be:",opts:["R","2R","4R","R/2"]},
-{n:13,sub:"Physics",topic:"Magnetic Effect of Current",q:"The magnetic field at the center of a circular current carrying coil is B. If the radius is doubled and current is halved, the new magnetic field will be:",opts:["B/4","B/2","B","2B"]},
-{n:14,sub:"Physics",topic:"Properties of Matter",q:"Excess pressure inside a soap bubble of radius 'r' and surface tension 'T' is:",opts:["2T/r","T/r","3T/r","4T/r"]},
-{n:15,sub:"Physics",topic:"Semiconductors",q:"In a p-n junction diode, the depletion region is created due to:",opts:["Drift of holes","Drift of electrons","Diffusion of majority carriers","Minority carrier injection"]},
-{n:16,sub:"Physics",topic:"Oscillations",q:"A simple pendulum has a time period T. If the mass of the bob is doubled, the time period will become:",opts:["2T","T","T/2","4T"]},
-{n:17,sub:"Physics",topic:"Alternating Current",q:"In an LCR series circuit, at resonance, the phase difference between voltage and current is:",opts:["π/2","π/4","0","π"]},
-{n:18,sub:"Physics",topic:"Electromagnetic Waves",q:"Which of the following electromagnetic waves has the highest frequency?",opts:["Gamma rays","X-rays","Ultraviolet rays","Microwaves"]},
-{n:19,sub:"Physics",topic:"Heat Transfer",q:"The rate of cooling of a body is proportional to the excess temperature of the body over the surroundings. This is:",opts:["Stefan's Law","Wien's Law","Kirchhoff's Law","Newton's Law of Cooling"]},
-{n:20,sub:"Physics",topic:"Work, Energy, Power",q:"A particle is moving in a circular path with constant speed. The work done by the centripetal force is:",opts:["Positive","Negative","Zero","Infinite"]},
+  // CHEMISTRY (25 Qs - Chemical Bonding, s, p, d, f Block)
+  {n:1,sub:"Chemistry",q:"What is the valency of carbon allowing it to form stable organic compounds?",opts:["2","3","4","5"]},
+  {n:2,sub:"Chemistry",q:"The octet rule for chemical bonding was proposed by:",opts:["Lewis and Kossel","Mendeleev","Bohr","Rutherford"]},
+  {n:3,sub:"Chemistry",q:"Which type of bond is formed in Sodium Chloride (NaCl)?",opts:["Covalent bond","Ionic bond","Coordinate bond","Hydrogen bond"]},
+  {n:4,sub:"Chemistry",q:"Elements belonging to the s-block of the periodic table are primarily:",opts:["Alkali and Alkaline Earth metals","Transition metals","Non-metals","Halogens"]},
+  {n:5,sub:"Chemistry",q:"The d-block elements in the modern periodic table are commonly known as:",opts:["Representative elements","Transition elements","Inner transition elements","Noble metals"]},
+  {n:6,sub:"Chemistry",q:"The f-block elements (Lanthanides and Actinides) are collectively called:",opts:["Metalloids","Chalcogens","Inner transition elements","Alkali metals"]},
+  {n:7,sub:"Chemistry",q:"What is the molecular geometry (shape) of a water (H2O) molecule?",opts:["Linear","Bent (V-shape)","Tetrahedral","Trigonal planar"]},
+  {n:8,sub:"Chemistry",q:"How many lone pairs of electrons are present on the central Oxygen atom in an H2O molecule?",opts:["1","2","3","4"]},
+  {n:9,sub:"Chemistry",q:"Which block of the periodic table contains the majority of non-metals?",opts:["s-block","p-block","d-block","f-block"]},
+  {n:10,sub:"Chemistry",q:"The general outermost electronic configuration of noble gases (except Helium) is:",opts:["ns2","ns2 np5","ns2 np6","nd10 ns2"]},
+  {n:11,sub:"Chemistry",q:"Which of the following elements forms the strongest hydrogen bond?",opts:["Fluorine","Nitrogen","Chlorine","Sulfur"]},
+  {n:12,sub:"Chemistry",q:"Which is the most electronegative element in the periodic table?",opts:["Fluorine","Oxygen","Nitrogen","Chlorine"]},
+  {n:13,sub:"Chemistry",q:"A covalent bond is formed between two atoms by:",opts:["Transfer of electrons","Sharing of electrons","Donation of protons","Loss of neutrons"]},
+  {n:14,sub:"Chemistry",q:"Which element has the highest electron affinity?",opts:["Fluorine","Bromine","Chlorine","Oxygen"]},
+  {n:15,sub:"Chemistry",q:"A completely formed triple bond (like in N2) consists of:",opts:["3 sigma bonds","2 sigma and 1 pi bond","1 sigma and 2 pi bonds","3 pi bonds"]},
+  {n:16,sub:"Chemistry",q:"Which of the following is the lightest metal found in the s-block?",opts:["Lithium","Sodium","Magnesium","Beryllium"]},
+  {n:17,sub:"Chemistry",q:"Paramagnetism is most commonly observed in the compounds of elements from which block?",opts:["s-block","p-block","d-block","f-block"]},
+  {n:18,sub:"Chemistry",q:"Which of the following is an example of a p-block metalloid?",opts:["Sodium","Silicon","Iron","Argon"]},
+  {n:19,sub:"Chemistry",q:"The formation of a cation (positive ion) from a neutral atom involves:",opts:["Loss of electrons","Gain of electrons","Sharing of electrons","Gain of protons"]},
+  {n:20,sub:"Chemistry",q:"What is the ideal bond angle in a Methane (CH4) molecule?",opts:["90°","109.5°","120°","180°"]},
+  {n:21,sub:"Chemistry",q:"A molecule with sp3 hybridization will generally have which geometric shape?",opts:["Tetrahedral","Linear","Square planar","Octahedral"]},
+  {n:22,sub:"Chemistry",q:"An element with atomic number Z=11 belongs to which block?",opts:["s-block","p-block","d-block","f-block"]},
+  {n:23,sub:"Chemistry",q:"Which transition metal exists as a liquid at room temperature?",opts:["Gallium","Mercury","Bromine","Cesium"]},
+  {n:24,sub:"Chemistry",q:"The Actinide series elements belong to which block of the periodic table?",opts:["s-block","p-block","d-block","f-block"]},
+  {n:25,sub:"Chemistry",q:"How many bonds are present between the two nitrogen atoms in an N2 molecule?",opts:["Single bond","Double bond","Triple bond","Coordinate bond"]},
 
-// CHEMISTRY (20 Questions - Hard Level)
-{n:21,sub:"Chemistry",topic:"Organic Chemistry",q:"Which of the following compounds will undergo SN1 reaction most readily?",opts:["CH3Cl","(CH3)3CCl","CH3CH2Cl","CH2=CHCl"]},
-{n:22,sub:"Chemistry",topic:"Equilibrium",q:"The pH of a 10^-8 M HCl aqueous solution is closely approximately:",opts:["8.0","7.0","6.98","1.0"]},
-{n:23,sub:"Chemistry",topic:"Electrochemistry",q:"During the electrolysis of aqueous NaCl, the gas liberated at the anode is:",opts:["H2","Cl2","O2","HCl"]},
-{n:24,sub:"Chemistry",topic:"Coordination Compounds",q:"The oxidation state and coordination number of Cobalt in [Co(en)3]3+ are respectively:",opts:["+3 and 3","+2 and 6","+2 and 3","+3 and 6"]},
-{n:25,sub:"Chemistry",topic:"Chemical Kinetics",q:"For a first-order reaction, the half-life period is independent of:",opts:["Rate constant","Initial concentration","Temperature","Activation energy"]},
-{n:26,sub:"Chemistry",topic:"Thermodynamics",q:"For a spontaneous process at constant temperature and pressure, the change in Gibbs free energy (ΔG) must be:",opts:["Negative","Positive","Zero","Equal to ΔH"]},
-{n:27,sub:"Chemistry",topic:"Atomic Structure",q:"The quantum number that determines the spatial orientation of an orbital is:",opts:["Principal quantum number","Azimuthal quantum number","Spin quantum number","Magnetic quantum number"]},
-{n:28,sub:"Chemistry",topic:"P-Block Elements",q:"Which of the following halogens has the highest electron affinity?",opts:["F","Cl","Br","I"]},
-{n:29,sub:"Chemistry",topic:"Chemical Bonding",q:"The hybridization of Carbon in Benzene (C6H6) is:",opts:["sp","sp3","sp2","dsp2"]},
-{n:30,sub:"Chemistry",topic:"Solutions",q:"Which of the following is a colligative property?",opts:["Osmotic pressure","Refractive index","Viscosity","Surface tension"]},
-{n:31,sub:"Chemistry",topic:"Alcohols, Phenols",q:"Phenol when treated with concentrated HNO3 and H2SO4 gives:",opts:["o-Nitrophenol","p-Nitrophenol","Picric acid","Benzoquinone"]},
-{n:32,sub:"Chemistry",topic:"Aldehydes, Ketones",q:"Which of the following will not undergo Aldol condensation?",opts:["Formaldehyde","Acetaldehyde","Acetone","Propanal"]},
-{n:33,sub:"Chemistry",topic:"Polymers",q:"Nylon 6,6 is a copolymer of:",opts:["Caprolactam","Hexamethylenediamine and adipic acid","Phenol and formaldehyde","Ethylene glycol and terephthalic acid"]},
-{n:34,sub:"Chemistry",topic:"Biomolecules",q:"Which base is present in RNA but not in DNA?",opts:["Adenine","Guanine","Cytosine","Uracil"]},
-{n:35,sub:"Chemistry",topic:"Metallurgy",q:"In the extraction of copper, the matte contains mainly:",opts:["Cu2S and FeS","Cu2O and FeS","Cu2S and FeO","Cu2O and FeO"]},
-{n:36,sub:"Chemistry",topic:"S-Block Elements",q:"The alkali metal that forms only monoxide upon heating in excess air is:",opts:["Na","K","Li","Rb"]},
-{n:37,sub:"Chemistry",topic:"D-Block Elements",q:"Which of the following transitions metal ions is diamagnetic?",opts:["Zn2+","Ni2+","Cu2+","Fe2+"]},
-{n:38,sub:"Chemistry",topic:"Environmental Chem",q:"The gas mainly responsible for the depletion of ozone layer is:",opts:["CO2","CH4","SO2","CFCs"]},
-{n:39,sub:"Chemistry",topic:"Solid State",q:"Frenkel defect is usually shown by:",opts:["NaCl","KCl","AgBr","CsCl"]},
-{n:40,sub:"Chemistry",topic:"Surface Chemistry",q:"Tyndall effect is a characteristic property of:",opts:["True solutions","Colloidal solutions","Suspensions","Precipitates"]},
+  // MATHS (25 Qs - Percentage, Ratio & Proportion, Profit & Loss)
+  {n:26,sub:"Maths",q:"What is 20% of 500?",opts:["50","100","150","200"]},
+  {n:27,sub:"Maths",q:"Convert the fraction 3/4 into a percentage.",opts:["25%","50%","75%","100%"]},
+  {n:28,sub:"Maths",q:"If A : B = 2 : 3 and B : C = 4 : 5, then what is the ratio of A : C?",opts:["8 : 15","15 : 8","2 : 5","6 : 20"]},
+  {n:29,sub:"Maths",q:"A shopkeeper bought an item for ₹400 and sold it for ₹500. Find his profit percentage.",opts:["20%","25%","30%","15%"]},
+  {n:30,sub:"Maths",q:"If the Cost Price (CP) is ₹200 and Selling Price (SP) is ₹150, calculate the loss percentage.",opts:["25%","20%","30%","15%"]},
+  {n:31,sub:"Maths",q:"If 10% of x is 50, what is the value of x?",opts:["100","250","500","1000"]},
+  {n:32,sub:"Maths",q:"Divide ₹100 into two parts in the ratio 2 : 3.",opts:["₹40 and ₹60","₹30 and ₹70","₹20 and ₹80","₹50 and ₹50"]},
+  {n:33,sub:"Maths",q:"An article is bought for ₹120. At what price should it be sold to gain 20%?",opts:["₹140","₹150","₹144","₹135"]},
+  {n:34,sub:"Maths",q:"If A : B = 1 : 2 and B : C = 2 : 3, find the combined ratio A : B : C.",opts:["1 : 3 : 2","1 : 2 : 3","2 : 1 : 3","3 : 2 : 1"]},
+  {n:35,sub:"Maths",q:"Convert the decimal 0.5 into a percentage.",opts:["5%","50%","0.5%","500%"]},
+  {n:36,sub:"Maths",q:"A person's salary increased from ₹1000 to ₹1200. What is the percentage increase?",opts:["10%","20%","25%","30%"]},
+  {n:37,sub:"Maths",q:"What is the inverse ratio of 3 : 4?",opts:["1 : 2","4 : 3","9 : 16","6 : 8"]},
+  {n:38,sub:"Maths",q:"If the cost of 5 pens is ₹25, what will be the cost of 8 pens?",opts:["₹40","₹45","₹50","₹35"]},
+  {n:39,sub:"Maths",q:"A number when decreased by 10% becomes 90. What is the original number?",opts:["100","110","99","120"]},
+  {n:40,sub:"Maths",q:"By selling a book for ₹90, a seller loses 10%. Find the Cost Price of the book.",opts:["₹81","₹99","₹100","₹110"]},
+  {n:41,sub:"Maths",q:"What is the value of 25% of 25%?",opts:["0.25","0.0625","6.25","0.0025"]},
+  {n:42,sub:"Maths",q:"Find the ratio of 1 hour to 15 minutes.",opts:["1 : 15","15 : 1","4 : 1","1 : 4"]},
+  {n:43,sub:"Maths",q:"Two successive discounts of 10% and 20% are equivalent to a single discount of:",opts:["30%","28%","25%","22%"]},
+  {n:44,sub:"Maths",q:"The cost price of 10 articles is equal to the selling price of 8 articles. Find the profit percentage.",opts:["20%","15%","25%","30%"]},
+  {n:45,sub:"Maths",q:"What is the ratio of 5 kg to 500 g?",opts:["10 : 1","1 : 10","5 : 1","1 : 5"]},
+  {n:46,sub:"Maths",q:"Express the fraction 1/8 as a percentage.",opts:["10%","12.5%","15%","8%"]},
+  {n:47,sub:"Maths",q:"If 40% of a number is 120, what is the number?",opts:["200","250","300","400"]},
+  {n:48,sub:"Maths",q:"Find the fourth proportional to 2, 4, and 6.",opts:["8","10","12","16"]},
+  {n:49,sub:"Maths",q:"Find the mean proportional between 4 and 16.",opts:["10","8","12","6"]},
+  {n:50,sub:"Maths",q:"The Marked Price of an item is ₹100. After a 15% discount, what is the Selling Price?",opts:["₹95","₹85","₹75","₹115"]},
 
-// BIOLOGY (20 Questions - Hard Level)
-{n:41,sub:"Biology",topic:"Genetics",q:"If a color-blind man marries a woman whose father was color-blind, what is the probability that their son will be color-blind?",opts:["0%","50%","100%","25%"]},
-{n:42,sub:"Biology",topic:"Biotechnology",q:"In recombinant DNA technology, which enzyme is known as molecular scissors?",opts:["DNA Ligase","DNA Polymerase","Restriction Endonuclease","Helicase"]},
-{n:43,sub:"Biology",topic:"Human Physiology",q:"The volume of air inspired or expired during a normal respiration is called:",opts:["Tidal volume","Inspiratory reserve volume","Expiratory reserve volume","Residual volume"]},
-{n:44,sub:"Biology",topic:"Plant Physiology",q:"During light reaction of photosynthesis, which of the following is formed?",opts:["Glucose","Amino acids","Starch","ATP and NADPH"]},
-{n:45,sub:"Biology",topic:"Cell Cycle",q:"Crossing over occurs during which phase of meiosis?",opts:["Leptotene","Pachytene","Diplotene","Diakinesis"]},
-{n:46,sub:"Biology",topic:"Evolution",q:"Industrial melanism is an example of:",opts:["Mutation","Neo-Lamarckism","Natural selection","Genetic drift"]},
-{n:47,sub:"Biology",topic:"Reproduction",q:"Capacitation refers to changes in the:",opts:["Ovum before fertilization","Sperm before fertilization","Ovum after fertilization","Sperm after fertilization"]},
-{n:48,sub:"Biology",topic:"Human Disease",q:"Which of the following diseases is caused by a protozoan?",opts:["Malaria","Typhoid","Tuberculosis","Cholera"]},
-{n:49,sub:"Biology",topic:"Ecology",q:"An inverted pyramid of biomass can be found in which ecosystem?",opts:["Forest","Grassland","Tundra","Marine (Pond/Ocean)"]},
-{n:50,sub:"Biology",topic:"Biomolecules",q:"Which structural level of protein is most important for its biological function (like enzymes)?",opts:["Primary","Secondary","Tertiary","Quaternary"]},
-{n:51,sub:"Biology",topic:"Nervous System",q:"The resting membrane potential of a neuron is primarily maintained by:",opts:["Na+/K+ pump","Voltage-gated Na+ channels","Voltage-gated Ca2+ channels","Ligand-gated channels"]},
-{n:52,sub:"Biology",topic:"Endocrine System",q:"Which hormone is responsible for the 'fight or flight' response?",opts:["Thyroxine","Adrenaline (Epinephrine)","Insulin","Melatonin"]},
-{n:53,sub:"Biology",topic:"Plant Kingdom",q:"Double fertilization is a unique characteristic feature of:",opts:["Algae","Gymnosperms","Angiosperms","Bryophytes"]},
-{n:54,sub:"Biology",topic:"Animal Kingdom",q:"Water vascular system is a characteristic of:",opts:["Echinoderms","Arthropods","Annelids","Molluscs"]},
-{n:55,sub:"Biology",topic:"Microbes",q:"Which bacteria is widely used as a bio-fertilizer in paddy fields?",opts:["E. coli","Rhizobium","Streptococcus","Azolla/Cyanobacteria"]},
-{n:56,sub:"Biology",topic:"Excretory System",q:"The loop of Henle is meant for the absorption of:",opts:["Glucose","Water","Urea","Amino acids"]},
-{n:57,sub:"Biology",topic:"Circulatory System",q:"The pacemaker of the human heart is the:",opts:["AV node","Purkinje fibers","SA node","Bundle of His"]},
-{n:58,sub:"Biology",topic:"Skeletal System",q:"The joint between the atlas and axis vertebra is a type of:",opts:["Hinge joint","Ball and socket joint","Gliding joint","Pivot joint"]},
-{n:59,sub:"Biology",topic:"Immune System",q:"Antibodies are secreted by:",opts:["T-lymphocytes","B-lymphocytes (Plasma cells)","Macrophages","Eosinophils"]},
-{n:60,sub:"Biology",topic:"Molecular Basis of Inheritance",q:"The initiation codon for protein synthesis is:",opts:["AUG","UAA","UAG","UGA"]},
+  // HINDI (25 Qs - लिंग, वचन, काल)
+  {n:51,sub:"Hindi",q:"'लड़का' शब्द का सही स्त्रीलिंग रूप क्या है?",opts:["लड़के","लड़की","लड़कियाँ","लड़कपन"]},
+  {n:52,sub:"Hindi",q:"'कवि' का स्त्रीलिंग रूप निम्नलिखित में से कौन सा है?",opts:["कवित्री","कवियत्री","कवयित्री","कविनी"]},
+  {n:53,sub:"Hindi",q:"इनमें से कौन सा शब्द हमेशा बहुवचन में ही प्रयुक्त होता है?",opts:["पानी","दर्शन","सोना","जनता"]},
+  {n:54,sub:"Hindi",q:"'पुस्तक' शब्द का सही बहुवचन क्या होगा?",opts:["पुस्तकाएँ","पुस्तकें","पुस्तकों","पुस्तिका"]},
+  {n:55,sub:"Hindi",q:"'वह पढ़ रहा है' - यह वाक्य किस काल का उदाहरण है?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","इनमें से कोई नहीं"]},
+  {n:56,sub:"Hindi",q:"'राम ने रावण को मारा' - यह किस काल का वाक्य है?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","संदिग्ध भूतकाल"]},
+  {n:57,sub:"Hindi",q:"निम्नलिखित शब्दों में से कौन सा शब्द 'पुल्लिंग' है?",opts:["पानी","नदी","हवा","आग"]},
+  {n:58,sub:"Hindi",q:"'नदी' शब्द का बहुवचन रूप क्या है?",opts:["नदियें","नदियो","नदियाँ","नदियॉ"]},
+  {n:59,sub:"Hindi",q:"'मैं कल दिल्ली जाऊँगा' - इस वाक्य में कौन सा काल निहित है?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","अपूर्ण वर्तमान"]},
+  {n:60,sub:"Hindi",q:"'नेता' शब्द का स्त्रीलिंग रूप क्या होता है?",opts:["नेतिन","नेत्री","नेतानी","नेतनी"]},
+  {n:61,sub:"Hindi",q:"'दही' शब्द हिंदी व्याकरण के अनुसार क्या है?",opts:["पुल्लिंग","स्त्रीलिंग","उभयलिंग","नपुंसकलिंग"]},
+  {n:62,sub:"Hindi",q:"'चिड़िया' शब्द का बहुवचन क्या है?",opts:["चिड़ियों","चिड़ियाँ","चिड़ियें","चिड़ा"]},
+  {n:63,sub:"Hindi",q:"'शायद आज बारिश हो' - यह वाक्य किस काल का बोध कराता है?",opts:["सामान्य वर्तमान","अपूर्ण भूत","संभाव्य भविष्यत","पूर्ण वर्तमान"]},
+  {n:64,sub:"Hindi",q:"'आँसू' शब्द व्याकरण की दृष्टि से किस वचन में आता है?",opts:["एकवचन","बहुवचन","द्विवचन","कोई नहीं"]},
+  {n:65,sub:"Hindi",q:"'विद्वान' का स्त्रीलिंग रूप क्या है?",opts:["विद्वानी","विद्वती","विदुषी","विद्वान्नी"]},
+  {n:66,sub:"Hindi",q:"'पत्ता गिरता है' वाक्य का सही बहुवचन रूप क्या होगा?",opts:["पत्ते गिरता है","पत्ते गिरते हैं","पत्ता गिरते हैं","पत्तियाँ गिरता है"]},
+  {n:67,sub:"Hindi",q:"हिंदी व्याकरण में भूतकाल के मुख्य रूप से कितने भेद माने जाते हैं?",opts:["4","5","6","7"]},
+  {n:68,sub:"Hindi",q:"'हवा' शब्द का लिंग क्या है?",opts:["स्त्रीलिंग","पुल्लिंग","उभयलिंग","अव्यय"]},
+  {n:69,sub:"Hindi",q:"'आसमान' शब्द का लिंग क्या है?",opts:["स्त्रीलिंग","पुल्लिंग","नपुंसकलिंग","इनमें से कोई नहीं"]},
+  {n:70,sub:"Hindi",q:"'हाथी' का सही स्त्रीलिंग रूप क्या है?",opts:["हाथिन","हथिनी","हाथिनी","हथनी"]},
+  {n:71,sub:"Hindi",q:"जिस क्रिया से कार्य के अभी (वर्तमान में) होने का बोध हो, उसे क्या कहते हैं?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","आसन्न भूत"]},
+  {n:72,sub:"Hindi",q:"'बेटा' शब्द का बहुवचन क्या होगा?",opts:["बेटियों","बेटे","बेटों","बेटाओं"]},
+  {n:73,sub:"Hindi",q:"'मैंने खाना खाया है' - यह कौन सा भूतकाल है?",opts:["सामान्य भूतकाल","आसन्न भूतकाल","पूर्ण भूतकाल","अपूर्ण भूतकाल"]},
+  {n:74,sub:"Hindi",q:"'माता' शब्द का बहुवचन रूप है:",opts:["माताओं","माताएँ","मातें","मातायें"]},
+  {n:75,sub:"Hindi",q:"'सूर्य' शब्द का लिंग निर्धारण करें:",opts:["पुल्लिंग","स्त्रीलिंग","उभयलिंग","कोई नहीं"]},
 
-// HINDI (15 Questions - Hard Level)
-{n:61,sub:"Hindi",topic:"संधि",q:"'उज्ज्वल' का सही संधि-विच्छेद क्या होगा?",opts:["उज्ज + वल","उत् + ज्वल","उद् + ज्वल","उज् + ज्वल"]},
-{n:62,sub:"Hindi",topic:"समास",q:"'नीलकंठ' में कौन-सा समास है, यदि इसका अर्थ 'शिव' लिया जाए?",opts:["कर्मधारय","तत्पुरुष","बहुव्रीहि","द्वंद्व"]},
-{n:63,sub:"Hindi",topic:"अलंकार",q:"'तरनि तनूजा तट तमाल तरुवर बहु छाये' में कौन-सा अलंकार है?",opts:["अनुप्रास","यमक","श्लेष","उपमा"]},
-{n:64,sub:"Hindi",topic:"रस",q:"'वीभत्स रस' का स्थायी भाव क्या है?",opts:["क्रोध","शोक","उत्साह","जुगुप्सा (घृणा)"]},
-{n:65,sub:"Hindi",topic:"विलोम",q:"'स्थावर' का विलोम शब्द है:",opts:["अस्थावर","जड़","जंगम","गतिशील"]},
-{n:66,sub:"Hindi",topic:"पर्यायवाची",q:"निम्नलिखित में से कौन 'सरस्वती' का पर्यायवाची नहीं है?",opts:["वीणापाणि","पद्मा","शारदा","वाग्देवी"]},
-{n:67,sub:"Hindi",topic:"अनेक शब्दों के लिए एक शब्द",q:"'जो मोक्ष की इच्छा रखता हो', उसे क्या कहते हैं?",opts:["मुमुक्षु","तपस्वी","जिज्ञासु","सन्यासी"]},
-{n:68,sub:"Hindi",topic:"मुहावरे",q:"'काठ का उल्लू' मुहावरे का अर्थ है:",opts:["चालाक","निर्दयी","महामूर्ख","परिश्रमी"]},
-{n:69,sub:"Hindi",topic:"शब्द भेद",q:"'अनाड़ी' शब्द का तत्सम रूप क्या है?",opts:["अनार्य","अज्ञानी","अशिक्षित","अनार्य (अनार्य)"]},
-{n:70,sub:"Hindi",topic:"वर्तनी",q:"निम्नलिखित में से शुद्ध वर्तनी वाला शब्द छाँटिए:",opts:["आशिर्वाद","आशीर्वाद","आर्शीवाद","अशीर्वाद"]},
-{n:71,sub:"Hindi",topic:"वाक्य शुद्धि",q:"अशुद्ध वाक्य छाँटिए:",opts:["मैं अपनी बात का स्पष्टीकरण करना चाहता हूँ।","राम ने रावण को मारा।","वह घर गया।","तुम कहाँ जा रहे हो?"]},
-{n:72,sub:"Hindi",topic:"छंद",q:"चौपाई के प्रत्येक चरण में कितनी मात्राएँ होती हैं?",opts:["16","24","13","11"]},
-{n:73,sub:"Hindi",topic:"रचनाएँ",q:"'कामायनी' महाकाव्य के रचयिता कौन हैं?",opts:["सूर्यकांत त्रिपाठी निराला","महादेवी वर्मा","रामधारी सिंह दिनकर","जयशंकर प्रसाद"]},
-{n:74,sub:"Hindi",topic:"कारक",q:"'हे राम! रक्षा करो।' वाक्य में कौन-सा कारक है?",opts:["कर्ता","संबोधन","कर्म","अपादान"]},
-{n:75,sub:"Hindi",topic:"उपसर्ग-प्रत्यय",q:"'अत्यधिक' शब्द में कौन-सा उपसर्ग लगा है?",opts:["अ","अत्य","अति","अत"]},
-
-// ENGLISH (10 Questions - Hard Level)
-{n:76,sub:"English",topic:"Error Detection",q:"Identify the segment which contains a grammatical error: 'Neither of the two brothers are coming to the party.'",opts:["Neither of","are coming","the two brothers","to the party"]},
-{n:77,sub:"English",topic:"Idioms",q:"What is the meaning of the idiom 'To bite the dust'?",opts:["To eat voraciously","To be arrogant","To be defeated or die","To work hard"]},
-{n:78,sub:"English",topic:"One Word Substitution",q:"A person who abandons his religious or political beliefs is called an:",opts:["Apostate","Atheist","Agnostic","Ascetic"]},
-{n:79,sub:"English",topic:"Synonyms",q:"Choose the correct synonym for 'EPHEMERAL':",opts:["Eternal","Permanent","Solid","Short-lived"]},
-{n:80,sub:"English",topic:"Antonyms",q:"Choose the correct antonym for 'OBSTINATE':",opts:["Stubborn","Flexible","Firm","Aggressive"]},
-{n:81,sub:"English",topic:"Voice",q:"Change the voice: 'Who broke this window?'",opts:["By whom this window was broken?","By who was this window broken?","By whom was this window broken?","Who was this window broken by?"]},
-{n:82,sub:"English",topic:"Narration",q:"Change into indirect speech: He said, 'Alas! I am undone.'",opts:["He exclaimed with sorrow that he was undone.","He said that alas he was undone.","He exclaimed sadly that I am undone.","He exclaimed that he is undone."]},
-{n:83,sub:"English",topic:"Prepositions",q:"He is completely engrossed ________ his new project.",opts:["with","at","on","in"]},
-{n:84,sub:"English",topic:"Sentence Improvement",q:"'Had I known you were in town, I *will have met* you.' Replace the underlined phrase.",opts:["would meet","would have met","will meet","have met"]},
-{n:85,sub:"English",topic:"Spelling",q:"Which of the following words is correctly spelt?",opts:["Vaccuum","Vaccum","Vacuum","Vacume"]},
-
-// GK (15 Questions - Hard Level Bihar & India)
-{n:86,sub:"GK",topic:"History",q:"Who among the following was the founder of the Vikramshila University in Bihar?",opts:["Gopala","Dharmapala","Devapala","Ramapala"]},
-{n:87,sub:"GK",topic:"Geography",q:"The Tropic of Cancer does NOT pass through which of the following Indian states?",opts:["Gujarat","Rajasthan","Bihar","Jharkhand"]},
-{n:88,sub:"GK",topic:"Polity",q:"Which Article of the Indian Constitution empowers the President to declare Financial Emergency?",opts:["Article 360","Article 356","Article 352","Article 365"]},
-{n:89,sub:"GK",topic:"Economics",q:"Who authored the book 'Poverty and Un-British Rule in India'?",opts:["Mahatma Gandhi","Jawaharlal Nehru","R.C. Dutt","Dadabhai Naoroji"]},
-{n:90,sub:"GK",topic:"Bihar Specific",q:"In which year was the separate province of Bihar created from Bengal?",opts:["1905","1912","1936","1911"]},
-{n:91,sub:"GK",topic:"Current Affairs",q:"The 'Global Innovation Index' is published annually by which organization?",opts:["World Bank","WEF","WIPO","IMF"]},
-{n:92,sub:"GK",topic:"History",q:"The famous 'Battle of Buxar' was fought in the year:",opts:["1757","1764","1761","1765"]},
-{n:93,sub:"GK",topic:"Science & Tech",q:"What is the name of India's first solar mission launched by ISRO?",opts:["Gaganyaan","Chandrayaan-3","Vyommitra","Aditya-L1"]},
-{n:94,sub:"GK",topic:"Geography",q:"Which river is known as the 'Sorrow of Bihar' due to its frequent flooding?",opts:["Kosi","Ganga","Son","Gandak"]},
-{n:95,sub:"GK",topic:"Culture",q:"Madhubani painting, a famous folk art, primarily belongs to which state?",opts:["Uttar Pradesh","Madhya Pradesh","Bihar","Rajasthan"]},
-{n:96,sub:"GK",topic:"Polity",q:"The power to decide an election petition for the State Legislative Assembly is vested in the:",opts:["Election Commission","High Court","Supreme Court","Governor"]},
-{n:97,sub:"GK",topic:"Biology/Science",q:"Which isotope is used in the treatment of cancer?",opts:["Uranium-235","Carbon-14","Iodine-131","Cobalt-60"]},
-{n:98,sub:"GK",topic:"Bihar Specific",q:"Where is the Valmiki National Park, the only national park in Bihar, located?",opts:["Gaya","Patna","West Champaran","Kaimur"]},
-{n:99,sub:"GK",topic:"Current Affairs",q:"Who was the Chief Guest for India's Republic Day Parade in 2024?",opts:["Emmanuel Macron","Joe Biden","Abdel Fattah el-Sisi","Rishi Sunak"]},
-{n:100,sub:"GK",topic:"History",q:"The First Buddhist Council was held at:",opts:["Vaishali","Rajgriha","Pataliputra","Kashmir"]}
+  // GK (25 Qs - Indian Geography, Bihar Special)
+  {n:76,sub:"GK",q:"Which is the longest river flowing entirely within India?",opts:["Brahmaputra","Ganga","Yamuna","Godavari"]},
+  {n:77,sub:"GK",q:"What is the total geographical area of Bihar approximately?",opts:["84,163 sq km","94,163 sq km","104,163 sq km","74,163 sq km"]},
+  {n:78,sub:"GK",q:"Which country is situated to the North of Bihar, sharing an international border?",opts:["Bhutan","Bangladesh","Nepal","China"]},
+  {n:79,sub:"GK",q:"Which river is famously known as the 'Sorrow of Bihar' due to its frequent floods?",opts:["Ganga","Kosi","Gandak","Son"]},
+  {n:80,sub:"GK",q:"Which of the following is the highest mountain peak located in India?",opts:["Mount Everest","Nanda Devi","Kanchenjunga","Makalu"]},
+  {n:81,sub:"GK",q:"Valmiki National Park, the only national park in Bihar, is located in which district?",opts:["East Champaran","West Champaran","Gaya","Patna"]},
+  {n:82,sub:"GK",q:"Which is the largest freshwater lake in India?",opts:["Wular Lake","Chilika Lake","Dal Lake","Loktak Lake"]},
+  {n:83,sub:"GK",q:"Bihar Day (Bihar Diwas) is celebrated every year on:",opts:["22 January","22 February","22 March","22 April"]},
+  {n:84,sub:"GK",q:"Which type of soil is predominantly found in the northern plains of India and Bihar?",opts:["Alluvial Soil","Black Soil","Red Soil","Laterite Soil"]},
+  {n:85,sub:"GK",q:"The Tropic of Cancer passes through how many Indian states?",opts:["6","7","8","9"]},
+  {n:86,sub:"GK",q:"Kanwar Lake Bird Sanctuary, Asia's largest freshwater oxbow lake, is located in which district of Bihar?",opts:["Munger","Begusarai","Bhagalpur","Samastipur"]},
+  {n:87,sub:"GK",q:"Which Indian state shares its border with Bihar to the East?",opts:["Uttar Pradesh","Jharkhand","Odisha","West Bengal"]},
+  {n:88,sub:"GK",q:"Which is the oldest mountain range in India?",opts:["Himalayas","Aravalli","Vindhya","Satpura"]},
+  {n:89,sub:"GK",q:"Who was the first Chief Minister of independent Bihar?",opts:["Sri Krishna Singh","Anugrah Narayan Sinha","Karpoori Thakur","Lalu Prasad Yadav"]},
+  {n:90,sub:"GK",q:"Which major plateau is located in the southern part of India?",opts:["Malwa Plateau","Deccan Plateau","Chota Nagpur Plateau","Tibetan Plateau"]},
+  {n:91,sub:"GK",q:"Bodh Gaya, a highly revered pilgrimage site in Bihar, is located on the banks of which river?",opts:["Ganga","Kosi","Falgu","Son"]},
+  {n:92,sub:"GK",q:"According to the 2011 Census, which is the most densely populated state in India?",opts:["Uttar Pradesh","Bihar","West Bengal","Maharashtra"]},
+  {n:93,sub:"GK",q:"Which Indian state possesses the longest coastline?",opts:["Maharashtra","Gujarat","Tamil Nadu","Andhra Pradesh"]},
+  {n:94,sub:"GK",q:"The ruins of the ancient and historic Nalanda University are located in which state?",opts:["Bihar","Uttar Pradesh","Madhya Pradesh","Gujarat"]},
+  {n:95,sub:"GK",q:"Which major river essentially divides Bihar into Northern and Southern halves?",opts:["Gandak","Son","Ganga","Bagmati"]},
+  {n:96,sub:"GK",q:"The capital of Bihar, Patna, is situated on the confluence of the river Ganga and which other river?",opts:["Kosi","Son","Punpun","Ghaghara"]},
+  {n:97,sub:"GK",q:"Which is the largest state in India in terms of geographical area?",opts:["Madhya Pradesh","Maharashtra","Rajasthan","Uttar Pradesh"]},
+  {n:98,sub:"GK",q:"Where is the famous Mahabodhi Temple located?",opts:["Patna","Gaya","Rajgir","Vaishali"]},
+  {n:99,sub:"GK",q:"Chilika Lake, the largest coastal lagoon in India, is situated in which state?",opts:["Andhra Pradesh","Tamil Nadu","Odisha","Kerala"]},
+  {n:100,sub:"GK",q:"Asia's largest cattle fair (Pashu Mela) is held annually in Bihar at:",opts:["Rajgir","Sonepur","Patna","Gaya"]}
 ];
 
 let studentName = "";
@@ -572,8 +564,7 @@ let filteredIndices = [];
 let current = 0; 
 let timerInterval;
 let endTime;
-// 90 minutes in milliseconds
-const TEST_DURATION_MS = 90 * 60 * 1000; 
+const TEST_DURATION_MS = 90 * 60 * 1000; // 1 Hour 30 Minutes
 
 window.onload = function() {
   studentName = localStorage.getItem("dcece_studentName");
@@ -581,13 +572,13 @@ window.onload = function() {
   
   if(studentName && savedEndTime && Date.now() < parseInt(savedEndTime)) {
     endTime = parseInt(savedEndTime);
-    answers = JSON.parse(localStorage.getItem("dcece_100_answers")) || {};
+    answers = JSON.parse(localStorage.getItem("dcece_day3_answers")) || {};
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("main-test-area").style.display = "block";
     startTimer();
     filterSubject("All");
   } else {
-    localStorage.removeItem("dcece_100_answers");
+    localStorage.removeItem("dcece_day3_answers");
     localStorage.removeItem("dcece_studentName");
     localStorage.removeItem("dcece_endTime");
   }
@@ -659,7 +650,7 @@ function renderQuestion() {
   const q = questions[actualIndex];
   
   document.getElementById("qNo").innerText = `Question ${actualIndex + 1} of ${questions.length}`;
-  document.getElementById("qSub").innerText = `${q.sub} - ${q.topic}`;
+  document.getElementById("qSub").innerText = `${q.sub}`;
   document.getElementById("question").innerText = q.q;
   
   let html = "";
@@ -685,7 +676,7 @@ function renderQuestion() {
 
 function selectOption(actualIndex, index) {
   answers[actualIndex] = index;
-  localStorage.setItem("dcece_100_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_day3_answers", JSON.stringify(answers));
   renderQuestion();
 }
 
@@ -699,7 +690,7 @@ function nextQuestion() {
 function skipQuestion() {
   const actualIndex = filteredIndices[current];
   delete answers[actualIndex];
-  localStorage.setItem("dcece_100_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_day3_answers", JSON.stringify(answers));
   if (current < filteredIndices.length - 1) {
     current++;
     renderQuestion();
@@ -739,34 +730,38 @@ function submitTest(isAuto = false) {
   let incorrect = 0;
   let unattempted = 0;
   
+  // NAYA EMAIL REPORT FORMAT
   let detailedReport = `--- DETAILED QUESTION ANALYSIS ---\n\n`;
 
-  // लूप चलाकर हर सवाल, यूज़र का जवाब और सही जवाब निकाल रहे हैं
   questions.forEach((q, index) => {
     const correctAnsLetter = ansKey[q.n];
-    let userAnsLetter = "Not Attempted";
-    let userSelectedText = "None";
-    
-    // सही जवाब का पूरा टेक्स्ट निकाल रहे हैं
     const correctAnsIndex = letterToIndex[correctAnsLetter];
-    const correctAnsText = q.opts[correctAnsIndex];
+    const correctOptText = q.opts[correctAnsIndex];
+    
+    let userAnsLetter = "Not Attempted";
+    let userOptText = "None";
     
     if (answers[index] !== undefined) {
       userAnsLetter = ['A','B','C','D'][answers[index]];
-      userSelectedText = q.opts[answers[index]];
+      userOptText = q.opts[answers[index]];
     }
 
-    detailedReport += `Q${q.n} [${q.sub}]: ${q.q}\n`;
+    // Question Text Add Kiya
+    detailedReport += `Q${q.n} (${q.sub}): ${q.q}\n`;
 
     if (userAnsLetter === "Not Attempted") {
       unattempted++;
-      detailedReport += `Status: ⚠️ Unattempted | Correct Ans: ${correctAnsLetter} (${correctAnsText})\n\n`;
+      detailedReport += `Status: ⚠️ Unattempted\n`;
+      detailedReport += `Correct Answer: ${correctAnsLetter}) ${correctOptText}\n\n`;
     } else if (userAnsLetter === correctAnsLetter) {
       correct++;
-      detailedReport += `Selected: ${userAnsLetter} (${userSelectedText}) | Correct Ans: ${correctAnsLetter} (${correctAnsText}) [✅ Correct]\n\n`;
+      detailedReport += `Status: ✅ Correct\n`;
+      detailedReport += `Selected: ${userAnsLetter}) ${userOptText}\n\n`;
     } else {
       incorrect++;
-      detailedReport += `Selected: ${userAnsLetter} (${userSelectedText}) | Correct Ans: ${correctAnsLetter} (${correctAnsText}) [❌ Incorrect]\n\n`;
+      detailedReport += `Status: ❌ Incorrect\n`;
+      detailedReport += `Selected: ${userAnsLetter}) ${userOptText}\n`;
+      detailedReport += `Correct Answer: ${correctAnsLetter}) ${correctOptText}\n\n`;
     }
   });
 
@@ -786,23 +781,33 @@ FINAL SCORE: ${correct} / ${questions.length}
 
 ${detailedReport}`;
 
-  fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
+  // === WEB3FORMS API CALL ===
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
     body: JSON.stringify({
-      access_key: "9c7f3c85-004e-4888-b6ed-6ed6f4715db6", 
-      subject: `DCECE Test Result - ${studentName} (Score: ${correct})`,
+      access_key: '9c7f3c85-004e-4888-b6ed-6ed6f4715db6', 
+      subject: `DCECE Day 3 Result: ${studentName} scored ${correct}/${questions.length}`,
       message: finalMessage
-    }),
+    })
   })
-  .then(response => {
-     document.getElementById("loading-overlay").style.display = "none";
-     showResultUI(attempted, unattempted, correct, incorrect);
+  .then(async (response) => {
+    let json = await response.json();
+    if (response.status == 200) {
+      console.log("Result sent successfully to email!");
+    } else {
+      console.log("Error sending email:", response);
+    }
   })
   .catch(error => {
-     alert("There was an error sending the result email. Showing results on screen anyway.");
-     document.getElementById("loading-overlay").style.display = "none";
-     showResultUI(attempted, unattempted, correct, incorrect);
+    console.log("Network Error:", error);
+  })
+  .finally(() => {
+    document.getElementById("loading-overlay").style.display = "none";
+    showResultUI(attempted, unattempted, correct, incorrect);
   });
 }
 
@@ -830,7 +835,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
       <p style="color:var(--danger)">Wrong Answers: <strong>${incorrect}</strong></p>
     </div>
     <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
-    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_100_answers');">Retake Test</button>
+    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_day3_answers');">Retake Test</button>
   `;
 
   let reviewHTML = '<div class="review-container">';
@@ -853,7 +858,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
     reviewHTML += `
       <div class="review-q-card">
         <div class="review-q-header">
-          <span style="color:var(--muted)">Q${q.n}. (${q.sub} - ${q.topic})</span>
+          <span style="color:var(--muted)">Q${q.n}. (${q.sub})</span>
           ${statusText}
         </div>
         <div class="review-q-text">${q.q}</div>
@@ -878,7 +883,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
   reviewHTML += '</div>';
   reviewArea.innerHTML = reviewHTML;
   
-  localStorage.removeItem('dcece_100_answers');
+  localStorage.removeItem('dcece_day3_answers');
 }
 </script>
 
