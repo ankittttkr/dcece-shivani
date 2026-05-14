@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - Day 3 Practice Set</title>
+<title>DCECE Mock Test - Practice Set</title>
 
 <style>
 :root{
@@ -372,7 +372,7 @@ button{
 <body>
 
 <div id="start-screen">
-  <h2>DCECE Mock Test - Day 3 Topics</h2>
+  <h2>DCECE Mock Test - Practice Set</h2>
   <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 100</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
@@ -381,17 +381,17 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Day 3 Set</h1>
+      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Set</h1>
       <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
         <button class="filter-btn active" data-sub="All" onclick="filterSubject('All')">All Subjects</button>
-        <button class="filter-btn" data-sub="Chemistry" onclick="filterSubject('Chemistry')">🧪 Chemistry</button>
+        <button class="filter-btn" data-sub="Physics" onclick="filterSubject('Physics')">🧲 Physics</button>
+        <button class="filter-btn" data-sub="Biology" onclick="filterSubject('Biology')">🌿 Biology</button>
+        <button class="filter-btn" data-sub="English" onclick="filterSubject('English')">📚 English</button>
         <button class="filter-btn" data-sub="Maths" onclick="filterSubject('Maths')">➗ Maths</button>
-        <button class="filter-btn" data-sub="Hindi" onclick="filterSubject('Hindi')">Ⓗ Hindi</button>
-        <button class="filter-btn" data-sub="GK" onclick="filterSubject('GK')">🌐 GK</button>
       </div>
 
       <div class="timer-submit-group">
@@ -434,128 +434,128 @@ button{
 <script>
 // Accurate Answer Key matching the 100 questions.
 const ansKey = {
-  1:'C', 2:'A', 3:'B', 4:'A', 5:'B', 6:'C', 7:'B', 8:'B', 9:'B', 10:'C',
-  11:'A', 12:'A', 13:'B', 14:'C', 15:'C', 16:'A', 17:'C', 18:'B', 19:'A', 20:'B',
-  21:'A', 22:'A', 23:'B', 24:'D', 25:'C', 26:'B', 27:'C', 28:'A', 29:'B', 30:'A',
-  31:'C', 32:'A', 33:'C', 34:'B', 35:'B', 36:'B', 37:'B', 38:'A', 39:'A', 40:'C',
-  41:'B', 42:'C', 43:'B', 44:'C', 45:'A', 46:'B', 47:'C', 48:'C', 49:'B', 50:'B',
-  51:'B', 52:'C', 53:'B', 54:'B', 55:'A', 56:'B', 57:'A', 58:'C', 59:'C', 60:'B',
-  61:'A', 62:'B', 63:'C', 64:'B', 65:'C', 66:'B', 67:'C', 68:'A', 69:'B', 70:'B',
-  71:'A', 72:'B', 73:'B', 74:'B', 75:'A', 76:'B', 77:'B', 78:'C', 79:'B', 80:'C',
-  81:'B', 82:'A', 83:'C', 84:'A', 85:'C', 86:'B', 87:'D', 88:'B', 89:'A', 90:'B',
-  91:'C', 92:'B', 93:'B', 94:'A', 95:'C', 96:'B', 97:'C', 98:'B', 99:'C', 100:'B'
+  1:'C', 2:'C', 3:'C', 4:'B', 5:'A', 6:'C', 7:'C', 8:'A', 9:'C', 10:'C',
+  11:'B', 12:'A', 13:'B', 14:'B', 15:'B', 16:'C', 17:'B', 18:'A', 19:'C', 20:'A',
+  21:'C', 22:'C', 23:'B', 24:'A', 25:'C', 26:'B', 27:'B', 28:'C', 29:'B', 30:'B',
+  31:'B', 32:'B', 33:'C', 34:'A', 35:'B', 36:'C', 37:'A', 38:'B', 39:'A', 40:'C',
+  41:'B', 42:'B', 43:'C', 44:'C', 45:'B', 46:'C', 47:'A', 48:'B', 49:'B', 50:'C',
+  51:'A', 52:'C', 53:'C', 54:'B', 55:'C', 56:'B', 57:'A', 58:'B', 59:'B', 60:'C',
+  61:'A', 62:'A', 63:'B', 64:'C', 65:'B', 66:'B', 67:'C', 68:'A', 69:'B', 70:'C',
+  71:'B', 72:'C', 73:'A', 74:'C', 75:'B', 76:'B', 77:'C', 78:'B', 79:'C', 80:'B',
+  81:'B', 82:'B', 83:'B', 84:'B', 85:'B', 86:'B', 87:'C', 88:'A', 89:'B', 90:'C',
+  91:'C', 92:'C', 93:'C', 94:'B', 95:'C', 96:'C', 97:'B', 98:'A', 99:'B', 100:'C'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-  // CHEMISTRY (25 Qs - Chemical Bonding, s, p, d, f Block)
-  {n:1,sub:"Chemistry",q:"What is the valency of carbon allowing it to form stable organic compounds?",opts:["2","3","4","5"]},
-  {n:2,sub:"Chemistry",q:"The octet rule for chemical bonding was proposed by:",opts:["Lewis and Kossel","Mendeleev","Bohr","Rutherford"]},
-  {n:3,sub:"Chemistry",q:"Which type of bond is formed in Sodium Chloride (NaCl)?",opts:["Covalent bond","Ionic bond","Coordinate bond","Hydrogen bond"]},
-  {n:4,sub:"Chemistry",q:"Elements belonging to the s-block of the periodic table are primarily:",opts:["Alkali and Alkaline Earth metals","Transition metals","Non-metals","Halogens"]},
-  {n:5,sub:"Chemistry",q:"The d-block elements in the modern periodic table are commonly known as:",opts:["Representative elements","Transition elements","Inner transition elements","Noble metals"]},
-  {n:6,sub:"Chemistry",q:"The f-block elements (Lanthanides and Actinides) are collectively called:",opts:["Metalloids","Chalcogens","Inner transition elements","Alkali metals"]},
-  {n:7,sub:"Chemistry",q:"What is the molecular geometry (shape) of a water (H2O) molecule?",opts:["Linear","Bent (V-shape)","Tetrahedral","Trigonal planar"]},
-  {n:8,sub:"Chemistry",q:"How many lone pairs of electrons are present on the central Oxygen atom in an H2O molecule?",opts:["1","2","3","4"]},
-  {n:9,sub:"Chemistry",q:"Which block of the periodic table contains the majority of non-metals?",opts:["s-block","p-block","d-block","f-block"]},
-  {n:10,sub:"Chemistry",q:"The general outermost electronic configuration of noble gases (except Helium) is:",opts:["ns2","ns2 np5","ns2 np6","nd10 ns2"]},
-  {n:11,sub:"Chemistry",q:"Which of the following elements forms the strongest hydrogen bond?",opts:["Fluorine","Nitrogen","Chlorine","Sulfur"]},
-  {n:12,sub:"Chemistry",q:"Which is the most electronegative element in the periodic table?",opts:["Fluorine","Oxygen","Nitrogen","Chlorine"]},
-  {n:13,sub:"Chemistry",q:"A covalent bond is formed between two atoms by:",opts:["Transfer of electrons","Sharing of electrons","Donation of protons","Loss of neutrons"]},
-  {n:14,sub:"Chemistry",q:"Which element has the highest electron affinity?",opts:["Fluorine","Bromine","Chlorine","Oxygen"]},
-  {n:15,sub:"Chemistry",q:"A completely formed triple bond (like in N2) consists of:",opts:["3 sigma bonds","2 sigma and 1 pi bond","1 sigma and 2 pi bonds","3 pi bonds"]},
-  {n:16,sub:"Chemistry",q:"Which of the following is the lightest metal found in the s-block?",opts:["Lithium","Sodium","Magnesium","Beryllium"]},
-  {n:17,sub:"Chemistry",q:"Paramagnetism is most commonly observed in the compounds of elements from which block?",opts:["s-block","p-block","d-block","f-block"]},
-  {n:18,sub:"Chemistry",q:"Which of the following is an example of a p-block metalloid?",opts:["Sodium","Silicon","Iron","Argon"]},
-  {n:19,sub:"Chemistry",q:"The formation of a cation (positive ion) from a neutral atom involves:",opts:["Loss of electrons","Gain of electrons","Sharing of electrons","Gain of protons"]},
-  {n:20,sub:"Chemistry",q:"What is the ideal bond angle in a Methane (CH4) molecule?",opts:["90°","109.5°","120°","180°"]},
-  {n:21,sub:"Chemistry",q:"A molecule with sp3 hybridization will generally have which geometric shape?",opts:["Tetrahedral","Linear","Square planar","Octahedral"]},
-  {n:22,sub:"Chemistry",q:"An element with atomic number Z=11 belongs to which block?",opts:["s-block","p-block","d-block","f-block"]},
-  {n:23,sub:"Chemistry",q:"Which transition metal exists as a liquid at room temperature?",opts:["Gallium","Mercury","Bromine","Cesium"]},
-  {n:24,sub:"Chemistry",q:"The Actinide series elements belong to which block of the periodic table?",opts:["s-block","p-block","d-block","f-block"]},
-  {n:25,sub:"Chemistry",q:"How many bonds are present between the two nitrogen atoms in an N2 molecule?",opts:["Single bond","Double bond","Triple bond","Coordinate bond"]},
+  // PHYSICS (25 Qs - Thermodynamics & Kinetic Theory)
+  {n:1,sub:"Physics",q:"First law of thermodynamics is a consequence of conservation of:",opts:["Work","Heat","Energy","Momentum"]},
+  {n:2,sub:"Physics",q:"In an isothermal process, which quantity remains constant?",opts:["Pressure","Volume","Temperature","Heat"]},
+  {n:3,sub:"Physics",q:"An adiabatic process occurs at constant:",opts:["Temperature","Pressure","Heat","Volume"]},
+  {n:4,sub:"Physics",q:"The equation of state for an ideal gas is:",opts:["PV = RT","PV = nRT","P/V = nRT","PV^r = constant"]},
+  {n:5,sub:"Physics",q:"For a monatomic gas, the ratio of specific heats (Cp/Cv) is approximately:",opts:["1.67","1.40","1.33","1.00"]},
+  {n:6,sub:"Physics",q:"Root mean square (rms) velocity of gas molecules is proportional to:",opts:["T","T²","√T","1/T"]},
+  {n:7,sub:"Physics",q:"Which of the following is not a state function?",opts:["Internal energy","Enthalpy","Work","Entropy"]},
+  {n:8,sub:"Physics",q:"The SI unit of universal gas constant (R) is:",opts:["J/mol.K","J.K/mol","Cal/mol","J/kg.K"]},
+  {n:9,sub:"Physics",q:"According to kinetic theory, the average kinetic energy of gas molecules depends only on:",opts:["Pressure","Volume","Temperature","Nature of gas"]},
+  {n:10,sub:"Physics",q:"A diatomic gas molecule has how many degrees of freedom at normal temperature?",opts:["3","4","5","6"]},
+  {n:11,sub:"Physics",q:"The efficiency of a Carnot engine working between 300 K and 600 K is:",opts:["25%","50%","75%","100%"]},
+  {n:12,sub:"Physics",q:"In an isochoric process:",opts:["dW = 0","dQ = 0","dU = 0","dT = 0"]},
+  {n:13,sub:"Physics",q:"At absolute zero, the rms velocity of gas molecules becomes:",opts:["Infinity","Zero","Maximum","Minimum but non-zero"]},
+  {n:14,sub:"Physics",q:"The gas law V/T = constant is known as:",opts:["Boyle's Law","Charles's Law","Gay-Lussac's Law","Avogadro's Law"]},
+  {n:15,sub:"Physics",q:"Specific heat capacity of a gas at constant volume is denoted by:",opts:["Cp","Cv","R","γ (Gamma)"]},
+  {n:16,sub:"Physics",q:"In an isothermal expansion of an ideal gas, the change in internal energy is:",opts:["Positive","Negative","Zero","Cannot be determined"]},
+  {n:17,sub:"Physics",q:"Entropy of the universe is continually:",opts:["Decreasing","Increasing","Constant","Zero"]},
+  {n:18,sub:"Physics",q:"What is the value of R in J/(mol K)?",opts:["8.314","1.987","0.0821","8.314 x 10^7"]},
+  {n:19,sub:"Physics",q:"The mean free path of a gas molecule is inversely proportional to:",opts:["Pressure","Temperature","Number density","Mass"]},
+  {n:20,sub:"Physics",q:"Boyle's law is applicable in which process?",opts:["Isothermal process","Adiabatic process","Isobaric process","Isochoric process"]},
+  {n:21,sub:"Physics",q:"If the absolute temperature of a gas is doubled, its rms speed becomes:",opts:["Double","Half","√2 times","4 times"]},
+  {n:22,sub:"Physics",q:"The internal energy of an ideal gas depends on:",opts:["Pressure","Volume","Temperature only","Both pressure and volume"]},
+  {n:23,sub:"Physics",q:"A perfectly reversible process is:",opts:["Possible","Impossible in reality","Irreversible","Extremely fast"]},
+  {n:24,sub:"Physics",q:"During the melting of ice, its entropy:",opts:["Increases","Decreases","Remains constant","Becomes zero"]},
+  {n:25,sub:"Physics",q:"Gas molecules move in:",opts:["Straight line","Circular path","Random zig-zag path","Parabolic path"]},
 
-  // MATHS (25 Qs - Percentage, Ratio & Proportion, Profit & Loss)
-  {n:26,sub:"Maths",q:"What is 20% of 500?",opts:["50","100","150","200"]},
-  {n:27,sub:"Maths",q:"Convert the fraction 3/4 into a percentage.",opts:["25%","50%","75%","100%"]},
-  {n:28,sub:"Maths",q:"If A : B = 2 : 3 and B : C = 4 : 5, then what is the ratio of A : C?",opts:["8 : 15","15 : 8","2 : 5","6 : 20"]},
-  {n:29,sub:"Maths",q:"A shopkeeper bought an item for ₹400 and sold it for ₹500. Find his profit percentage.",opts:["20%","25%","30%","15%"]},
-  {n:30,sub:"Maths",q:"If the Cost Price (CP) is ₹200 and Selling Price (SP) is ₹150, calculate the loss percentage.",opts:["25%","20%","30%","15%"]},
-  {n:31,sub:"Maths",q:"If 10% of x is 50, what is the value of x?",opts:["100","250","500","1000"]},
-  {n:32,sub:"Maths",q:"Divide ₹100 into two parts in the ratio 2 : 3.",opts:["₹40 and ₹60","₹30 and ₹70","₹20 and ₹80","₹50 and ₹50"]},
-  {n:33,sub:"Maths",q:"An article is bought for ₹120. At what price should it be sold to gain 20%?",opts:["₹140","₹150","₹144","₹135"]},
-  {n:34,sub:"Maths",q:"If A : B = 1 : 2 and B : C = 2 : 3, find the combined ratio A : B : C.",opts:["1 : 3 : 2","1 : 2 : 3","2 : 1 : 3","3 : 2 : 1"]},
-  {n:35,sub:"Maths",q:"Convert the decimal 0.5 into a percentage.",opts:["5%","50%","0.5%","500%"]},
-  {n:36,sub:"Maths",q:"A person's salary increased from ₹1000 to ₹1200. What is the percentage increase?",opts:["10%","20%","25%","30%"]},
-  {n:37,sub:"Maths",q:"What is the inverse ratio of 3 : 4?",opts:["1 : 2","4 : 3","9 : 16","6 : 8"]},
-  {n:38,sub:"Maths",q:"If the cost of 5 pens is ₹25, what will be the cost of 8 pens?",opts:["₹40","₹45","₹50","₹35"]},
-  {n:39,sub:"Maths",q:"A number when decreased by 10% becomes 90. What is the original number?",opts:["100","110","99","120"]},
-  {n:40,sub:"Maths",q:"By selling a book for ₹90, a seller loses 10%. Find the Cost Price of the book.",opts:["₹81","₹99","₹100","₹110"]},
-  {n:41,sub:"Maths",q:"What is the value of 25% of 25%?",opts:["0.25","0.0625","6.25","0.0025"]},
-  {n:42,sub:"Maths",q:"Find the ratio of 1 hour to 15 minutes.",opts:["1 : 15","15 : 1","4 : 1","1 : 4"]},
-  {n:43,sub:"Maths",q:"Two successive discounts of 10% and 20% are equivalent to a single discount of:",opts:["30%","28%","25%","22%"]},
-  {n:44,sub:"Maths",q:"The cost price of 10 articles is equal to the selling price of 8 articles. Find the profit percentage.",opts:["20%","15%","25%","30%"]},
-  {n:45,sub:"Maths",q:"What is the ratio of 5 kg to 500 g?",opts:["10 : 1","1 : 10","5 : 1","1 : 5"]},
-  {n:46,sub:"Maths",q:"Express the fraction 1/8 as a percentage.",opts:["10%","12.5%","15%","8%"]},
-  {n:47,sub:"Maths",q:"If 40% of a number is 120, what is the number?",opts:["200","250","300","400"]},
-  {n:48,sub:"Maths",q:"Find the fourth proportional to 2, 4, and 6.",opts:["8","10","12","16"]},
-  {n:49,sub:"Maths",q:"Find the mean proportional between 4 and 16.",opts:["10","8","12","6"]},
-  {n:50,sub:"Maths",q:"The Marked Price of an item is ₹100. After a 15% discount, what is the Selling Price?",opts:["₹95","₹85","₹75","₹115"]},
+  // BIOLOGY (25 Qs - Genetics & Evolution)
+  {n:26,sub:"Biology",q:"Who is known as the Father of Genetics?",opts:["Charles Darwin","Gregor Mendel","Robert Hooke","James Watson"]},
+  {n:27,sub:"Biology",q:"Mendel conducted his hybridization experiments on:",opts:["Sweet pea","Garden pea","Wild pea","Chickpea"]},
+  {n:28,sub:"Biology",q:"The phenotypic ratio of a standard dihybrid cross is:",opts:["3:1","1:2:1","9:3:3:1","1:1:1:1"]},
+  {n:29,sub:"Biology",q:"Humans have how many pairs of chromosomes?",opts:["22","23","46","44"]},
+  {n:30,sub:"Biology",q:"The theory of Natural Selection was proposed by:",opts:["Lamarck","Charles Darwin","Hugo de Vries","Gregor Mendel"]},
+  {n:31,sub:"Biology",q:"Homologous organs indicate:",opts:["Convergent evolution","Divergent evolution","Parallel evolution","Artificial selection"]},
+  {n:32,sub:"Biology",q:"Wings of birds and wings of insects are examples of:",opts:["Homologous organs","Analogous organs","Vestigial organs","Atavism"]},
+  {n:33,sub:"Biology",q:"Which of the following is a vestigial organ in humans?",opts:["Heart","Lung","Vermiform appendix","Kidney"]},
+  {n:34,sub:"Biology",q:"The basic functional unit of heredity is:",opts:["Gene","Chromosome","DNA","RNA"]},
+  {n:35,sub:"Biology",q:"The observable physical traits of an organism are called its:",opts:["Genotype","Phenotype","Karyotype","Allele"]},
+  {n:36,sub:"Biology",q:"The term 'Mutation' was coined by:",opts:["Charles Darwin","Jean-Baptiste Lamarck","Hugo de Vries","August Weismann"]},
+  {n:37,sub:"Biology",q:"The 'Use and Disuse of Organs' principle was given by:",opts:["Lamarck","Darwin","Wallace","Malthus"]},
+  {n:38,sub:"Biology",q:"XX-XY type of sex determination is found in:",opts:["Birds","Humans","Butterflies","Moths"]},
+  {n:39,sub:"Biology",q:"The connecting link between reptiles and birds is:",opts:["Archaeopteryx","Platypus","Lungfish","Peripatus"]},
+  {n:40,sub:"Biology",q:"According to evolution, life originated in:",opts:["Air","Soil","Water","Space"]},
+  {n:41,sub:"Biology",q:"The genotypic ratio of a monohybrid cross is:",opts:["3:1","1:2:1","9:3:3:1","1:1"]},
+  {n:42,sub:"Biology",q:"Alternative forms of a gene are called:",opts:["Loci","Alleles","Chromosomes","Genomes"]},
+  {n:43,sub:"Biology",q:"A sudden heritable change in the genetic material is called:",opts:["Evolution","Recombination","Mutation","Segregation"]},
+  {n:44,sub:"Biology",q:"Fossils are generally found in which type of rocks?",opts:["Igneous","Metamorphic","Sedimentary","Volcanic"]},
+  {n:45,sub:"Biology",q:"Down's syndrome is caused by the trisomy of which chromosome?",opts:["18th","21st","13th","23rd"]},
+  {n:46,sub:"Biology",q:"The genetic material in most organisms is:",opts:["Protein","RNA","DNA","Carbohydrate"]},
+  {n:47,sub:"Biology",q:"Industrial melanism is an example of:",opts:["Natural selection","Mutation","Genetic drift","Migration"]},
+  {n:48,sub:"Biology",q:"The phrase 'Survival of the fittest' was coined by:",opts:["Charles Darwin","Herbert Spencer","Jean-Baptiste Lamarck","Hugo de Vries"]},
+  {n:49,sub:"Biology",q:"A cross between a hybrid and its recessive parent is called:",opts:["Back cross","Test cross","Monohybrid cross","Dihybrid cross"]},
+  {n:50,sub:"Biology",q:"Which blood group is universally known as the universal acceptor?",opts:["A","B","AB","O"]},
 
-  // HINDI (25 Qs - लिंग, वचन, काल)
-  {n:51,sub:"Hindi",q:"'लड़का' शब्द का सही स्त्रीलिंग रूप क्या है?",opts:["लड़के","लड़की","लड़कियाँ","लड़कपन"]},
-  {n:52,sub:"Hindi",q:"'कवि' का स्त्रीलिंग रूप निम्नलिखित में से कौन सा है?",opts:["कवित्री","कवियत्री","कवयित्री","कविनी"]},
-  {n:53,sub:"Hindi",q:"इनमें से कौन सा शब्द हमेशा बहुवचन में ही प्रयुक्त होता है?",opts:["पानी","दर्शन","सोना","जनता"]},
-  {n:54,sub:"Hindi",q:"'पुस्तक' शब्द का सही बहुवचन क्या होगा?",opts:["पुस्तकाएँ","पुस्तकें","पुस्तकों","पुस्तिका"]},
-  {n:55,sub:"Hindi",q:"'वह पढ़ रहा है' - यह वाक्य किस काल का उदाहरण है?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","इनमें से कोई नहीं"]},
-  {n:56,sub:"Hindi",q:"'राम ने रावण को मारा' - यह किस काल का वाक्य है?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","संदिग्ध भूतकाल"]},
-  {n:57,sub:"Hindi",q:"निम्नलिखित शब्दों में से कौन सा शब्द 'पुल्लिंग' है?",opts:["पानी","नदी","हवा","आग"]},
-  {n:58,sub:"Hindi",q:"'नदी' शब्द का बहुवचन रूप क्या है?",opts:["नदियें","नदियो","नदियाँ","नदियॉ"]},
-  {n:59,sub:"Hindi",q:"'मैं कल दिल्ली जाऊँगा' - इस वाक्य में कौन सा काल निहित है?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","अपूर्ण वर्तमान"]},
-  {n:60,sub:"Hindi",q:"'नेता' शब्द का स्त्रीलिंग रूप क्या होता है?",opts:["नेतिन","नेत्री","नेतानी","नेतनी"]},
-  {n:61,sub:"Hindi",q:"'दही' शब्द हिंदी व्याकरण के अनुसार क्या है?",opts:["पुल्लिंग","स्त्रीलिंग","उभयलिंग","नपुंसकलिंग"]},
-  {n:62,sub:"Hindi",q:"'चिड़िया' शब्द का बहुवचन क्या है?",opts:["चिड़ियों","चिड़ियाँ","चिड़ियें","चिड़ा"]},
-  {n:63,sub:"Hindi",q:"'शायद आज बारिश हो' - यह वाक्य किस काल का बोध कराता है?",opts:["सामान्य वर्तमान","अपूर्ण भूत","संभाव्य भविष्यत","पूर्ण वर्तमान"]},
-  {n:64,sub:"Hindi",q:"'आँसू' शब्द व्याकरण की दृष्टि से किस वचन में आता है?",opts:["एकवचन","बहुवचन","द्विवचन","कोई नहीं"]},
-  {n:65,sub:"Hindi",q:"'विद्वान' का स्त्रीलिंग रूप क्या है?",opts:["विद्वानी","विद्वती","विदुषी","विद्वान्नी"]},
-  {n:66,sub:"Hindi",q:"'पत्ता गिरता है' वाक्य का सही बहुवचन रूप क्या होगा?",opts:["पत्ते गिरता है","पत्ते गिरते हैं","पत्ता गिरते हैं","पत्तियाँ गिरता है"]},
-  {n:67,sub:"Hindi",q:"हिंदी व्याकरण में भूतकाल के मुख्य रूप से कितने भेद माने जाते हैं?",opts:["4","5","6","7"]},
-  {n:68,sub:"Hindi",q:"'हवा' शब्द का लिंग क्या है?",opts:["स्त्रीलिंग","पुल्लिंग","उभयलिंग","अव्यय"]},
-  {n:69,sub:"Hindi",q:"'आसमान' शब्द का लिंग क्या है?",opts:["स्त्रीलिंग","पुल्लिंग","नपुंसकलिंग","इनमें से कोई नहीं"]},
-  {n:70,sub:"Hindi",q:"'हाथी' का सही स्त्रीलिंग रूप क्या है?",opts:["हाथिन","हथिनी","हाथिनी","हथनी"]},
-  {n:71,sub:"Hindi",q:"जिस क्रिया से कार्य के अभी (वर्तमान में) होने का बोध हो, उसे क्या कहते हैं?",opts:["वर्तमान काल","भूतकाल","भविष्यत काल","आसन्न भूत"]},
-  {n:72,sub:"Hindi",q:"'बेटा' शब्द का बहुवचन क्या होगा?",opts:["बेटियों","बेटे","बेटों","बेटाओं"]},
-  {n:73,sub:"Hindi",q:"'मैंने खाना खाया है' - यह कौन सा भूतकाल है?",opts:["सामान्य भूतकाल","आसन्न भूतकाल","पूर्ण भूतकाल","अपूर्ण भूतकाल"]},
-  {n:74,sub:"Hindi",q:"'माता' शब्द का बहुवचन रूप है:",opts:["माताओं","माताएँ","मातें","मातायें"]},
-  {n:75,sub:"Hindi",q:"'सूर्य' शब्द का लिंग निर्धारण करें:",opts:["पुल्लिंग","स्त्रीलिंग","उभयलिंग","कोई नहीं"]},
+  // ENGLISH (25 Qs - Tenses & Active/Passive Voice)
+  {n:51,sub:"English",q:"I _____ a book when the bell rang.",opts:["was reading","read","am reading","have read"]},
+  {n:52,sub:"English",q:"He _____ to London tomorrow.",opts:["go","goes","will go","went"]},
+  {n:53,sub:"English",q:"She _____ her work before the guests arrived.",opts:["finished","has finished","had finished","will finish"]},
+  {n:54,sub:"English",q:"They _____ in this house since 2010.",opts:["are living","have been living","lived","were living"]},
+  {n:55,sub:"English",q:"The sun _____ in the east.",opts:["rise","rose","rises","is rising"]},
+  {n:56,sub:"English",q:"Identify the tense: 'He has written a letter.'",opts:["Present Continuous","Present Perfect","Past Perfect","Present Perfect Continuous"]},
+  {n:57,sub:"English",q:"Change into passive voice: 'He writes a letter.'",opts:["A letter is written by him.","A letter was written by him.","A letter has been written by him.","A letter is being written by him."]},
+  {n:58,sub:"English",q:"Change into active voice: 'The work will be done by me.'",opts:["I will be doing the work.","I will do the work.","I have done the work.","I do the work."]},
+  {n:59,sub:"English",q:"Change into passive voice: 'Open the door.'",opts:["The door must be opened.","Let the door be opened.","The door should be opened.","The door is opened."]},
+  {n:60,sub:"English",q:"The passive voice of 'They are playing chess.' is:",opts:["Chess is played by them.","Chess was being played by them.","Chess is being played by them.","Chess has been played by them."]},
+  {n:61,sub:"English",q:"The passive voice of 'Did you finish the task?' is:",opts:["Was the task finished by you?","Is the task finished by you?","Has the task been finished by you?","Had the task been finished by you?"]},
+  {n:62,sub:"English",q:"Convert to passive voice: 'Who broke the glass?'",opts:["By whom was the glass broken?","By whom is the glass broken?","Who had broken the glass?","The glass was broken by whom?"]},
+  {n:63,sub:"English",q:"I _____ this movie twice.",opts:["saw","have seen","had seen","am seeing"]},
+  {n:64,sub:"English",q:"By next year, I _____ my degree.",opts:["will complete","completed","will have completed","am completing"]},
+  {n:65,sub:"English",q:"Passive voice of 'I know him' is:",opts:["He is known by me.","He is known to me.","He was known to me.","He has been known by me."]},
+  {n:66,sub:"English",q:"He _____ to school every day.",opts:["go","goes","is going","has gone"]},
+  {n:67,sub:"English",q:"We _____ dinner when the lights went out.",opts:["have","are having","were having","had"]},
+  {n:68,sub:"English",q:"Change to passive voice: 'People speak English all over the world.'",opts:["English is spoken all over the world.","English was spoken all over the world.","English has been spoken.","English is being spoken."]},
+  {n:69,sub:"English",q:"Choose the correct passive form of: 'Please help me.'",opts:["Let me be helped.","You are requested to help me.","I should be helped.","You are ordered to help me."]},
+  {n:70,sub:"English",q:"When I reached the station, the train _____.",opts:["left","leaves","had left","has left"]},
+  {n:71,sub:"English",q:"Which sentence is in the passive voice?",opts:["The boy kicked the ball.","The ball was kicked by the boy.","The boy is kicking the ball.","The boy will kick the ball."]},
+  {n:72,sub:"English",q:"'I had been working for two hours.' The tense is:",opts:["Past Continuous","Past Perfect","Past Perfect Continuous","Present Perfect Continuous"]},
+  {n:73,sub:"English",q:"Passive voice of 'Do not beat the dog.'",opts:["Let the dog not be beaten.","Let the dog be beaten.","The dog should not be beaten.","Both A and C."]},
+  {n:74,sub:"English",q:"She _____ the exam next month.",opts:["takes","took","will take","is taking"]},
+  {n:75,sub:"English",q:"Passive voice of 'Somebody has stolen my pen.'",opts:["My pen was stolen.","My pen has been stolen.","My pen is stolen.","My pen had been stolen."]},
 
-  // GK (25 Qs - Indian Geography, Bihar Special)
-  {n:76,sub:"GK",q:"Which is the longest river flowing entirely within India?",opts:["Brahmaputra","Ganga","Yamuna","Godavari"]},
-  {n:77,sub:"GK",q:"What is the total geographical area of Bihar approximately?",opts:["84,163 sq km","94,163 sq km","104,163 sq km","74,163 sq km"]},
-  {n:78,sub:"GK",q:"Which country is situated to the North of Bihar, sharing an international border?",opts:["Bhutan","Bangladesh","Nepal","China"]},
-  {n:79,sub:"GK",q:"Which river is famously known as the 'Sorrow of Bihar' due to its frequent floods?",opts:["Ganga","Kosi","Gandak","Son"]},
-  {n:80,sub:"GK",q:"Which of the following is the highest mountain peak located in India?",opts:["Mount Everest","Nanda Devi","Kanchenjunga","Makalu"]},
-  {n:81,sub:"GK",q:"Valmiki National Park, the only national park in Bihar, is located in which district?",opts:["East Champaran","West Champaran","Gaya","Patna"]},
-  {n:82,sub:"GK",q:"Which is the largest freshwater lake in India?",opts:["Wular Lake","Chilika Lake","Dal Lake","Loktak Lake"]},
-  {n:83,sub:"GK",q:"Bihar Day (Bihar Diwas) is celebrated every year on:",opts:["22 January","22 February","22 March","22 April"]},
-  {n:84,sub:"GK",q:"Which type of soil is predominantly found in the northern plains of India and Bihar?",opts:["Alluvial Soil","Black Soil","Red Soil","Laterite Soil"]},
-  {n:85,sub:"GK",q:"The Tropic of Cancer passes through how many Indian states?",opts:["6","7","8","9"]},
-  {n:86,sub:"GK",q:"Kanwar Lake Bird Sanctuary, Asia's largest freshwater oxbow lake, is located in which district of Bihar?",opts:["Munger","Begusarai","Bhagalpur","Samastipur"]},
-  {n:87,sub:"GK",q:"Which Indian state shares its border with Bihar to the East?",opts:["Uttar Pradesh","Jharkhand","Odisha","West Bengal"]},
-  {n:88,sub:"GK",q:"Which is the oldest mountain range in India?",opts:["Himalayas","Aravalli","Vindhya","Satpura"]},
-  {n:89,sub:"GK",q:"Who was the first Chief Minister of independent Bihar?",opts:["Sri Krishna Singh","Anugrah Narayan Sinha","Karpoori Thakur","Lalu Prasad Yadav"]},
-  {n:90,sub:"GK",q:"Which major plateau is located in the southern part of India?",opts:["Malwa Plateau","Deccan Plateau","Chota Nagpur Plateau","Tibetan Plateau"]},
-  {n:91,sub:"GK",q:"Bodh Gaya, a highly revered pilgrimage site in Bihar, is located on the banks of which river?",opts:["Ganga","Kosi","Falgu","Son"]},
-  {n:92,sub:"GK",q:"According to the 2011 Census, which is the most densely populated state in India?",opts:["Uttar Pradesh","Bihar","West Bengal","Maharashtra"]},
-  {n:93,sub:"GK",q:"Which Indian state possesses the longest coastline?",opts:["Maharashtra","Gujarat","Tamil Nadu","Andhra Pradesh"]},
-  {n:94,sub:"GK",q:"The ruins of the ancient and historic Nalanda University are located in which state?",opts:["Bihar","Uttar Pradesh","Madhya Pradesh","Gujarat"]},
-  {n:95,sub:"GK",q:"Which major river essentially divides Bihar into Northern and Southern halves?",opts:["Gandak","Son","Ganga","Bagmati"]},
-  {n:96,sub:"GK",q:"The capital of Bihar, Patna, is situated on the confluence of the river Ganga and which other river?",opts:["Kosi","Son","Punpun","Ghaghara"]},
-  {n:97,sub:"GK",q:"Which is the largest state in India in terms of geographical area?",opts:["Madhya Pradesh","Maharashtra","Rajasthan","Uttar Pradesh"]},
-  {n:98,sub:"GK",q:"Where is the famous Mahabodhi Temple located?",opts:["Patna","Gaya","Rajgir","Vaishali"]},
-  {n:99,sub:"GK",q:"Chilika Lake, the largest coastal lagoon in India, is situated in which state?",opts:["Andhra Pradesh","Tamil Nadu","Odisha","Kerala"]},
-  {n:100,sub:"GK",q:"Asia's largest cattle fair (Pashu Mela) is held annually in Bihar at:",opts:["Rajgir","Sonepur","Patna","Gaya"]}
+  // MATHS (25 Qs - Simple Interest)
+  {n:76,sub:"Maths",q:"The simple interest on ₹1000 at 5% per annum for 2 years is:",opts:["₹50","₹100","₹150","₹200"]},
+  {n:77,sub:"Maths",q:"At what rate of simple interest will a sum double itself in 10 years?",opts:["5%","8%","10%","12%"]},
+  {n:78,sub:"Maths",q:"Find the principal if simple interest is ₹120 at 6% p.a. for 4 years.",opts:["₹400","₹500","₹600","₹800"]},
+  {n:79,sub:"Maths",q:"In how many years will ₹500 amount to ₹600 at 5% p.a. simple interest?",opts:["2 years","3 years","4 years","5 years"]},
+  {n:80,sub:"Maths",q:"The simple interest on a sum of money is 1/4 of the principal. If the number of years is equal to the rate percent per annum, find the rate.",opts:["2.5%","5%","7.5%","10%"]},
+  {n:81,sub:"Maths",q:"A sum of ₹800 amounts to ₹920 in 3 years at simple interest. What is the rate of interest?",opts:["4%","5%","6%","7%"]},
+  {n:82,sub:"Maths",q:"Calculate the simple interest on ₹2000 from 5th Jan 2023 to 31st May 2023 at 5% p.a. (Approx 146 days).",opts:["₹20","₹40","₹60","₹80"]},
+  {n:83,sub:"Maths",q:"If ₹1 amounts to ₹9 in 40 years at simple interest, the rate of interest is:",opts:["10%","20%","25%","30%"]},
+  {n:84,sub:"Maths",q:"A sum triples itself in 20 years at simple interest. Find the rate of interest.",opts:["5%","10%","15%","20%"]},
+  {n:85,sub:"Maths",q:"The simple interest on a sum is ₹50 in 2 years. If the principal is doubled for the next 2 years, what will be the total interest at the end of 4 years?",opts:["₹100","₹150","₹200","₹250"]},
+  {n:86,sub:"Maths",q:"What sum of money will generate ₹1 interest per day at 5% p.a. simple interest?",opts:["₹3650","₹7300","₹73000","₹36500"]},
+  {n:87,sub:"Maths",q:"The difference between simple interest received from two different sources on ₹1500 for 3 years is ₹13.50. The difference between their rates of interest is:",opts:["0.1%","0.2%","0.3%","0.4%"]},
+  {n:88,sub:"Maths",q:"A person borrows ₹5000 for 2 years at 4% p.a. simple interest. He immediately lends it to another person at 6.25% p.a. for 2 years. Find his gain in the transaction per year.",opts:["₹112.50","₹125","₹225","₹150"]},
+  {n:89,sub:"Maths",q:"If the simple interest on a certain sum of money for 3 years at 5% p.a. is ₹150, find the sum.",opts:["₹500","₹1000","₹1500","₹2000"]},
+  {n:90,sub:"Maths",q:"At what rate percent per annum will ₹400 yield an interest of ₹78 in 3 years?",opts:["5.5%","6%","6.5%","7%"]},
+  {n:91,sub:"Maths",q:"Find the amount if ₹1200 is invested at 10% p.a. simple interest for 3 years.",opts:["₹1320","₹1440","₹1560","₹1680"]},
+  {n:92,sub:"Maths",q:"A sum of money becomes 4 times in 15 years at simple interest. Rate of interest is:",opts:["10%","15%","20%","25%"]},
+  {n:93,sub:"Maths",q:"A sum of ₹1600 gives a simple interest of ₹252 in 2 years and 3 months. The rate of interest per annum is:",opts:["5.5%","6%","7%","8%"]},
+  {n:94,sub:"Maths",q:"What will be the ratio of simple interest earned by certain amount at the same rate of interest for 6 years and that for 9 years?",opts:["1:3","2:3","3:4","1:2"]},
+  {n:95,sub:"Maths",q:"Mohan lent some amount of money at 9% simple interest and an equal amount of money at 10% simple interest each for two years. If his total interest was ₹760, what amount was lent in each case?",opts:["₹1500","₹1800","₹2000","₹2500"]},
+  {n:96,sub:"Maths",q:"A man took a loan from a bank at the rate of 12% p.a. simple interest. After 3 years he had to pay ₹5400 interest only for the period. The principal amount borrowed by him was:",opts:["₹2000","₹10000","₹15000","₹20000"]},
+  {n:97,sub:"Maths",q:"If a sum of money at simple interest doubles in 5 years, it will become 4 times in:",opts:["10 years","15 years","20 years","25 years"]},
+  {n:98,sub:"Maths",q:"The simple interest on ₹X at R% for T years is:",opts:["(XRT)/100","XRT","100/(XRT)","(100XT)/R"]},
+  {n:99,sub:"Maths",q:"Find the simple interest on ₹2500 at 8% per annum for 6 months.",opts:["₹50","₹100","₹150","₹200"]},
+  {n:100,sub:"Maths",q:"If the simple interest on ₹800 is ₹40 more than the simple interest on ₹600 for 5 years, find the rate of interest.",opts:["2%","3%","4%","5%"]}
 ];
 
 let studentName = "";
@@ -572,13 +572,13 @@ window.onload = function() {
   
   if(studentName && savedEndTime && Date.now() < parseInt(savedEndTime)) {
     endTime = parseInt(savedEndTime);
-    answers = JSON.parse(localStorage.getItem("dcece_day3_answers")) || {};
+    answers = JSON.parse(localStorage.getItem("dcece_day4_answers")) || {};
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("main-test-area").style.display = "block";
     startTimer();
     filterSubject("All");
   } else {
-    localStorage.removeItem("dcece_day3_answers");
+    localStorage.removeItem("dcece_day4_answers");
     localStorage.removeItem("dcece_studentName");
     localStorage.removeItem("dcece_endTime");
   }
@@ -676,7 +676,7 @@ function renderQuestion() {
 
 function selectOption(actualIndex, index) {
   answers[actualIndex] = index;
-  localStorage.setItem("dcece_day3_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_day4_answers", JSON.stringify(answers));
   renderQuestion();
 }
 
@@ -690,7 +690,7 @@ function nextQuestion() {
 function skipQuestion() {
   const actualIndex = filteredIndices[current];
   delete answers[actualIndex];
-  localStorage.setItem("dcece_day3_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_day4_answers", JSON.stringify(answers));
   if (current < filteredIndices.length - 1) {
     current++;
     renderQuestion();
@@ -730,7 +730,7 @@ function submitTest(isAuto = false) {
   let incorrect = 0;
   let unattempted = 0;
   
-  // NAYA EMAIL REPORT FORMAT
+  // NAYA EMAIL REPORT FORMAT (No changes made here as per request)
   let detailedReport = `--- DETAILED QUESTION ANALYSIS ---\n\n`;
 
   questions.forEach((q, index) => {
@@ -790,7 +790,7 @@ ${detailedReport}`;
     },
     body: JSON.stringify({
       access_key: '9c7f3c85-004e-4888-b6ed-6ed6f4715db6', 
-      subject: `DCECE Day 3 Result: ${studentName} scored ${correct}/${questions.length}`,
+      subject: `DCECE Day 4 Result: ${studentName} scored ${correct}/${questions.length}`,
       message: finalMessage
     })
   })
@@ -835,7 +835,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
       <p style="color:var(--danger)">Wrong Answers: <strong>${incorrect}</strong></p>
     </div>
     <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
-    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_day3_answers');">Retake Test</button>
+    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_day4_answers');">Retake Test</button>
   `;
 
   let reviewHTML = '<div class="review-container">';
@@ -883,7 +883,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
   reviewHTML += '</div>';
   reviewArea.innerHTML = reviewHTML;
   
-  localStorage.removeItem('dcece_day3_answers');
+  localStorage.removeItem('dcece_day4_answers');
 }
 </script>
 
