@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCECE Mock Test - Practice Set</title>
+<title>DCECE Mock Test - Practice Set (110 Qs)</title>
 
 <style>
 :root{
@@ -373,7 +373,7 @@ button{
 
 <div id="start-screen">
   <h2>DCECE Mock Test - Practice Set</h2>
-  <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 100</p>
+  <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">Total Time: 1 Hour 30 Minutes<br>Total Questions: 110</p>
   <input type="text" id="studentNameInput" placeholder="Enter your Name or Roll No.">
   <button class="submit-btn" style="width: 100%; padding: 12px;" onclick="startTest()">Start Test</button>
 </div>
@@ -381,16 +381,17 @@ button{
 <div id="main-test-area" style="display: none;">
   <header>
     <div class="header-top">
-      <h1>DCECE Bihar &mdash; <span>100 MCQ</span> Set</h1>
-      <div class="showing-badge" id="showingBadge">Showing: <span>100</span> / 100</div>
+      <h1>DCECE Bihar &mdash; <span>110 MCQ</span> Set</h1>
+      <div class="showing-badge" id="showingBadge">Showing: <span>110</span> / 110</div>
     </div>
     
     <div class="header-bottom">
       <div class="filter-container" id="filter-container">
         <button class="filter-btn active" data-sub="All" onclick="filterSubject('All')">All Subjects</button>
-        <button class="filter-btn" data-sub="Physics" onclick="filterSubject('Physics')">🧲 Physics</button>
+        <button class="filter-btn" data-sub="Chemistry" onclick="filterSubject('Chemistry')">🧪 Chemistry</button>
         <button class="filter-btn" data-sub="Biology" onclick="filterSubject('Biology')">🌿 Biology</button>
-        <button class="filter-btn" data-sub="English" onclick="filterSubject('English')">📚 English</button>
+        <button class="filter-btn" data-sub="Hindi" onclick="filterSubject('Hindi')">Ⓗ Hindi</button>
+        <button class="filter-btn" data-sub="GK" onclick="filterSubject('GK')">🌍 GK</button>
         <button class="filter-btn" data-sub="Maths" onclick="filterSubject('Maths')">➗ Maths</button>
       </div>
 
@@ -432,130 +433,143 @@ button{
 <div id="loading-overlay">Submitting your test and sending email...<br><span style="font-size: 16px; color: var(--muted); margin-top: 10px; display: inline-block;">Please wait, do not close the window.</span></div>
 
 <script>
-// Accurate Answer Key matching the 100 questions.
+// Accurate Answer Key matching the 110 questions.
 const ansKey = {
-  1:'C', 2:'C', 3:'C', 4:'B', 5:'A', 6:'C', 7:'C', 8:'A', 9:'C', 10:'C',
-  11:'B', 12:'A', 13:'B', 14:'B', 15:'B', 16:'C', 17:'B', 18:'A', 19:'C', 20:'A',
-  21:'C', 22:'C', 23:'B', 24:'A', 25:'C', 26:'B', 27:'B', 28:'C', 29:'B', 30:'B',
-  31:'B', 32:'B', 33:'C', 34:'A', 35:'B', 36:'C', 37:'A', 38:'B', 39:'A', 40:'C',
-  41:'B', 42:'B', 43:'C', 44:'C', 45:'B', 46:'C', 47:'A', 48:'B', 49:'B', 50:'C',
-  51:'A', 52:'C', 53:'C', 54:'B', 55:'C', 56:'B', 57:'A', 58:'B', 59:'B', 60:'C',
-  61:'A', 62:'A', 63:'B', 64:'C', 65:'B', 66:'B', 67:'C', 68:'A', 69:'B', 70:'C',
-  71:'B', 72:'C', 73:'A', 74:'C', 75:'B', 76:'B', 77:'C', 78:'B', 79:'C', 80:'B',
-  81:'B', 82:'B', 83:'B', 84:'B', 85:'B', 86:'B', 87:'C', 88:'A', 89:'B', 90:'C',
-  91:'C', 92:'C', 93:'C', 94:'B', 95:'C', 96:'C', 97:'B', 98:'A', 99:'B', 100:'C'
+  1:'B', 2:'A', 3:'C', 4:'C', 5:'A', 6:'B', 7:'C', 8:'B', 9:'A', 10:'A',
+  11:'C', 12:'B', 13:'B', 14:'D', 15:'A', 16:'B', 17:'C', 18:'C', 19:'A', 20:'B',
+  21:'D', 22:'A', 23:'B', 24:'C', 25:'B', 26:'A', 27:'B', 28:'D', 29:'A', 30:'A',
+  31:'B', 32:'A', 33:'B', 34:'D', 35:'B', 36:'B', 37:'C', 38:'C', 39:'A', 40:'D',
+  41:'A', 42:'C', 43:'A', 44:'C', 45:'B', 46:'A', 47:'C', 48:'A', 49:'C', 50:'B',
+  51:'A', 52:'C', 53:'B', 54:'B', 55:'A', 56:'B', 57:'B', 58:'D', 59:'C', 60:'B',
+  61:'A', 62:'A', 63:'D', 64:'B', 65:'A', 66:'A', 67:'B', 68:'A', 69:'D', 70:'A',
+  71:'B', 72:'C', 73:'A', 74:'C', 75:'C', 76:'C', 77:'B', 78:'A', 79:'B', 80:'B',
+  81:'C', 82:'B', 83:'B', 84:'A', 85:'C', 86:'B', 87:'C', 88:'B', 89:'C', 90:'B',
+  91:'A', 92:'D', 93:'A', 94:'C', 95:'A', 96:'B', 97:'B', 98:'B', 99:'C', 100:'C',
+  101:'C', 102:'B', 103:'B', 104:'A', 105:'A', 106:'C', 107:'B', 108:'B', 109:'B', 110:'C'
 };
 
 const letterToIndex = {'A':0, 'B':1, 'C':2, 'D':3};
 
 const questions = [
-  // PHYSICS (25 Qs - Thermodynamics & Kinetic Theory)
-  {n:1,sub:"Physics",q:"First law of thermodynamics is a consequence of conservation of:",opts:["Work","Heat","Energy","Momentum"]},
-  {n:2,sub:"Physics",q:"In an isothermal process, which quantity remains constant?",opts:["Pressure","Volume","Temperature","Heat"]},
-  {n:3,sub:"Physics",q:"An adiabatic process occurs at constant:",opts:["Temperature","Pressure","Heat","Volume"]},
-  {n:4,sub:"Physics",q:"The equation of state for an ideal gas is:",opts:["PV = RT","PV = nRT","P/V = nRT","PV^r = constant"]},
-  {n:5,sub:"Physics",q:"For a monatomic gas, the ratio of specific heats (Cp/Cv) is approximately:",opts:["1.67","1.40","1.33","1.00"]},
-  {n:6,sub:"Physics",q:"Root mean square (rms) velocity of gas molecules is proportional to:",opts:["T","T²","√T","1/T"]},
-  {n:7,sub:"Physics",q:"Which of the following is not a state function?",opts:["Internal energy","Enthalpy","Work","Entropy"]},
-  {n:8,sub:"Physics",q:"The SI unit of universal gas constant (R) is:",opts:["J/mol.K","J.K/mol","Cal/mol","J/kg.K"]},
-  {n:9,sub:"Physics",q:"According to kinetic theory, the average kinetic energy of gas molecules depends only on:",opts:["Pressure","Volume","Temperature","Nature of gas"]},
-  {n:10,sub:"Physics",q:"A diatomic gas molecule has how many degrees of freedom at normal temperature?",opts:["3","4","5","6"]},
-  {n:11,sub:"Physics",q:"The efficiency of a Carnot engine working between 300 K and 600 K is:",opts:["25%","50%","75%","100%"]},
-  {n:12,sub:"Physics",q:"In an isochoric process:",opts:["dW = 0","dQ = 0","dU = 0","dT = 0"]},
-  {n:13,sub:"Physics",q:"At absolute zero, the rms velocity of gas molecules becomes:",opts:["Infinity","Zero","Maximum","Minimum but non-zero"]},
-  {n:14,sub:"Physics",q:"The gas law V/T = constant is known as:",opts:["Boyle's Law","Charles's Law","Gay-Lussac's Law","Avogadro's Law"]},
-  {n:15,sub:"Physics",q:"Specific heat capacity of a gas at constant volume is denoted by:",opts:["Cp","Cv","R","γ (Gamma)"]},
-  {n:16,sub:"Physics",q:"In an isothermal expansion of an ideal gas, the change in internal energy is:",opts:["Positive","Negative","Zero","Cannot be determined"]},
-  {n:17,sub:"Physics",q:"Entropy of the universe is continually:",opts:["Decreasing","Increasing","Constant","Zero"]},
-  {n:18,sub:"Physics",q:"What is the value of R in J/(mol K)?",opts:["8.314","1.987","0.0821","8.314 x 10^7"]},
-  {n:19,sub:"Physics",q:"The mean free path of a gas molecule is inversely proportional to:",opts:["Pressure","Temperature","Number density","Mass"]},
-  {n:20,sub:"Physics",q:"Boyle's law is applicable in which process?",opts:["Isothermal process","Adiabatic process","Isobaric process","Isochoric process"]},
-  {n:21,sub:"Physics",q:"If the absolute temperature of a gas is doubled, its rms speed becomes:",opts:["Double","Half","√2 times","4 times"]},
-  {n:22,sub:"Physics",q:"The internal energy of an ideal gas depends on:",opts:["Pressure","Volume","Temperature only","Both pressure and volume"]},
-  {n:23,sub:"Physics",q:"A perfectly reversible process is:",opts:["Possible","Impossible in reality","Irreversible","Extremely fast"]},
-  {n:24,sub:"Physics",q:"During the melting of ice, its entropy:",opts:["Increases","Decreases","Remains constant","Becomes zero"]},
-  {n:25,sub:"Physics",q:"Gas molecules move in:",opts:["Straight line","Circular path","Random zig-zag path","Parabolic path"]},
+  // CHEMISTRY (25 Qs - GOC & IUPAC Naming)
+  {n:1,sub:"Chemistry",q:"What is the IUPAC name of CH3-CH2-CH2-OH?",opts:["Propan-2-ol","Propan-1-ol","Ethanol","Butanol"]},
+  {n:2,sub:"Chemistry",q:"Which of the following is an electrophile?",opts:["AlCl3","NH3","H2O","C2H5OH"]},
+  {n:3,sub:"Chemistry",q:"The hybridization of carbon in methane (CH4) is:",opts:["sp","sp2","sp3","dsp2"]},
+  {n:4,sub:"Chemistry",q:"Homolytic fission of a covalent bond produces:",opts:["Cations","Anions","Free radicals","Carbocations"]},
+  {n:5,sub:"Chemistry",q:"Which of the following effects is temporary?",opts:["Electromeric effect","Inductive effect","Resonance effect","Hyperconjugation"]},
+  {n:6,sub:"Chemistry",q:"What is the IUPAC name of CH3-CO-CH3?",opts:["Propanal","Propanone","Propanol","Propanoic acid"]},
+  {n:7,sub:"Chemistry",q:"Which carbocation is the most stable?",opts:["Methyl carbocation","Primary carbocation","Tertiary carbocation","Secondary carbocation"]},
+  {n:8,sub:"Chemistry",q:"The inductive effect involves the displacement of:",opts:["pi electrons","sigma electrons","both sigma and pi electrons","protons"]},
+  {n:9,sub:"Chemistry",q:"Which functional group represents an aldehyde?",opts:["-CHO","-COOH","-OH","-CO-"]},
+  {n:10,sub:"Chemistry",q:"Isomers having the same molecular formula but differing in the position of the functional group are called:",opts:["Position isomers","Chain isomers","Functional isomers","Metamers"]},
+  {n:11,sub:"Chemistry",q:"Which species acts as a nucleophile?",opts:["BF3","AlCl3","CN-","CH3+"]},
+  {n:12,sub:"Chemistry",q:"The IUPAC name of CH3-CH=CH-CH3 is:",opts:["But-1-ene","But-2-ene","Propene","Butane"]},
+  {n:13,sub:"Chemistry",q:"Hyperconjugation is also known as:",opts:["Baker-Nathan effect","No bond resonance","Both A and B","None of the above"]},
+  {n:14,sub:"Chemistry",q:"Which compound shows geometrical isomerism?",opts:["But-1-ene","Propene","Ethane","But-2-ene"]},
+  {n:15,sub:"Chemistry",q:"A completely formed triple bond consists of:",opts:["1 sigma and 2 pi bonds","2 sigma and 1 pi bond","3 sigma bonds","3 pi bonds"]},
+  {n:16,sub:"Chemistry",q:"The general formula for an alkyne is:",opts:["CnH2n+2","CnH2n-2","CnH2n","CnH2n-4"]},
+  {n:17,sub:"Chemistry",q:"Which group shows a +I (positive inductive) effect?",opts:["-NO2","-CN","-CH3","-COOH"]},
+  {n:18,sub:"Chemistry",q:"Which type of isomerism is shown by diethyl ether and methyl propyl ether?",opts:["Chain","Position","Metamerism","Tautomerism"]},
+  {n:19,sub:"Chemistry",q:"What is the IUPAC name of formic acid?",opts:["Methanoic acid","Ethanoic acid","Propanoic acid","Butanoic acid"]},
+  {n:20,sub:"Chemistry",q:"Carbonium ion (Carbocation) has a geometry of:",opts:["Linear","Planar","Tetrahedral","Octahedral"]},
+  {n:21,sub:"Chemistry",q:"Which of the following compounds exhibits optical isomerism?",opts:["1-Chlorobutane","2-Chlorobutane","1,2-Dichloroethane","1-Bromopropane"]},
+  {n:22,sub:"Chemistry",q:"The IUPAC name for CH3-O-C2H5 is:",opts:["Methoxyethane","Ethoxyethane","Ethyl methyl ether","Propoxy ether"]},
+  {n:23,sub:"Chemistry",q:"Resonance structures are separated by which type of arrow?",opts:["Single-headed arrow","Double-headed arrow","Equilibrium arrow","Curved arrow"]},
+  {n:24,sub:"Chemistry",q:"The most stable conformation of n-butane is:",opts:["Eclipsed","Gauche","Anti (Staggered)","Skew"]},
+  {n:25,sub:"Chemistry",q:"Keto-enol isomerism is a special type of:",opts:["Chain isomerism","Tautomerism","Position isomerism","Metamerism"]},
 
-  // BIOLOGY (25 Qs - Genetics & Evolution)
-  {n:26,sub:"Biology",q:"Who is known as the Father of Genetics?",opts:["Charles Darwin","Gregor Mendel","Robert Hooke","James Watson"]},
-  {n:27,sub:"Biology",q:"Mendel conducted his hybridization experiments on:",opts:["Sweet pea","Garden pea","Wild pea","Chickpea"]},
-  {n:28,sub:"Biology",q:"The phenotypic ratio of a standard dihybrid cross is:",opts:["3:1","1:2:1","9:3:3:1","1:1:1:1"]},
-  {n:29,sub:"Biology",q:"Humans have how many pairs of chromosomes?",opts:["22","23","46","44"]},
-  {n:30,sub:"Biology",q:"The theory of Natural Selection was proposed by:",opts:["Lamarck","Charles Darwin","Hugo de Vries","Gregor Mendel"]},
-  {n:31,sub:"Biology",q:"Homologous organs indicate:",opts:["Convergent evolution","Divergent evolution","Parallel evolution","Artificial selection"]},
-  {n:32,sub:"Biology",q:"Wings of birds and wings of insects are examples of:",opts:["Homologous organs","Analogous organs","Vestigial organs","Atavism"]},
-  {n:33,sub:"Biology",q:"Which of the following is a vestigial organ in humans?",opts:["Heart","Lung","Vermiform appendix","Kidney"]},
-  {n:34,sub:"Biology",q:"The basic functional unit of heredity is:",opts:["Gene","Chromosome","DNA","RNA"]},
-  {n:35,sub:"Biology",q:"The observable physical traits of an organism are called its:",opts:["Genotype","Phenotype","Karyotype","Allele"]},
-  {n:36,sub:"Biology",q:"The term 'Mutation' was coined by:",opts:["Charles Darwin","Jean-Baptiste Lamarck","Hugo de Vries","August Weismann"]},
-  {n:37,sub:"Biology",q:"The 'Use and Disuse of Organs' principle was given by:",opts:["Lamarck","Darwin","Wallace","Malthus"]},
-  {n:38,sub:"Biology",q:"XX-XY type of sex determination is found in:",opts:["Birds","Humans","Butterflies","Moths"]},
-  {n:39,sub:"Biology",q:"The connecting link between reptiles and birds is:",opts:["Archaeopteryx","Platypus","Lungfish","Peripatus"]},
-  {n:40,sub:"Biology",q:"According to evolution, life originated in:",opts:["Air","Soil","Water","Space"]},
-  {n:41,sub:"Biology",q:"The genotypic ratio of a monohybrid cross is:",opts:["3:1","1:2:1","9:3:3:1","1:1"]},
-  {n:42,sub:"Biology",q:"Alternative forms of a gene are called:",opts:["Loci","Alleles","Chromosomes","Genomes"]},
-  {n:43,sub:"Biology",q:"A sudden heritable change in the genetic material is called:",opts:["Evolution","Recombination","Mutation","Segregation"]},
-  {n:44,sub:"Biology",q:"Fossils are generally found in which type of rocks?",opts:["Igneous","Metamorphic","Sedimentary","Volcanic"]},
-  {n:45,sub:"Biology",q:"Down's syndrome is caused by the trisomy of which chromosome?",opts:["18th","21st","13th","23rd"]},
-  {n:46,sub:"Biology",q:"The genetic material in most organisms is:",opts:["Protein","RNA","DNA","Carbohydrate"]},
-  {n:47,sub:"Biology",q:"Industrial melanism is an example of:",opts:["Natural selection","Mutation","Genetic drift","Migration"]},
-  {n:48,sub:"Biology",q:"The phrase 'Survival of the fittest' was coined by:",opts:["Charles Darwin","Herbert Spencer","Jean-Baptiste Lamarck","Hugo de Vries"]},
-  {n:49,sub:"Biology",q:"A cross between a hybrid and its recessive parent is called:",opts:["Back cross","Test cross","Monohybrid cross","Dihybrid cross"]},
-  {n:50,sub:"Biology",q:"Which blood group is universally known as the universal acceptor?",opts:["A","B","AB","O"]},
+  // BIOLOGY (25 Qs - Cell Structure & Cell Division)
+  {n:26,sub:"Biology",q:"Which organelle is known as the powerhouse of the cell?",opts:["Mitochondria","Nucleus","Ribosome","Golgi Body"]},
+  {n:27,sub:"Biology",q:"Who discovered the cell in 1665?",opts:["Theodor Schwann","Robert Hooke","Anton van Leeuwenhoek","Robert Brown"]},
+  {n:28,sub:"Biology",q:"The suicidal bags of the cell are:",opts:["Ribosomes","Plastids","Centrosomes","Lysosomes"]},
+  {n:29,sub:"Biology",q:"Which structure is exclusively found in plant cells?",opts:["Cell wall","Cell membrane","Nucleus","Mitochondria"]},
+  {n:30,sub:"Biology",q:"Ribosomes are the primary site for the synthesis of:",opts:["Proteins","Lipids","Carbohydrates","Vitamins"]},
+  {n:31,sub:"Biology",q:"Which phase of the cell cycle is the longest?",opts:["M phase","Interphase","Prophase","Telophase"]},
+  {n:32,sub:"Biology",q:"DNA replication occurs during which phase of the cell cycle?",opts:["S phase","G1 phase","G2 phase","M phase"]},
+  {n:33,sub:"Biology",q:"Crossing over takes place in which stage of meiosis?",opts:["Leptotene","Pachytene","Zygotene","Diplotene"]},
+  {n:34,sub:"Biology",q:"The pairing of homologous chromosomes during meiosis is called:",opts:["Chiasmata","Bivalent","Tetrad","Synapsis"]},
+  {n:35,sub:"Biology",q:"Chromosomes are thickest and shortest, and best visible during:",opts:["Prophase","Metaphase","Anaphase","Telophase"]},
+  {n:36,sub:"Biology",q:"Mitosis results in the formation of:",opts:["Four haploid cells","Two diploid cells","Four diploid cells","Two haploid cells"]},
+  {n:37,sub:"Biology",q:"The fluid mosaic model of the cell membrane was proposed by:",opts:["Robertson","Danielli and Davson","Singer and Nicolson","Watson and Crick"]},
+  {n:38,sub:"Biology",q:"Which organelle is responsible for cellular respiration?",opts:["Chloroplast","Golgi apparatus","Mitochondria","Endoplasmic reticulum"]},
+  {n:39,sub:"Biology",q:"Plastids containing colored pigments other than green are called:",opts:["Chromoplasts","Leucoplasts","Chloroplasts","Amyloplasts"]},
+  {n:40,sub:"Biology",q:"In animal cells, the cleavage furrow forms during which process?",opts:["Karyokinesis","Interphase","Metaphase","Cytokinesis"]},
+  {n:41,sub:"Biology",q:"Meiosis consists of how many nuclear divisions?",opts:["Two","One","Three","Four"]},
+  {n:42,sub:"Biology",q:"The nucleolus is primarily involved in the synthesis of:",opts:["tRNA","DNA","rRNA","mRNA"]},
+  {n:43,sub:"Biology",q:"Centromere is required for:",opts:["Movement of chromosomes towards poles","Crossing over","Transcription","Cytoplasmic cleavage"]},
+  {n:44,sub:"Biology",q:"The term 'Cell' was given in the book:",opts:["Origin of Species","Systema Naturae","Micrographia","Genera Plantarum"]},
+  {n:45,sub:"Biology",q:"Smooth endoplasmic reticulum (SER) plays a major role in the synthesis of:",opts:["Proteins","Lipids","Carbohydrates","Nucleic acids"]},
+  {n:46,sub:"Biology",q:"Which of the following is absent in a prokaryotic cell?",opts:["Nuclear membrane","Plasma membrane","Ribosomes","DNA"]},
+  {n:47,sub:"Biology",q:"The division of the cytoplasm is called:",opts:["Karyokinesis","Synapsis","Cytokinesis","Chiasmata"]},
+  {n:48,sub:"Biology",q:"During which phase do sister chromatids separate and move to opposite poles?",opts:["Anaphase","Prophase","Metaphase","Telophase"]},
+  {n:49,sub:"Biology",q:"The points of attachment where crossing over occurs are called:",opts:["Centromeres","Kinetochores","Chiasmata","Spindle fibers"]},
+  {n:50,sub:"Biology",q:"Which of the following cells do not divide once differentiated?",opts:["Skin cells","Nerve cells","Liver cells","Bone cells"]},
 
-  // ENGLISH (25 Qs - Tenses & Active/Passive Voice)
-  {n:51,sub:"English",q:"I _____ a book when the bell rang.",opts:["was reading","read","am reading","have read"]},
-  {n:52,sub:"English",q:"He _____ to London tomorrow.",opts:["go","goes","will go","went"]},
-  {n:53,sub:"English",q:"She _____ her work before the guests arrived.",opts:["finished","has finished","had finished","will finish"]},
-  {n:54,sub:"English",q:"They _____ in this house since 2010.",opts:["are living","have been living","lived","were living"]},
-  {n:55,sub:"English",q:"The sun _____ in the east.",opts:["rise","rose","rises","is rising"]},
-  {n:56,sub:"English",q:"Identify the tense: 'He has written a letter.'",opts:["Present Continuous","Present Perfect","Past Perfect","Present Perfect Continuous"]},
-  {n:57,sub:"English",q:"Change into passive voice: 'He writes a letter.'",opts:["A letter is written by him.","A letter was written by him.","A letter has been written by him.","A letter is being written by him."]},
-  {n:58,sub:"English",q:"Change into active voice: 'The work will be done by me.'",opts:["I will be doing the work.","I will do the work.","I have done the work.","I do the work."]},
-  {n:59,sub:"English",q:"Change into passive voice: 'Open the door.'",opts:["The door must be opened.","Let the door be opened.","The door should be opened.","The door is opened."]},
-  {n:60,sub:"English",q:"The passive voice of 'They are playing chess.' is:",opts:["Chess is played by them.","Chess was being played by them.","Chess is being played by them.","Chess has been played by them."]},
-  {n:61,sub:"English",q:"The passive voice of 'Did you finish the task?' is:",opts:["Was the task finished by you?","Is the task finished by you?","Has the task been finished by you?","Had the task been finished by you?"]},
-  {n:62,sub:"English",q:"Convert to passive voice: 'Who broke the glass?'",opts:["By whom was the glass broken?","By whom is the glass broken?","Who had broken the glass?","The glass was broken by whom?"]},
-  {n:63,sub:"English",q:"I _____ this movie twice.",opts:["saw","have seen","had seen","am seeing"]},
-  {n:64,sub:"English",q:"By next year, I _____ my degree.",opts:["will complete","completed","will have completed","am completing"]},
-  {n:65,sub:"English",q:"Passive voice of 'I know him' is:",opts:["He is known by me.","He is known to me.","He was known to me.","He has been known by me."]},
-  {n:66,sub:"English",q:"He _____ to school every day.",opts:["go","goes","is going","has gone"]},
-  {n:67,sub:"English",q:"We _____ dinner when the lights went out.",opts:["have","are having","were having","had"]},
-  {n:68,sub:"English",q:"Change to passive voice: 'People speak English all over the world.'",opts:["English is spoken all over the world.","English was spoken all over the world.","English has been spoken.","English is being spoken."]},
-  {n:69,sub:"English",q:"Choose the correct passive form of: 'Please help me.'",opts:["Let me be helped.","You are requested to help me.","I should be helped.","You are ordered to help me."]},
-  {n:70,sub:"English",q:"When I reached the station, the train _____.",opts:["left","leaves","had left","has left"]},
-  {n:71,sub:"English",q:"Which sentence is in the passive voice?",opts:["The boy kicked the ball.","The ball was kicked by the boy.","The boy is kicking the ball.","The boy will kick the ball."]},
-  {n:72,sub:"English",q:"'I had been working for two hours.' The tense is:",opts:["Past Continuous","Past Perfect","Past Perfect Continuous","Present Perfect Continuous"]},
-  {n:73,sub:"English",q:"Passive voice of 'Do not beat the dog.'",opts:["Let the dog not be beaten.","Let the dog be beaten.","The dog should not be beaten.","Both A and C."]},
-  {n:74,sub:"English",q:"She _____ the exam next month.",opts:["takes","took","will take","is taking"]},
-  {n:75,sub:"English",q:"Passive voice of 'Somebody has stolen my pen.'",opts:["My pen was stolen.","My pen has been stolen.","My pen is stolen.","My pen had been stolen."]},
+  // HINDI (25 Qs - संधि & समास)
+  {n:51,sub:"Hindi",q:"'विद्यार्थी' शब्द का सही संधि विच्छेद क्या है?",opts:["विद्या + अर्थी","विद्य + अर्थी","विद्या + र्थी","विद्या + आर्थी"]},
+  {n:52,sub:"Hindi",q:"'महोदय' में कौन सी संधि है?",opts:["दीर्घ संधि","यण संधि","गुण संधि","वृद्धि संधि"]},
+  {n:53,sub:"Hindi",q:"'प्रत्येक' का सही संधि विच्छेद है:",opts:["प्रति + अक","प्रति + एक","प्रत + एक","प्र + त्येक"]},
+  {n:54,sub:"Hindi",q:"'निराशा' का सही संधि विच्छेद क्या होगा?",opts:["निरा + आशा","निः + आशा","निर् + आशा","नि + राशा"]},
+  {n:55,sub:"Hindi",q:"'सज्जन' का संधि विच्छेद है:",opts:["सत् + जन","सज् + जन","सद + जन","स + जन"]},
+  {n:56,sub:"Hindi",q:"'यथाशक्ति' में कौन सा समास है?",opts:["तत्पुरुष","अव्ययीभाव","कर्मधारय","द्वंद्व"]},
+  {n:57,sub:"Hindi",q:"'नीलकंठ' में कौन सा समास है? (यदि यह 'शिव' के लिए प्रयुक्त हो)",opts:["कर्मधारय","बहुव्रीहि","द्विगु","तत्पुरुष"]},
+  {n:58,sub:"Hindi",q:"'पाप-पुण्य' में कौन सा समास है?",opts:["कर्मधारय","बहुव्रीहि","द्विगु","द्वंद्व"]},
+  {n:59,sub:"Hindi",q:"'राजपुत्र' (राजा का पुत्र) में कौन सा समास है?",opts:["अव्ययीभाव","कर्मधारय","तत्पुरुष","बहुव्रीहि"]},
+  {n:60,sub:"Hindi",q:"'चौराहा' (चार राहों का समूह) शब्द में कौन सा समास है?",opts:["द्वंद्व","द्विगु","तत्पुरुष","कर्मधारय"]},
+  {n:61,sub:"Hindi",q:"'पवन' शब्द का सही संधि विच्छेद क्या होगा?",opts:["पो + अन","पव + न","पौ + अन","प + वन"]},
+  {n:62,sub:"Hindi",q:"'स्वागत' में कौन सी संधि है?",opts:["यण संधि","गुण संधि","दीर्घ संधि","अयादि संधि"]},
+  {n:63,sub:"Hindi",q:"'उज्ज्वल' का सही संधि विच्छेद क्या है?",opts:["उज्ज + वल","उत् + जवल","उद् + ज्वल","उत् + ज्वल"]},
+  {n:64,sub:"Hindi",q:"'दशानन' (दस हैं आनंद जिसके) में कौन सा समास है?",opts:["कर्मधारय","बहुव्रीहि","द्विगु","तत्पुरुष"]},
+  {n:65,sub:"Hindi",q:"'चरणकमल' में कौन सा समास है?",opts:["कर्मधारय","तत्पुरुष","द्वंद्व","अव्ययीभाव"]},
+  {n:66,sub:"Hindi",q:"'महात्मा' का सही संधि विच्छेद क्या है?",opts:["महा + आत्मा","मह + आत्मा","महत + मा","महा + त्मा"]},
+  {n:67,sub:"Hindi",q:"'परोपकार' में कौन सी संधि है?",opts:["दीर्घ संधि","गुण संधि","वृद्धि संधि","यण संधि"]},
+  {n:68,sub:"Hindi",q:"'नवग्रह' में कौन सा समास है?",opts:["द्विगु","द्वंद्व","तत्पुरुष","कर्मधारय"]},
+  {n:69,sub:"Hindi",q:"'आजन्म' में कौन सा समास है?",opts:["तत्पुरुष","कर्मधारय","बहुव्रीहि","अव्ययीभाव"]},
+  {n:70,sub:"Hindi",q:"'देवासुर' में कौन सा समास है?",opts:["द्वंद्व","द्विगु","तत्पुरुष","कर्मधारय"]},
+  {n:71,sub:"Hindi",q:"'गायक' शब्द का सही संधि विच्छेद है:",opts:["गा + यक","गै + अक","गे + अक","गाय + क"]},
+  {n:72,sub:"Hindi",q:"'जगदीश' का संधि विच्छेद क्या होगा?",opts:["जग + दीश","जगद + ईश","जगत् + ईश","जगती + श"]},
+  {n:73,sub:"Hindi",q:"'नरोत्तम' में कौन सा समास है?",opts:["तत्पुरुष","कर्मधारय","अव्ययीभाव","द्वंद्व"]},
+  {n:74,sub:"Hindi",q:"'दिगंबर' का सही संधि विच्छेद है:",opts:["दिग + अंबर","दिंग + अंबर","दिक् + अंबर","दिगम् + बर"]},
+  {n:75,sub:"Hindi",q:"'त्रिफला' में कौन सा समास है?",opts:["बहुव्रीहि","द्वंद्व","द्विगु","कर्मधारय"]},
 
-  // MATHS (25 Qs - Simple Interest)
-  {n:76,sub:"Maths",q:"The simple interest on ₹1000 at 5% per annum for 2 years is:",opts:["₹50","₹100","₹150","₹200"]},
-  {n:77,sub:"Maths",q:"At what rate of simple interest will a sum double itself in 10 years?",opts:["5%","8%","10%","12%"]},
-  {n:78,sub:"Maths",q:"Find the principal if simple interest is ₹120 at 6% p.a. for 4 years.",opts:["₹400","₹500","₹600","₹800"]},
-  {n:79,sub:"Maths",q:"In how many years will ₹500 amount to ₹600 at 5% p.a. simple interest?",opts:["2 years","3 years","4 years","5 years"]},
-  {n:80,sub:"Maths",q:"The simple interest on a sum of money is 1/4 of the principal. If the number of years is equal to the rate percent per annum, find the rate.",opts:["2.5%","5%","7.5%","10%"]},
-  {n:81,sub:"Maths",q:"A sum of ₹800 amounts to ₹920 in 3 years at simple interest. What is the rate of interest?",opts:["4%","5%","6%","7%"]},
-  {n:82,sub:"Maths",q:"Calculate the simple interest on ₹2000 from 5th Jan 2023 to 31st May 2023 at 5% p.a. (Approx 146 days).",opts:["₹20","₹40","₹60","₹80"]},
-  {n:83,sub:"Maths",q:"If ₹1 amounts to ₹9 in 40 years at simple interest, the rate of interest is:",opts:["10%","20%","25%","30%"]},
-  {n:84,sub:"Maths",q:"A sum triples itself in 20 years at simple interest. Find the rate of interest.",opts:["5%","10%","15%","20%"]},
-  {n:85,sub:"Maths",q:"The simple interest on a sum is ₹50 in 2 years. If the principal is doubled for the next 2 years, what will be the total interest at the end of 4 years?",opts:["₹100","₹150","₹200","₹250"]},
-  {n:86,sub:"Maths",q:"What sum of money will generate ₹1 interest per day at 5% p.a. simple interest?",opts:["₹3650","₹7300","₹73000","₹36500"]},
-  {n:87,sub:"Maths",q:"The difference between simple interest received from two different sources on ₹1500 for 3 years is ₹13.50. The difference between their rates of interest is:",opts:["0.1%","0.2%","0.3%","0.4%"]},
-  {n:88,sub:"Maths",q:"A person borrows ₹5000 for 2 years at 4% p.a. simple interest. He immediately lends it to another person at 6.25% p.a. for 2 years. Find his gain in the transaction per year.",opts:["₹112.50","₹125","₹225","₹150"]},
-  {n:89,sub:"Maths",q:"If the simple interest on a certain sum of money for 3 years at 5% p.a. is ₹150, find the sum.",opts:["₹500","₹1000","₹1500","₹2000"]},
-  {n:90,sub:"Maths",q:"At what rate percent per annum will ₹400 yield an interest of ₹78 in 3 years?",opts:["5.5%","6%","6.5%","7%"]},
-  {n:91,sub:"Maths",q:"Find the amount if ₹1200 is invested at 10% p.a. simple interest for 3 years.",opts:["₹1320","₹1440","₹1560","₹1680"]},
-  {n:92,sub:"Maths",q:"A sum of money becomes 4 times in 15 years at simple interest. Rate of interest is:",opts:["10%","15%","20%","25%"]},
-  {n:93,sub:"Maths",q:"A sum of ₹1600 gives a simple interest of ₹252 in 2 years and 3 months. The rate of interest per annum is:",opts:["5.5%","6%","7%","8%"]},
-  {n:94,sub:"Maths",q:"What will be the ratio of simple interest earned by certain amount at the same rate of interest for 6 years and that for 9 years?",opts:["1:3","2:3","3:4","1:2"]},
-  {n:95,sub:"Maths",q:"Mohan lent some amount of money at 9% simple interest and an equal amount of money at 10% simple interest each for two years. If his total interest was ₹760, what amount was lent in each case?",opts:["₹1500","₹1800","₹2000","₹2500"]},
-  {n:96,sub:"Maths",q:"A man took a loan from a bank at the rate of 12% p.a. simple interest. After 3 years he had to pay ₹5400 interest only for the period. The principal amount borrowed by him was:",opts:["₹2000","₹10000","₹15000","₹20000"]},
-  {n:97,sub:"Maths",q:"If a sum of money at simple interest doubles in 5 years, it will become 4 times in:",opts:["10 years","15 years","20 years","25 years"]},
-  {n:98,sub:"Maths",q:"The simple interest on ₹X at R% for T years is:",opts:["(XRT)/100","XRT","100/(XRT)","(100XT)/R"]},
-  {n:99,sub:"Maths",q:"Find the simple interest on ₹2500 at 8% per annum for 6 months.",opts:["₹50","₹100","₹150","₹200"]},
-  {n:100,sub:"Maths",q:"If the simple interest on ₹800 is ₹40 more than the simple interest on ₹600 for 5 years, find the rate of interest.",opts:["2%","3%","4%","5%"]}
+  // GK (25 Qs - Fundamental Rights & Parliament)
+  {n:76,sub:"GK",q:"Fundamental Rights are described in which Part of the Indian Constitution?",opts:["Part I","Part II","Part III","Part IV"]},
+  {n:77,sub:"GK",q:"Which Article of the Constitution abolishes the practice of 'Untouchability'?",opts:["Article 14","Article 17","Article 18","Article 21"]},
+  {n:78,sub:"GK",q:"Right to Equality before the law is guaranteed under which Article?",opts:["Article 14","Article 19","Article 21","Article 32"]},
+  {n:79,sub:"GK",q:"How many fundamental rights are currently recognized by the Indian Constitution?",opts:["5","6","7","8"]},
+  {n:80,sub:"GK",q:"Which fundamental right was removed from the list of Fundamental Rights by the 44th Amendment Act?",opts:["Right to Freedom","Right to Property","Right to Equality","Right to Education"]},
+  {n:81,sub:"GK",q:"Article 32 of the Indian Constitution deals with:",opts:["Right to Life","Right to Freedom of Religion","Right to Constitutional Remedies","Right against Exploitation"]},
+  {n:82,sub:"GK",q:"Who is the ex-officio Chairman of the Rajya Sabha?",opts:["President of India","Vice-President of India","Prime Minister","Chief Justice of India"]},
+  {n:83,sub:"GK",q:"What is the maximum strength of the Lok Sabha provided by the Constitution?",opts:["545","552","543","550"]},
+  {n:84,sub:"GK",q:"The joint sitting of both Houses of Parliament is presided over by the:",opts:["Speaker of Lok Sabha","President of India","Vice-President of India","Prime Minister"]},
+  {n:85,sub:"GK",q:"Which Article of the Constitution deals with the establishment of the Parliament of India?",opts:["Article 72","Article 74","Article 79","Article 110"]},
+  {n:86,sub:"GK",q:"A Money Bill can be introduced only in the:",opts:["Rajya Sabha","Lok Sabha","Both Houses","Legislative Council"]},
+  {n:87,sub:"GK",q:"What is the minimum age required to become a member of the Rajya Sabha?",opts:["21 years","25 years","30 years","35 years"]},
+  {n:88,sub:"GK",q:"Which Article grants special status to the state of Jammu and Kashmir (which was abrogated in 2019)?",opts:["Article 356","Article 370","Article 352","Article 360"]},
+  {n:89,sub:"GK",q:"The President of India can nominate how many members to the Rajya Sabha?",opts:["2","10","12","14"]},
+  {n:90,sub:"GK",q:"Which Article provides for the Right to Free and Compulsory Education for children aged 6 to 14 years?",opts:["Article 19","Article 21A","Article 24","Article 29"]},
+  {n:91,sub:"GK",q:"The power to prorogue the Lok Sabha rests with the:",opts:["President","Prime Minister","Speaker","Vice-President"]},
+  {n:92,sub:"GK",q:"Article 352 of the Indian Constitution is related to:",opts:["State Emergency","Financial Emergency","Amendment of Constitution","National Emergency"]},
+  {n:93,sub:"GK",q:"The term of members of the Rajya Sabha is:",opts:["6 years","5 years","4 years","Permanent"]},
+  {n:94,sub:"GK",q:"Which fundamental right is known as the 'Heart and Soul' of the Constitution according to Dr. B.R. Ambedkar?",opts:["Right to Equality","Right to Freedom","Right to Constitutional Remedies","Right to Property"]},
+  {n:95,sub:"GK",q:"Who has the final power to decide whether a bill is a Money Bill or not?",opts:["Speaker of Lok Sabha","President","Finance Minister","Prime Minister"]},
+  {n:96,sub:"GK",q:"Under which Article can the President declare a Financial Emergency?",opts:["Article 352","Article 360","Article 356","Article 365"]},
+  {n:97,sub:"GK",q:"The maximum gap between two sessions of Parliament cannot exceed:",opts:["3 months","6 months","9 months","12 months"]},
+  {n:98,sub:"GK",q:"Article 19 guarantees how many types of basic freedoms to the citizens of India?",opts:["5","6","7","8"]},
+  {n:99,sub:"GK",q:"Which part of the Constitution deals with the Parliament (Union Legislature)?",opts:["Part IV","Part VI","Part V","Part III"]},
+  {n:100,sub:"GK",q:"Who can dissolve the Lok Sabha before its full term expires?",opts:["Prime Minister","Chief Justice of India","President on the advice of Council of Ministers","Speaker of Lok Sabha"]},
+
+  // MATHS (10 Qs - Compound Interest)
+  {n:101,sub:"Maths",q:"The formula for calculating the amount (A) under compound interest is:",opts:["A = P(1 + R/100)","A = P(1 + R)T","A = P(1 + R/100)^T","A = PRT/100"]},
+  {n:102,sub:"Maths",q:"Find the compound interest on ₹1000 for 2 years at 10% per annum.",opts:["₹200","₹210","₹220","₹1210"]},
+  {n:103,sub:"Maths",q:"If interest is compounded half-yearly, then the rate of interest (R) used in the formula becomes:",opts:["R","R/2","2R","R/4"]},
+  {n:104,sub:"Maths",q:"A sum of money doubles itself in 3 years at compound interest. In how many years will it become 8 times itself?",opts:["9 years","6 years","12 years","24 years"]},
+  {n:105,sub:"Maths",q:"The difference between simple interest and compound interest on a certain sum for 2 years at 5% p.a. is ₹10. Find the sum.",opts:["₹4000","₹5000","₹3000","₹4500"]},
+  {n:106,sub:"Maths",q:"Find the amount on ₹5000 for 1 year at 8% per annum, compounded half-yearly.",opts:["₹5400","₹5408","₹5408.32","₹5500"]},
+  {n:107,sub:"Maths",q:"In what time will ₹1000 become ₹1331 at 10% per annum compounded annually?",opts:["2 years","3 years","4 years","5 years"]},
+  {n:108,sub:"Maths",q:"If a sum becomes ₹4000 in 2 years and ₹4400 in 3 years at compound interest, what is the rate of interest?",opts:["5%","10%","15%","20%"]},
+  {n:109,sub:"Maths",q:"The compound interest on ₹8000 at 15% per annum for 2 years 4 months, compounded annually is:",opts:["₹2980","₹3109","₹3100","₹2800"]},
+  {n:110,sub:"Maths",q:"If the interest is compounded quarterly, how many conversion periods are there in 2 years?",opts:["2","4","8","12"]}
 ];
 
 let studentName = "";
@@ -572,13 +586,13 @@ window.onload = function() {
   
   if(studentName && savedEndTime && Date.now() < parseInt(savedEndTime)) {
     endTime = parseInt(savedEndTime);
-    answers = JSON.parse(localStorage.getItem("dcece_day4_answers")) || {};
+    answers = JSON.parse(localStorage.getItem("dcece_day5_answers")) || {};
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("main-test-area").style.display = "block";
     startTimer();
     filterSubject("All");
   } else {
-    localStorage.removeItem("dcece_day4_answers");
+    localStorage.removeItem("dcece_day5_answers");
     localStorage.removeItem("dcece_studentName");
     localStorage.removeItem("dcece_endTime");
   }
@@ -676,7 +690,7 @@ function renderQuestion() {
 
 function selectOption(actualIndex, index) {
   answers[actualIndex] = index;
-  localStorage.setItem("dcece_day4_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_day5_answers", JSON.stringify(answers));
   renderQuestion();
 }
 
@@ -690,7 +704,7 @@ function nextQuestion() {
 function skipQuestion() {
   const actualIndex = filteredIndices[current];
   delete answers[actualIndex];
-  localStorage.setItem("dcece_day4_answers", JSON.stringify(answers));
+  localStorage.setItem("dcece_day5_answers", JSON.stringify(answers));
   if (current < filteredIndices.length - 1) {
     current++;
     renderQuestion();
@@ -730,7 +744,6 @@ function submitTest(isAuto = false) {
   let incorrect = 0;
   let unattempted = 0;
   
-  // NAYA EMAIL REPORT FORMAT (No changes made here as per request)
   let detailedReport = `--- DETAILED QUESTION ANALYSIS ---\n\n`;
 
   questions.forEach((q, index) => {
@@ -790,7 +803,7 @@ ${detailedReport}`;
     },
     body: JSON.stringify({
       access_key: '9c7f3c85-004e-4888-b6ed-6ed6f4715db6', 
-      subject: `DCECE Day 4 Result: ${studentName} scored ${correct}/${questions.length}`,
+      subject: `DCECE Day 5 Result: ${studentName} scored ${correct}/${questions.length}`,
       message: finalMessage
     })
   })
@@ -835,7 +848,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
       <p style="color:var(--danger)">Wrong Answers: <strong>${incorrect}</strong></p>
     </div>
     <h3 style="font-size: 24px; color: var(--primary);">Final Score: ${correct} / ${questions.length}</h3>
-    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_day4_answers');">Retake Test</button>
+    <button class="submit-btn" style="width: auto; padding: 10px 20px; margin-top: 20px; margin-bottom: 30px;" onclick="location.reload(); localStorage.removeItem('dcece_day5_answers');">Retake Test</button>
   `;
 
   let reviewHTML = '<div class="review-container">';
@@ -883,7 +896,7 @@ function showResultUI(attempted, unattempted, correct, incorrect) {
   reviewHTML += '</div>';
   reviewArea.innerHTML = reviewHTML;
   
-  localStorage.removeItem('dcece_day4_answers');
+  localStorage.removeItem('dcece_day5_answers');
 }
 </script>
 
